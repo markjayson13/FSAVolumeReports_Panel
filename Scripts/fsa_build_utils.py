@@ -89,6 +89,20 @@ AWARD_YEAR_PATTERNS: Sequence[re.Pattern[str]] = [
 ]
 
 COMPONENT_ORDER = ["grants", "campus_based", "direct_loans", "ffel"]
+LOAN_METRIC_SUFFIXES = (
+    "recipients",
+    "loans_originated_n",
+    "loans_originated_amt",
+    "disbursements_n",
+    "disbursements",
+)
+LOAN_HARMONIZATION_SPECS = {
+    "loan_direct__subsidized": ("loan_direct__subsidized_undergraduate", "loan_direct__subsidized_graduate"),
+    "loan_direct__unsubsidized": ("loan_direct__unsubsidized_undergraduate", "loan_direct__unsubsidized_graduate"),
+    "loan_direct__plus": ("loan_direct__parent_plus", "loan_direct__grad_plus"),
+    "loan_ffel__plus": ("loan_ffel__parent_plus", "loan_ffel__grad_plus"),
+}
+LOAN_CONSOLIDATION_BASES = ("subsidized", "unsubsidized", "plus")
 
 EXPECTED_SELECTED_SCOPE = {
     "grants": {
@@ -108,6 +122,60 @@ EXPECTED_SELECTED_SCOPE = {
         "q4_years": tuple(range(2006, 2010)),
     },
 }
+
+US_STATE_CODES_WITH_DC = (
+    "AL",
+    "AK",
+    "AZ",
+    "AR",
+    "CA",
+    "CO",
+    "CT",
+    "DE",
+    "FL",
+    "GA",
+    "HI",
+    "ID",
+    "IL",
+    "IN",
+    "IA",
+    "KS",
+    "KY",
+    "LA",
+    "ME",
+    "MD",
+    "MA",
+    "MI",
+    "MN",
+    "MS",
+    "MO",
+    "MT",
+    "NE",
+    "NV",
+    "NH",
+    "NJ",
+    "NM",
+    "NY",
+    "NC",
+    "ND",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VT",
+    "VA",
+    "WA",
+    "WV",
+    "WI",
+    "WY",
+    "DC",
+)
 
 INVENTORY_FIELDS = [
     "family",
@@ -1505,11 +1573,131 @@ def merge_loan_panels(root: str | Path | None = None) -> Path:
     direct = pd.read_parquet(locate_component_panel(layout, "direct_loans"))
     ffel = pd.read_parquet(locate_component_panel(layout, "ffel"))
     merged = outer_merge_panels(direct, ffel)
+    merged, harmonization_summary = harmonize_loan_panel(merged)
+    merged, consolidation_summary = consolidate_loan_programs(merged)
     assert_unique_panel_keys(merged, "merged loan panel")
     entries = load_selected_panel_entries(layout, family="direct_loans") + load_selected_panel_entries(layout, family="ffel")
     output_path = component_panel_dir(layout, "direct_loans") / panel_file_name("panel_loan_volume", entries)
     merged.to_parquet(output_path, index=False)
+    harmonization_summary.to_csv(layout.checks / "panel_qc" / "loan_harmonization_summary.csv", index=False)
+    consolidation_summary.to_csv(layout.checks / "panel_qc" / "loan_consolidation_summary.csv", index=False)
     return output_path
+
+
+def harmonize_loan_panel(frame: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
+    panel = frame.copy()
+    summary_rows: list[dict] = []
+    drop_columns: list[str] = []
+
+    for generic_base, split_bases in LOAN_HARMONIZATION_SPECS.items():
+        for metric in LOAN_METRIC_SUFFIXES:
+            generic_col = f"{generic_base}_{metric}"
+            split_cols = [f"{split_base}_{metric}" for split_base in split_bases if f"{split_base}_{metric}" in panel.columns]
+            if generic_col not in panel.columns and not split_cols:
+                continue
+
+            generic = panel[generic_col] if generic_col in panel.columns else pd.Series([pd.NA] * len(panel), index=panel.index)
+            split_frame = panel[split_cols] if split_cols else pd.DataFrame(index=panel.index)
+            split_sum = split_frame.sum(axis=1, min_count=1) if split_cols else pd.Series([pd.NA] * len(panel), index=panel.index)
+            overlap_mask = generic.notna() & split_sum.notna()
+            exact_match_mask = pd.Series(False, index=panel.index)
+            if overlap_mask.any():
+                exact_match_mask.loc[overlap_mask] = (
+                    generic.loc[overlap_mask].astype("Float64") == split_sum.loc[overlap_mask].astype("Float64")
+                ).fillna(False).to_numpy()
+            use_split_mask = generic.isna() & split_sum.notna()
+            harmonized = generic.combine_first(split_sum)
+            panel[generic_col] = format_integer_series(harmonized)
+
+            summary_rows.append(
+                {
+                    "generic_column": generic_col,
+                    "split_columns": "|".join(split_cols),
+                    "nonnull_generic_before": int(generic.notna().sum()),
+                    "nonnull_split_any": int(split_frame.notna().any(axis=1).sum()) if split_cols else 0,
+                    "rows_using_generic": int(generic.notna().sum()),
+                    "rows_using_split_sum": int(use_split_mask.sum()),
+                    "rows_generic_and_split_overlap": int(overlap_mask.sum()),
+                    "rows_overlap_exact_match": int(exact_match_mask.sum()),
+                }
+            )
+            drop_columns.extend(split_cols)
+
+    drop_columns = sorted({column for column in drop_columns if column in panel.columns})
+    if drop_columns:
+        panel = panel.drop(columns=drop_columns)
+    summary = pd.DataFrame(summary_rows).sort_values("generic_column").reset_index(drop=True) if summary_rows else pd.DataFrame(
+        columns=[
+            "generic_column",
+            "split_columns",
+            "nonnull_generic_before",
+            "nonnull_split_any",
+            "rows_using_generic",
+            "rows_using_split_sum",
+            "rows_generic_and_split_overlap",
+            "rows_overlap_exact_match",
+        ]
+    )
+    return panel, summary
+
+
+def consolidate_loan_programs(frame: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
+    panel = frame.copy()
+    summary_rows: list[dict] = []
+
+    descriptor_specs = {
+        "loan__school": ("loan_direct__school", "loan_ffel__school", None),
+        "loan__state": ("loan_direct__state", "loan_ffel__state", "state"),
+        "loan__zip_code": ("loan_direct__zip_code", "loan_ffel__zip_code", "zip_code"),
+        "loan__school_type": ("loan_direct__school_type", "loan_ffel__school_type", "school_type"),
+    }
+    for output_col, (direct_col, ffel_col, formatter) in descriptor_specs.items():
+        panel[output_col] = coalesce_columns(panel, [direct_col, ffel_col], formatter=formatter)
+        summary_rows.append(
+            {
+                "output_column": output_col,
+                "direct_nonnull": int(panel[direct_col].notna().sum()) if direct_col in panel.columns else 0,
+                "ffel_nonnull": int(panel[ffel_col].notna().sum()) if ffel_col in panel.columns else 0,
+                "rows_with_both_sources": int((panel.get(direct_col, pd.Series(index=panel.index)).notna() & panel.get(ffel_col, pd.Series(index=panel.index)).notna()).sum()),
+                "rows_output_nonnull": int(panel[output_col].notna().sum()),
+            }
+        )
+
+    for base in LOAN_CONSOLIDATION_BASES:
+        for metric in LOAN_METRIC_SUFFIXES:
+            direct_col = f"loan_direct__{base}_{metric}"
+            ffel_col = f"loan_ffel__{base}_{metric}"
+            if direct_col not in panel.columns and ffel_col not in panel.columns:
+                continue
+            pieces = []
+            if direct_col in panel.columns:
+                pieces.append(panel[direct_col])
+            if ffel_col in panel.columns:
+                pieces.append(panel[ffel_col])
+            total = pd.concat(pieces, axis=1).sum(axis=1, min_count=1)
+            output_col = f"loan__{base}_{metric}"
+            panel[output_col] = format_integer_series(total)
+            summary_rows.append(
+                {
+                    "output_column": output_col,
+                    "direct_nonnull": int(panel[direct_col].notna().sum()) if direct_col in panel.columns else 0,
+                    "ffel_nonnull": int(panel[ffel_col].notna().sum()) if ffel_col in panel.columns else 0,
+                    "rows_with_both_sources": int((panel.get(direct_col, pd.Series(index=panel.index)).notna() & panel.get(ffel_col, pd.Series(index=panel.index)).notna()).sum()),
+                    "rows_output_nonnull": int(panel[output_col].notna().sum()),
+                }
+            )
+
+    drop_columns = sorted(
+        column
+        for column in panel.columns
+        if column.startswith("loan_direct__") or column.startswith("loan_ffel__")
+    )
+    if drop_columns:
+        panel = panel.drop(columns=drop_columns)
+    summary = pd.DataFrame(summary_rows).sort_values("output_column").reset_index(drop=True) if summary_rows else pd.DataFrame(
+        columns=["output_column", "direct_nonnull", "ffel_nonnull", "rows_with_both_sources", "rows_output_nonnull"]
+    )
+    return panel, summary
 
 
 def coalesce_columns(frame: pd.DataFrame, columns: Sequence[str], *, formatter: str | None = None) -> pd.Series:
@@ -1531,13 +1719,13 @@ def coalesce_columns(frame: pd.DataFrame, columns: Sequence[str], *, formatter: 
 
 
 FINAL_DESCRIPTOR_COLUMNS = {
-    "school": ["grant__school", "campus__school", "loan_direct__school", "loan_ffel__school"],
-    "state": ["grant__state", "campus__state", "loan_direct__state", "loan_ffel__state"],
-    "zip_code": ["grant__zip_code", "campus__zip_code", "loan_direct__zip_code", "loan_ffel__zip_code"],
-    "school_type": ["grant__school_type", "campus__school_type", "loan_direct__school_type", "loan_ffel__school_type"],
+    "school": ["grant__school", "campus__school", "loan__school"],
+    "state": ["grant__state", "campus__state", "loan__state"],
+    "zip_code": ["grant__zip_code", "campus__zip_code", "loan__zip_code"],
+    "school_type": ["grant__school_type", "campus__school_type", "loan__school_type"],
 }
 
-FINAL_DESCRIPTOR_SOURCE_ALIASES = ["grant_value", "campus_value", "loan_direct_value", "loan_ffel_value"]
+FINAL_DESCRIPTOR_SOURCE_ALIASES = ["grant_value", "campus_value", "loan_value"]
 
 
 def unique_preserving_order(values: Sequence[str]) -> list[str]:
@@ -1950,6 +2138,193 @@ def build_panel_dictionary(
     out.to_csv(csv_path, index=False)
     out.to_parquet(parquet_path, index=False)
     return csv_path, parquet_path
+
+
+def filter_clean_panel_to_us_states(
+    root: str | Path | None = None,
+    *,
+    input_parquet: str | Path | None = None,
+    output_parquet: str | Path | None = None,
+    output_summary_csv: str | Path | None = None,
+    output_dropped_counts_csv: str | Path | None = None,
+) -> tuple[Path, Path, Path]:
+    layout = ensure_data_layout(root)
+    if input_parquet:
+        panel_path = Path(input_parquet)
+    else:
+        matches = sorted(
+            path
+            for path in (layout.panels / "final").glob("fsa_volume_reports_clean_*.parquet")
+            if not path.name.startswith("fsa_volume_reports_clean_us_states_only_")
+        )
+        if not matches:
+            raise SystemExit("No final clean panel found for US-states-only filter.")
+        panel_path = matches[-1]
+
+    panel = pd.read_parquet(panel_path)
+    if "state" not in panel.columns:
+        raise SystemExit(f"Input panel is missing `state`: {panel_path}")
+
+    state_series = panel["state"].apply(lambda value: basic_clean_text(value) or "").str.upper()
+    keep_mask = state_series.isin(US_STATE_CODES_WITH_DC)
+    filtered = panel.loc[keep_mask].copy()
+    filtered["state"] = state_series.loc[keep_mask].values
+
+    suffix = panel_path.stem
+    if suffix.startswith("fsa_volume_reports_clean_us_states_only_"):
+        suffix = suffix[len("fsa_volume_reports_clean_us_states_only_") :]
+    elif suffix.startswith("fsa_volume_reports_clean_"):
+        suffix = suffix[len("fsa_volume_reports_clean_") :]
+
+    checks_dir = layout.checks / "final_filters"
+    checks_dir.mkdir(parents=True, exist_ok=True)
+    output_panel_path = (
+        Path(output_parquet)
+        if output_parquet
+        else layout.panels / "final" / f"fsa_volume_reports_clean_us_states_only_{suffix}.parquet"
+    )
+    summary_path = (
+        Path(output_summary_csv)
+        if output_summary_csv
+        else checks_dir / f"fsa_volume_reports_clean_us_states_only_{suffix}_summary.csv"
+    )
+    dropped_counts_path = (
+        Path(output_dropped_counts_csv)
+        if output_dropped_counts_csv
+        else checks_dir / f"fsa_volume_reports_clean_us_states_only_{suffix}_dropped_state_counts.csv"
+    )
+
+    filtered.to_parquet(output_panel_path, index=False)
+
+    dropped_counts = (
+        state_series.loc[~keep_mask]
+        .replace("", "<blank>")
+        .value_counts(dropna=False)
+        .rename_axis("state")
+        .reset_index(name="rows_dropped")
+        .sort_values(["rows_dropped", "state"], ascending=[False, True])
+        .reset_index(drop=True)
+    )
+    dropped_counts.to_csv(dropped_counts_path, index=False)
+
+    summary = pd.DataFrame(
+        [
+            {
+                "input_panel": str(panel_path),
+                "output_panel": str(output_panel_path),
+                "input_rows": int(len(panel)),
+                "output_rows": int(len(filtered)),
+                "rows_dropped": int((~keep_mask).sum()),
+                "share_rows_dropped": float((~keep_mask).mean()),
+                "kept_state_codes": "|".join(US_STATE_CODES_WITH_DC),
+                "dropped_state_codes": "|".join(dropped_counts["state"].astype(str).tolist()),
+            }
+        ]
+    )
+    summary.to_csv(summary_path, index=False)
+    return output_panel_path, summary_path, dropped_counts_path
+
+
+def build_analysis_ready_final_panel(
+    root: str | Path | None = None,
+    *,
+    input_parquet: str | Path | None = None,
+    output_parquet: str | Path | None = None,
+    output_summary_csv: str | Path | None = None,
+) -> tuple[Path, Path]:
+    layout = ensure_data_layout(root)
+    if input_parquet:
+        panel_path = Path(input_parquet)
+    else:
+        us_only_matches = sorted(
+            path
+            for path in (layout.panels / "final").glob("fsa_volume_reports_clean_us_states_only_*.parquet")
+            if "_us_states_only_us_states_only_" not in path.name
+        )
+        clean_matches = sorted(
+            path
+            for path in (layout.panels / "final").glob("fsa_volume_reports_clean_*.parquet")
+            if not path.name.startswith("fsa_volume_reports_clean_us_states_only_")
+        )
+        if us_only_matches:
+            panel_path = us_only_matches[-1]
+        elif clean_matches:
+            panel_path = clean_matches[-1]
+        else:
+            raise SystemExit("No final clean panel found for analysis-ready final panel build.")
+
+    panel = pd.read_parquet(panel_path)
+    descriptor_source_columns = [column for columns in FINAL_DESCRIPTOR_COLUMNS.values() for column in columns if column in panel.columns]
+    preferred_columns = [
+        "opeid8",
+        "opeid6",
+        "award_year",
+        "award_year_start",
+        "award_year_end",
+        "school",
+        "state",
+        "zip_code",
+        "school_type",
+    ]
+    remaining_columns = [column for column in panel.columns if column not in set(preferred_columns) | set(descriptor_source_columns)]
+    analysis_panel = panel[[column for column in preferred_columns if column in panel.columns] + remaining_columns].copy()
+    assert_unique_panel_keys(analysis_panel, "analysis-ready final panel")
+
+    suffix = panel_path.stem
+    if suffix.startswith("fsa_volume_reports_clean_us_states_only_"):
+        suffix = suffix[len("fsa_volume_reports_clean_us_states_only_") :]
+        suffix = f"us_states_only_{suffix}"
+    elif suffix.startswith("fsa_volume_reports_clean_"):
+        suffix = suffix[len("fsa_volume_reports_clean_") :]
+    output_panel_path = (
+        Path(output_parquet)
+        if output_parquet
+        else layout.panels / "final" / f"fsa_volume_reports_panel_{suffix}.parquet"
+    )
+    output_panel_path.parent.mkdir(parents=True, exist_ok=True)
+    analysis_panel.to_parquet(output_panel_path, index=False)
+
+    checks_dir = layout.checks / "final_panels"
+    checks_dir.mkdir(parents=True, exist_ok=True)
+    summary_path = (
+        Path(output_summary_csv)
+        if output_summary_csv
+        else checks_dir / f"fsa_volume_reports_panel_{suffix}_summary.csv"
+    )
+    summary = pd.DataFrame(
+        [
+            {
+                "input_panel": str(panel_path),
+                "output_panel": str(output_panel_path),
+                "input_rows": int(len(panel)),
+                "output_rows": int(len(analysis_panel)),
+                "input_columns": int(len(panel.columns)),
+                "output_columns": int(len(analysis_panel.columns)),
+                "dropped_descriptor_source_columns": "|".join(descriptor_source_columns),
+                "dropped_descriptor_source_column_count": int(len(descriptor_source_columns)),
+                "duplicate_keys": int(analysis_panel.duplicated(["opeid8", "award_year"]).sum()),
+                "grant_measure_columns": int(sum(column.startswith("grant__") for column in analysis_panel.columns)),
+                "campus_measure_columns": int(sum(column.startswith("campus__") for column in analysis_panel.columns)),
+                "loan_measure_columns": int(sum(column.startswith("loan__") for column in analysis_panel.columns)),
+            }
+        ]
+    )
+    summary.to_csv(summary_path, index=False)
+    return output_panel_path, summary_path
+
+
+def locate_analysis_ready_final_panel(layout: DataRootLayout) -> Path | None:
+    canonical_matches = sorted(
+        path
+        for path in (layout.panels / "final").glob("fsa_volume_reports_panel_*.parquet")
+        if "_us_states_only_us_states_only_" not in path.name
+    )
+    if canonical_matches:
+        return canonical_matches[-1]
+    matches = sorted((layout.panels / "final").glob("fsa_volume_reports_panel_*.parquet"))
+    if matches:
+        return matches[-1]
+    return None
 
 
 REVIEW_DESCRIPTOR_ORDER = {"school": 0, "zip_code": 1, "school_type": 2, "state": 3}
@@ -2468,6 +2843,23 @@ def acceptance_audit(root: str | Path | None = None) -> pd.DataFrame:
             "details": str(priority_workbook_path),
         }
     )
+    analysis_panel_path = locate_analysis_ready_final_panel(layout)
+    results.append(
+        {
+            "check": "analysis_ready_final_panel_exists",
+            "passed": analysis_panel_path is not None,
+            "details": str(analysis_panel_path or (layout.panels / "final" / "fsa_volume_reports_panel_*.parquet")),
+        }
+    )
+    if analysis_panel_path is not None:
+        analysis_panel = pd.read_parquet(analysis_panel_path)
+        results.append(
+            {
+                "check": "analysis_ready_final_panel_has_unique_keys",
+                "passed": int(analysis_panel.duplicated(["opeid8", "award_year"]).sum()) == 0,
+                "details": f"rows={len(analysis_panel)} duplicate_keys={int(analysis_panel.duplicated(['opeid8', 'award_year']).sum())}",
+            }
+        )
 
     selected_path = selected_panel_files_path(layout)
     if selected_path.exists():

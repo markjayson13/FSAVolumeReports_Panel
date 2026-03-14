@@ -41,6 +41,8 @@ def main() -> None:
     ap.add_argument("--skip-loans", action=argparse.BooleanOptionalAction, default=False)
     ap.add_argument("--skip-merge", action=argparse.BooleanOptionalAction, default=False)
     ap.add_argument("--skip-review-package", action=argparse.BooleanOptionalAction, default=False)
+    ap.add_argument("--skip-us-state-filter", action=argparse.BooleanOptionalAction, default=False)
+    ap.add_argument("--skip-analysis-panel", action=argparse.BooleanOptionalAction, default=False)
     ap.add_argument("--run-qaqc", action=argparse.BooleanOptionalAction, default=False)
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
@@ -91,6 +93,10 @@ def main() -> None:
         run([sys.executable, str(SCRIPTS_DIR / "08_build_panel_dictionary.py"), "--root", str(layout.root)], args.dry_run)
         if not args.skip_review_package:
             run([sys.executable, str(SCRIPTS_DIR / "09_build_manual_review_workbook.py"), "--root", str(layout.root)], args.dry_run)
+        if not args.skip_us_state_filter:
+            run([sys.executable, str(SCRIPTS_DIR / "10_filter_clean_panel_to_us_states.py"), "--root", str(layout.root)], args.dry_run)
+        if not args.skip_analysis_panel:
+            run([sys.executable, str(SCRIPTS_DIR / "11_build_analysis_ready_final_panel.py"), "--root", str(layout.root)], args.dry_run)
 
     if args.run_qaqc:
         run([sys.executable, str(SCRIPTS_DIR / "QA_QC" / "00_source_qaqc.py"), "--root", str(layout.root)], args.dry_run)
