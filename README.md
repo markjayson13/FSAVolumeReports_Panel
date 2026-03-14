@@ -80,6 +80,7 @@ python3 Scripts/05_panelize_campus_based.py --root "$FSA_ROOT"
 python3 Scripts/06_panelize_loans.py --root "$FSA_ROOT"
 python3 Scripts/07_merge_fsa_panels.py --root "$FSA_ROOT"
 python3 Scripts/08_build_panel_dictionary.py --root "$FSA_ROOT"
+python3 Scripts/09_build_manual_review_workbook.py --root "$FSA_ROOT"
 python3 Scripts/QA_QC/00_source_qaqc.py --root "$FSA_ROOT"
 python3 Scripts/QA_QC/01_panel_qaqc.py --root "$FSA_ROOT"
 python3 Scripts/QA_QC/02_acceptance_audit.py --root "$FSA_ROOT"
@@ -99,6 +100,8 @@ For reduced fixture tests, you can bypass strict live-scope validation with `--n
 - `Panels/final/fsa_volume_reports_clean_1999_2025.parquet`
 - `Dictionary/fsa_volume_dictionary.parquet`
 - `Dictionary/fsa_volume_dictionary.csv`
+- `Checks/panel_qc/manual_review_package/final_descriptor_manual_review_workbook.xlsx`
+- `Checks/panel_qc/manual_review_package/*.csv`
 
 ## QA/QC
 

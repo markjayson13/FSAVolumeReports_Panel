@@ -105,6 +105,7 @@ class PipelineIntegrationTests(unittest.TestCase):
                 ("Scripts/06_panelize_loans.py", "--root", root),
                 ("Scripts/07_merge_fsa_panels.py", "--root", root),
                 ("Scripts/08_build_panel_dictionary.py", "--root", root),
+                ("Scripts/09_build_manual_review_workbook.py", "--root", root),
                 ("Scripts/QA_QC/00_source_qaqc.py", "--root", root),
                 ("Scripts/QA_QC/01_panel_qaqc.py", "--root", root),
                 ("Scripts/QA_QC/02_acceptance_audit.py", "--root", root),
@@ -127,6 +128,10 @@ class PipelineIntegrationTests(unittest.TestCase):
 
             acceptance = pd.read_csv(root / "Checks" / "acceptance_qc" / "acceptance_summary.csv")
             self.assertTrue(bool(acceptance["passed"].all()))
+            self.assertTrue((root / "Checks" / "panel_qc" / "final_descriptor_manual_review.csv").exists())
+            self.assertTrue((root / "Checks" / "panel_qc" / "final_descriptor_resolution_summary.csv").exists())
+            self.assertTrue((root / "Checks" / "panel_qc" / "manual_review_package" / "final_descriptor_manual_review_workbook.xlsx").exists())
+            self.assertTrue((root / "Checks" / "panel_qc" / "manual_review_package" / "priority_manual_review_workbook.xlsx").exists())
 
 
 if __name__ == "__main__":

@@ -45,6 +45,10 @@ class WorkbookParsingTests(unittest.TestCase):
                 utils.canonicalize_component_header("direct_loans", "DL UNSUBSIDIZED - UNDERGRADUATE | # of Loans Originated"),
                 "unsubsidized_undergraduate_loans_originated_n",
             )
+            self.assertEqual(
+                utils.canonicalize_component_header("direct_loans", "DL SUBSIDIZED- GRADUATE | Recipients"),
+                "subsidized_graduate_recipients",
+            )
 
     def test_grant_header_mapping_and_opeid_standardization_preserve_branch_id(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -82,6 +86,49 @@ class WorkbookParsingTests(unittest.TestCase):
             utils.canonicalize_component_header("campus_based", "FEDERAL SUPPLEMENTAL EDUCATIONAL OPPORTUNITY GRANTS | Disbursements"),
             "fseog_disbursements",
         )
+        self.assertEqual(
+            utils.canonicalize_component_header("campus_based", "FWS Recipents"),
+            "fws_recipients",
+        )
+        self.assertEqual(
+            utils.canonicalize_component_header("campus_based", "Perkins Loan Recipents"),
+            "perkins_recipients",
+        )
+        self.assertIsNone(utils.standardize_opeid8("00000000"))
+        self.assertIsNone(utils.standardize_opeid8("0"))
+
+    def test_parse_selected_sheet_falls_back_to_html_table_disguised_as_xls(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            workbook_path = Path(tmp) / "Q11415AY.xls"
+            workbook_path.write_text(
+                """
+                <html><body>
+                <table>
+                  <tr><td></td><td></td><td>FEDERAL PELL GRANT PROGRAM</td><td></td></tr>
+                  <tr><td>OPE ID</td><td>School</td><td>Recipients</td><td>Total Disbursed</td></tr>
+                  <tr><td>00105901</td><td>LAWSON STATE COMMUNITY COLLEGE - BESSEMER CAMPUS</td><td>100</td><td>500000</td></tr>
+                </table>
+                </body></html>
+                """,
+                encoding="utf-8",
+            )
+            result = utils.parse_selected_sheet(workbook_path, "grants", "quarterly")
+            self.assertEqual(result.selected_sheet, "__html_table__")
+            self.assertIn("FEDERAL PELL GRANT PROGRAM | Recipients", result.flattened_headers)
+            self.assertTrue(any("html_table_fallback" in warning for warning in result.warnings))
+
+    def test_parse_selected_sheet_returns_warning_for_plain_text_placeholder(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            workbook_path = Path(tmp) / "Q11415AY.xls"
+            workbook_path.write_text(
+                "File cleared temporarily to save space. Alternate solution in progress.\n",
+                encoding="utf-8",
+            )
+            result = utils.parse_selected_sheet(workbook_path, "grants", "quarterly")
+            self.assertTrue(result.frame.empty)
+            self.assertEqual(result.selected_sheet, "")
+            self.assertTrue(any("text_file_hint:" in warning for warning in result.warnings))
+            self.assertTrue(any("excel_open_failed:" in warning for warning in result.warnings))
 
 
 if __name__ == "__main__":

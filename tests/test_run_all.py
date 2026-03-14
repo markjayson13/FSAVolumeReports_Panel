@@ -32,6 +32,7 @@ class RunAllTests(unittest.TestCase):
             self.assertIn("06_panelize_loans.py", stdout)
             self.assertIn("07_merge_fsa_panels.py", stdout)
             self.assertIn("08_build_panel_dictionary.py", stdout)
+            self.assertIn("09_build_manual_review_workbook.py", stdout)
             self.assertIn("00_source_qaqc.py", stdout)
             self.assertIn("01_panel_qaqc.py", stdout)
             self.assertIn("02_acceptance_audit.py", stdout)

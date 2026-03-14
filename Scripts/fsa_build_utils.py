@@ -24,6 +24,9 @@ from urllib.parse import unquote, urljoin, urlparse
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
+from openpyxl import Workbook
+from openpyxl.styles import Alignment, Font, PatternFill
+from openpyxl.utils import get_column_letter
 
 
 DEFAULT_FSA_ROOT = Path("/Users/markjaysonfarol13/Projects/FSAVolumeReports_Paneling")
@@ -218,6 +221,17 @@ def write_rows(path: Path, rows: list[dict], fieldnames: Sequence[str]) -> None:
             writer.writerows(rows)
 
 
+def safe_text(value: object) -> str:
+    if value is None:
+        return ""
+    try:
+        if pd.isna(value):
+            return ""
+    except Exception:  # noqa: BLE001
+        pass
+    return str(value)
+
+
 def compute_file_metadata(path: Path) -> tuple[int, str]:
     if not path.exists():
         return 0, ""
@@ -230,14 +244,14 @@ def compute_file_metadata(path: Path) -> tuple[int, str]:
 
 
 def normalize_token(value: object) -> str:
-    text = str(value or "").strip().lower()
+    text = safe_text(value).strip().lower()
     text = re.sub(r"[^a-z0-9]+", "_", text)
     text = re.sub(r"_+", "_", text)
     return text.strip("_")
 
 
 def normalize_year_component(value: object, reference: int | None = None) -> int | None:
-    digits = re.sub(r"\D", "", str(value or ""))
+    digits = re.sub(r"\D", "", safe_text(value))
     if not digits:
         return None
     if len(digits) == 4:
@@ -255,7 +269,7 @@ def normalize_year_component(value: object, reference: int | None = None) -> int
 
 
 def normalize_award_year_string(label: object) -> str | None:
-    text = str(label or "").strip()
+    text = safe_text(label).strip()
     if not text:
         return None
     for pattern in AWARD_YEAR_PATTERNS:
@@ -279,21 +293,26 @@ def explode_award_year_bounds(label: object) -> tuple[int | None, int | None]:
 
 
 def infer_quarter(text: object) -> int | None:
-    match = re.search(r"(?:^|[^0-9A-Z])Q(?P<q>[1-4])(?:[^0-9A-Z]|$)", str(text or ""), flags=re.IGNORECASE)
+    match = re.search(r"(?:^|[^0-9A-Z])Q(?P<q>[1-4])(?:[^0-9A-Z]|$)", safe_text(text), flags=re.IGNORECASE)
     if not match:
         return None
     return int(match.group("q"))
 
 
 def standardize_opeid8(raw: object) -> str | None:
-    digits = re.sub(r"\D", "", str(raw or ""))
+    digits = re.sub(r"\D", "", safe_text(raw))
     if not digits:
         return None
+    if set(digits) == {"0"}:
+        return None
     if len(digits) >= 8:
-        return digits[:8]
+        standardized = digits[:8]
+        return None if set(standardized) == {"0"} else standardized
     if len(digits) == 7:
-        return digits.zfill(8)
-    return f"{digits.zfill(6)}00"
+        standardized = digits.zfill(8)
+        return None if set(standardized) == {"0"} else standardized
+    standardized = f"{digits.zfill(6)}00"
+    return None if set(standardized) == {"0"} else standardized
 
 
 def derive_opeid6(opeid8: object) -> str | None:
@@ -304,7 +323,7 @@ def derive_opeid6(opeid8: object) -> str | None:
 
 
 def sanitize_href(href: str) -> str:
-    cleaned = str(href or "").strip().strip('"').strip("'")
+    cleaned = safe_text(href).strip().strip('"').strip("'")
     return cleaned
 
 
@@ -545,7 +564,7 @@ def preflight_validation_path(layout: DataRootLayout) -> Path:
 def as_bool(value: object) -> bool:
     if isinstance(value, bool):
         return value
-    return str(value or "").strip().lower() in {"1", "true", "t", "yes", "y"}
+    return safe_text(value).strip().lower() in {"1", "true", "t", "yes", "y"}
 
 
 def discover_title_iv_inventory(*, page_html: str | Path | None = None, timeout: int = 120) -> list[dict]:
@@ -848,7 +867,7 @@ def propagated_group_labels(values: Sequence[object]) -> list[str]:
     propagated: list[str] = []
     current = ""
     for value in values:
-        normalized = str(value or "").strip()
+        normalized = safe_text(value).strip()
         if normalized:
             current = normalized
         propagated.append(current)
@@ -863,8 +882,8 @@ def flattened_headers_from_rows(
     headers: list[str] = []
     seen: dict[str, int] = {}
     for group_label, header_label in zip(group_labels, header_row):
-        group_label = str(group_label or "").strip()
-        header_label = str(header_label or "").strip()
+        group_label = safe_text(group_label).strip()
+        header_label = safe_text(header_label).strip()
         header_norm = normalize_token(header_label)
         base = ""
         if header_norm in DESCRIPTOR_COLUMN_TOKENS or group_label == "":
@@ -886,6 +905,37 @@ def flattened_headers_from_rows(
     return headers
 
 
+def read_html_table_fallback(path: Path) -> pd.DataFrame | None:
+    try:
+        text = path.read_text(encoding="utf-8", errors="ignore")
+    except Exception:  # noqa: BLE001
+        return None
+    if "<table" not in text.lower():
+        return None
+    soup = BeautifulSoup(text, "html.parser")
+    table = soup.find("table")
+    if table is None:
+        return None
+    rows: list[list[str]] = []
+    for tr in table.find_all("tr"):
+        cells = tr.find_all(["th", "td"])
+        if not cells:
+            continue
+        rows.append([cell.get_text(" ", strip=True) for cell in cells])
+    if not rows:
+        return None
+    width = max(len(row) for row in rows)
+    padded_rows = [row + [""] * (width - len(row)) for row in rows]
+    return pd.DataFrame(padded_rows).fillna("")
+
+
+def text_file_hint(path: Path, limit: int = 256) -> str:
+    try:
+        return path.read_text(encoding="utf-8", errors="ignore")[:limit].strip()
+    except Exception:  # noqa: BLE001
+        return ""
+
+
 def parse_selected_sheet(
     workbook_path: Path,
     family: str,
@@ -898,22 +948,44 @@ def parse_selected_sheet(
         selected_sheet = "__csv__"
         sheet_names = [selected_sheet]
     else:
-        with pd.ExcelFile(workbook_path) as workbook:
-            sheet_names = workbook.sheet_names
-            try:
-                selected_sheet = choose_selected_sheet(sheet_names, family=family, period_type=period_type)
-            except ValueError as exc:
-                warnings.append(str(exc))
+        try:
+            with pd.ExcelFile(workbook_path) as workbook:
+                sheet_names = workbook.sheet_names
+                try:
+                    selected_sheet = choose_selected_sheet(sheet_names, family=family, period_type=period_type)
+                except ValueError as exc:
+                    warnings.append(str(exc))
+                    return WorkbookParseResult(
+                        workbook_path=workbook_path,
+                        selected_sheet="",
+                        sheet_names=sheet_names,
+                        header_row_index=None,
+                        flattened_headers=[],
+                        frame=pd.DataFrame(),
+                        warnings=warnings,
+                    )
+                raw = pd.read_excel(workbook_path, sheet_name=selected_sheet, header=None, dtype=str).fillna("")
+        except Exception as exc:  # noqa: BLE001
+            html_frame = read_html_table_fallback(workbook_path)
+            if html_frame is not None:
+                warnings.append(f"excel_open_failed:{type(exc).__name__}:html_table_fallback")
+                raw = html_frame
+                selected_sheet = "__html_table__"
+                sheet_names = [selected_sheet]
+            else:
+                hint = text_file_hint(workbook_path)
+                if hint:
+                    warnings.append(f"text_file_hint:{hint[:120]}")
+                warnings.append(f"excel_open_failed:{type(exc).__name__}")
                 return WorkbookParseResult(
                     workbook_path=workbook_path,
                     selected_sheet="",
-                    sheet_names=sheet_names,
+                    sheet_names=[],
                     header_row_index=None,
                     flattened_headers=[],
                     frame=pd.DataFrame(),
                     warnings=warnings,
                 )
-            raw = pd.read_excel(workbook_path, sheet_name=selected_sheet, header=None, dtype=str).fillna("")
     header_row_index = find_header_row(raw)
     if header_row_index is None:
         warnings.append("header_row_not_found")
@@ -1008,10 +1080,12 @@ def profile_workbooks(root: str | Path | None = None) -> pd.DataFrame:
 
 
 def normalize_metric_header(header: str) -> str:
-    text = str(header or "").strip()
+    text = safe_text(header).strip()
     text = text.replace("#", " number ")
     text = text.replace("$", " amount ")
     normalized = normalize_token(text)
+    normalized = normalized.replace("recipents", "recipients")
+    normalized = normalized.replace("recipent", "recipient")
     normalized = normalized.replace("sum_of_", "")
     normalized = normalized.replace("ytd_", "")
     normalized = normalized.replace("federal_", "federal_")
@@ -1062,6 +1136,10 @@ def program_slug_from_header(family: str, normalized_header: str) -> str | None:
             return "unsubsidized_graduate"
         if "unsubsidized" in normalized_header:
             return "unsubsidized"
+        if "subsidized_undergraduate" in normalized_header:
+            return "subsidized_undergraduate"
+        if "subsidized_graduate" in normalized_header:
+            return "subsidized_graduate"
         if "subsidized" in normalized_header:
             return "subsidized"
         if "parent_plus" in normalized_header:
@@ -1452,6 +1530,274 @@ def coalesce_columns(frame: pd.DataFrame, columns: Sequence[str], *, formatter: 
     return series
 
 
+FINAL_DESCRIPTOR_COLUMNS = {
+    "school": ["grant__school", "campus__school", "loan_direct__school", "loan_ffel__school"],
+    "state": ["grant__state", "campus__state", "loan_direct__state", "loan_ffel__state"],
+    "zip_code": ["grant__zip_code", "campus__zip_code", "loan_direct__zip_code", "loan_ffel__zip_code"],
+    "school_type": ["grant__school_type", "campus__school_type", "loan_direct__school_type", "loan_ffel__school_type"],
+}
+
+FINAL_DESCRIPTOR_SOURCE_ALIASES = ["grant_value", "campus_value", "loan_direct_value", "loan_ffel_value"]
+
+
+def unique_preserving_order(values: Sequence[str]) -> list[str]:
+    seen: set[str] = set()
+    ordered: list[str] = []
+    for value in values:
+        if value in seen:
+            continue
+        seen.add(value)
+        ordered.append(value)
+    return ordered
+
+
+def basic_clean_text(value: object) -> str | None:
+    text = safe_text(value).strip()
+    text = re.sub(r"\s+", " ", text)
+    return text or None
+
+
+def format_zip_value(value: object) -> str | None:
+    text = basic_clean_text(value)
+    if text is None:
+        return None
+    digits = re.sub(r"\D", "", text)
+    if not digits:
+        return None
+    if len(digits) >= 9:
+        digits = digits[:9]
+        return f"{digits[:5]}-{digits[5:]}"
+    return digits[:5].zfill(5)
+
+
+def zip_base5(value: object) -> str | None:
+    formatted = format_zip_value(value)
+    if formatted is None:
+        return None
+    digits = re.sub(r"\D", "", formatted)
+    return digits[:5] if digits else None
+
+
+def school_compare_key(value: object) -> str | None:
+    text = basic_clean_text(value)
+    if text is None:
+        return None
+    normalized = text.upper().replace("&", " AND ")
+    normalized = re.sub(r"^THE\s+", "", normalized)
+    normalized = re.sub(r"[^A-Z0-9]+", " ", normalized)
+    normalized = re.sub(r"\s+", " ", normalized).strip()
+    return normalized or None
+
+
+def school_display_score(value: str) -> tuple[int, int, int, int]:
+    text = basic_clean_text(value) or ""
+    has_lower = int(any(char.islower() for char in text))
+    no_leading_the = int(not text.upper().startswith("THE "))
+    no_all_caps = int(not text.isupper())
+    return (has_lower, no_all_caps, no_leading_the, len(text))
+
+
+def choose_best_school_display(values: Sequence[str]) -> str | None:
+    cleaned = [basic_clean_text(value) for value in values]
+    cleaned = [value for value in cleaned if value is not None]
+    if not cleaned:
+        return None
+    indexed = list(enumerate(cleaned))
+    best_index, best_value = max(indexed, key=lambda item: (school_display_score(item[1]), -item[0]))
+    return best_value
+
+
+def canonical_school_type(value: object) -> tuple[str | None, str | None]:
+    text = basic_clean_text(value)
+    if text is None:
+        return None, None
+    normalized = re.sub(r"[^A-Z0-9]+", " ", text.upper()).strip()
+    if not normalized:
+        return None, None
+    foreign = "FOREIGN" in normalized
+    if "OTHER" in normalized:
+        return "other", "Other"
+    if "PUBLIC" in normalized:
+        return ("foreign_public", "Foreign Public") if foreign else ("public", "Public")
+    if "PROPRIETARY" in normalized or "FOR PROFIT" in normalized:
+        return ("foreign_for_profit", "Foreign For-Profit") if foreign else ("private_for_profit", "Private/For-Profit")
+    if "PRIVATE" in normalized or "NONPROFIT" in normalized or "NON PROFIT" in normalized:
+        return ("foreign_private", "Foreign Private") if foreign else ("private_nonprofit", "Private/Non-Profit")
+    if foreign:
+        return "foreign", "Foreign"
+    return normalize_token(text) or None, text
+
+
+def resolve_descriptor_values(label: str, ordered_values: Sequence[object]) -> dict:
+    if label == "school":
+        raw_values = unique_preserving_order([value for value in (basic_clean_text(v) for v in ordered_values) if value])
+        normalized_values = unique_preserving_order([value for value in (school_compare_key(v) for v in raw_values) if value])
+        if not raw_values:
+            return {"clean_value": pd.NA, "raw_values": [], "normalized_values": [], "resolution_status": "missing", "needs_manual_review": False}
+        nonempty_count = len([v for v in ordered_values if basic_clean_text(v)])
+        if len(normalized_values) == 1:
+            clean_value = choose_best_school_display(raw_values)
+            if nonempty_count == 1:
+                status = "single_source"
+            elif len(raw_values) == 1:
+                status = "consistent"
+            else:
+                status = "cosmetic_normalized"
+            return {
+                "clean_value": clean_value,
+                "raw_values": raw_values,
+                "normalized_values": normalized_values,
+                "resolution_status": status,
+                "needs_manual_review": False,
+            }
+        return {
+            "clean_value": raw_values[0],
+            "raw_values": raw_values,
+            "normalized_values": normalized_values,
+            "resolution_status": "manual_review",
+            "needs_manual_review": True,
+        }
+
+    if label == "state":
+        raw_values = unique_preserving_order([value for value in (basic_clean_text(v) for v in ordered_values) if value])
+        raw_values = [value.upper() for value in raw_values]
+        if not raw_values:
+            return {"clean_value": pd.NA, "raw_values": [], "normalized_values": [], "resolution_status": "missing", "needs_manual_review": False}
+        nonempty_count = len([v for v in ordered_values if basic_clean_text(v)])
+        if len(raw_values) == 1:
+            status = "single_source" if nonempty_count == 1 else "consistent"
+            return {
+                "clean_value": raw_values[0],
+                "raw_values": raw_values,
+                "normalized_values": raw_values,
+                "resolution_status": status,
+                "needs_manual_review": False,
+            }
+        return {
+            "clean_value": raw_values[0],
+            "raw_values": raw_values,
+            "normalized_values": raw_values,
+            "resolution_status": "manual_review",
+            "needs_manual_review": True,
+        }
+
+    if label == "zip_code":
+        raw_values = unique_preserving_order([value for value in (format_zip_value(v) for v in ordered_values) if value])
+        normalized_values = unique_preserving_order([value for value in (zip_base5(v) for v in raw_values) if value])
+        if not raw_values:
+            return {"clean_value": pd.NA, "raw_values": [], "normalized_values": [], "resolution_status": "missing", "needs_manual_review": False}
+        nonempty_count = len([v for v in ordered_values if format_zip_value(v)])
+        if len(raw_values) == 1:
+            status = "single_source" if nonempty_count == 1 else "consistent"
+            return {
+                "clean_value": raw_values[0],
+                "raw_values": raw_values,
+                "normalized_values": normalized_values,
+                "resolution_status": status,
+                "needs_manual_review": False,
+            }
+        if len(normalized_values) == 1:
+            return {
+                "clean_value": normalized_values[0],
+                "raw_values": raw_values,
+                "normalized_values": normalized_values,
+                "resolution_status": "zip_base5_collapsed",
+                "needs_manual_review": False,
+            }
+        return {
+            "clean_value": raw_values[0],
+            "raw_values": raw_values,
+            "normalized_values": normalized_values,
+            "resolution_status": "manual_review",
+            "needs_manual_review": True,
+        }
+
+    if label == "school_type":
+        raw_values = unique_preserving_order([value for value in (basic_clean_text(v) for v in ordered_values) if value])
+        canonical_pairs = [canonical_school_type(value) for value in raw_values]
+        normalized_values = unique_preserving_order([display for _, display in canonical_pairs if display])
+        normalized_keys = unique_preserving_order([key for key, _ in canonical_pairs if key])
+        if not raw_values:
+            return {"clean_value": pd.NA, "raw_values": [], "normalized_values": [], "resolution_status": "missing", "needs_manual_review": False}
+        nonempty_count = len([v for v in ordered_values if basic_clean_text(v)])
+        if len(normalized_keys) == 1:
+            clean_value = normalized_values[0] if normalized_values else raw_values[0]
+            if nonempty_count == 1 and clean_value == raw_values[0]:
+                status = "single_source"
+            elif nonempty_count == 1:
+                status = "single_source_canonicalized"
+            elif len(raw_values) == 1 and clean_value == raw_values[0]:
+                status = "consistent"
+            else:
+                status = "canonicalized"
+            return {
+                "clean_value": clean_value,
+                "raw_values": raw_values,
+                "normalized_values": normalized_values,
+                "resolution_status": status,
+                "needs_manual_review": False,
+            }
+        return {
+            "clean_value": normalized_values[0] if normalized_values else raw_values[0],
+            "raw_values": raw_values,
+            "normalized_values": normalized_values,
+            "resolution_status": "manual_review",
+            "needs_manual_review": True,
+        }
+
+    raise ValueError(f"Unsupported descriptor label: {label}")
+
+
+def audit_descriptor_columns(frame: pd.DataFrame, descriptor: str, columns: Sequence[str]) -> tuple[pd.Series, pd.DataFrame, pd.DataFrame, list[dict]]:
+    present_columns = [column for column in columns if column in frame.columns]
+    clean_values: list[object] = []
+    detail_rows: list[dict] = []
+    manual_rows: list[dict] = []
+    summary_counts: dict[tuple[str, bool], int] = {}
+
+    for row in frame[["opeid8", "award_year", *present_columns]].itertuples(index=False, name=None):
+        opeid8 = row[0]
+        award_year = row[1]
+        source_values = list(row[2:])
+        result = resolve_descriptor_values(descriptor, source_values)
+        clean_values.append(result["clean_value"])
+        summary_key = (result["resolution_status"], bool(result["needs_manual_review"]))
+        summary_counts[summary_key] = summary_counts.get(summary_key, 0) + 1
+
+        nonempty_count = len(result["raw_values"])
+        if nonempty_count <= 1:
+            continue
+        detail_row = {
+            "opeid8": opeid8,
+            "award_year": award_year,
+            "descriptor": descriptor,
+            "resolution_status": result["resolution_status"],
+            "needs_manual_review": bool(result["needs_manual_review"]),
+            "proposed_clean_value": "" if pd.isna(result["clean_value"]) else str(result["clean_value"]),
+            "raw_values": " | ".join(result["raw_values"]),
+            "normalized_values": " | ".join(result["normalized_values"]),
+        }
+        for alias, value in zip(FINAL_DESCRIPTOR_SOURCE_ALIASES, source_values):
+            detail_row[alias] = basic_clean_text(value) or ""
+        detail_rows.append(detail_row)
+        if result["needs_manual_review"]:
+            manual_rows.append(detail_row.copy())
+
+    summary_rows = [
+        {
+            "descriptor": descriptor,
+            "resolution_status": status,
+            "needs_manual_review": needs_manual_review,
+            "rows": count,
+        }
+        for (status, needs_manual_review), count in sorted(summary_counts.items(), key=lambda item: (item[0][0], item[0][1]))
+    ]
+    clean_series = pd.Series(clean_values, dtype="string")
+    detail = pd.DataFrame(detail_rows)
+    manual = pd.DataFrame(manual_rows)
+    return clean_series, detail, manual, summary_rows
+
+
 def descriptor_conflicts(frame: pd.DataFrame, raw_descriptor_columns: Sequence[str], label: str) -> pd.DataFrame:
     rows: list[dict] = []
     for _, row in frame.iterrows():
@@ -1492,39 +1838,59 @@ def merge_final_panels(root: str | Path | None = None) -> tuple[Path, Path]:
     raw.to_parquet(raw_path, index=False)
 
     clean = raw.copy()
-    clean["school"] = coalesce_columns(
-        clean,
-        ["grant__school", "campus__school", "loan_direct__school", "loan_ffel__school"],
-    )
-    clean["state"] = coalesce_columns(
-        clean,
-        ["grant__state", "campus__state", "loan_direct__state", "loan_ffel__state"],
-        formatter="state",
-    )
-    clean["zip_code"] = coalesce_columns(
-        clean,
-        ["grant__zip_code", "campus__zip_code", "loan_direct__zip_code", "loan_ffel__zip_code"],
-        formatter="zip_code",
-    )
-    clean["school_type"] = coalesce_columns(
-        clean,
-        ["grant__school_type", "campus__school_type", "loan_direct__school_type", "loan_ffel__school_type"],
-        formatter="school_type",
-    )
+    resolution_detail_frames: list[pd.DataFrame] = []
+    manual_review_frames: list[pd.DataFrame] = []
+    resolution_summary_rows: list[dict] = []
+    for descriptor, columns in FINAL_DESCRIPTOR_COLUMNS.items():
+        resolved, detail, manual, summary_rows = audit_descriptor_columns(clean, descriptor, columns)
+        clean[descriptor] = resolved
+        if not detail.empty:
+            resolution_detail_frames.append(detail)
+        if not manual.empty:
+            manual_review_frames.append(manual)
+        resolution_summary_rows.extend(summary_rows)
     assert_unique_panel_keys(clean, "final clean panel")
     clean_path = layout.panels / "final" / panel_file_name("fsa_volume_reports_clean", span_entries)
     clean.to_parquet(clean_path, index=False)
 
     conflict_frames = [
-        descriptor_conflicts(raw, ["grant__school", "campus__school", "loan_direct__school", "loan_ffel__school"], "school"),
-        descriptor_conflicts(raw, ["grant__state", "campus__state", "loan_direct__state", "loan_ffel__state"], "state"),
-        descriptor_conflicts(raw, ["grant__zip_code", "campus__zip_code", "loan_direct__zip_code", "loan_ffel__zip_code"], "zip_code"),
-        descriptor_conflicts(raw, ["grant__school_type", "campus__school_type", "loan_direct__school_type", "loan_ffel__school_type"], "school_type"),
+        descriptor_conflicts(raw, FINAL_DESCRIPTOR_COLUMNS["school"], "school"),
+        descriptor_conflicts(raw, FINAL_DESCRIPTOR_COLUMNS["state"], "state"),
+        descriptor_conflicts(raw, FINAL_DESCRIPTOR_COLUMNS["zip_code"], "zip_code"),
+        descriptor_conflicts(raw, FINAL_DESCRIPTOR_COLUMNS["school_type"], "school_type"),
     ]
     conflicts = pd.concat([frame for frame in conflict_frames if not frame.empty], ignore_index=True) if any(
         not frame.empty for frame in conflict_frames
     ) else pd.DataFrame(columns=["opeid8", "award_year", "descriptor", "values"])
     conflicts.to_csv(layout.checks / "panel_qc" / "final_descriptor_conflicts.csv", index=False)
+    resolution_detail = (
+        pd.concat(resolution_detail_frames, ignore_index=True)
+        if resolution_detail_frames
+        else pd.DataFrame(
+            columns=[
+                "opeid8",
+                "award_year",
+                "descriptor",
+                "resolution_status",
+                "needs_manual_review",
+                "proposed_clean_value",
+                "raw_values",
+                "normalized_values",
+                *FINAL_DESCRIPTOR_SOURCE_ALIASES,
+            ]
+        )
+    )
+    resolution_detail.to_csv(layout.checks / "panel_qc" / "final_descriptor_resolution_detail.csv", index=False)
+    manual_review = (
+        pd.concat(manual_review_frames, ignore_index=True)
+        if manual_review_frames
+        else pd.DataFrame(columns=resolution_detail.columns)
+    )
+    manual_review.to_csv(layout.checks / "panel_qc" / "final_descriptor_manual_review.csv", index=False)
+    pd.DataFrame(resolution_summary_rows).sort_values(["descriptor", "resolution_status"]).to_csv(
+        layout.checks / "panel_qc" / "final_descriptor_resolution_summary.csv",
+        index=False,
+    )
     return raw_path, clean_path
 
 
@@ -1564,7 +1930,7 @@ def build_panel_dictionary(
     # Build rows deterministically without relying on fragile vector matching.
     mapped_rows = []
     for _, row in dictionary.iterrows():
-        canonical = str(row["canonical_column"] or "")
+        canonical = safe_text(row["canonical_column"])
         if not canonical:
             continue
         for family in COMPONENT_FAMILIES:
@@ -1584,6 +1950,313 @@ def build_panel_dictionary(
     out.to_csv(csv_path, index=False)
     out.to_parquet(parquet_path, index=False)
     return csv_path, parquet_path
+
+
+REVIEW_DESCRIPTOR_ORDER = {"school": 0, "zip_code": 1, "school_type": 2, "state": 3}
+REVIEW_SHEET_NAMES = {
+    "summary": "Summary",
+    "all": "All_Manual_Review",
+    "school": "School",
+    "zip_code": "Zip_Code",
+    "school_type": "School_Type",
+    "state": "State",
+    "priority_all": "Priority_All",
+    "priority_state": "State_Conflicts",
+    "priority_renames": "Likely_Renames",
+}
+PRIORITY_REVIEW_BUCKETS = ("state_mismatch", "likely_rename_pattern")
+PRIORITY_REVIEW_BUCKET_ORDER = {
+    "state_mismatch": 0,
+    "likely_rename_pattern": 1,
+}
+REVIEW_DECISION_DEFAULTS = {
+    "likely_rename_pattern": "confirm_and_accept_proposed_clean_value",
+    "substantive_name_conflict": "manual_name_review_required",
+    "likely_address_change_or_typo": "verify_best_zip_before_accepting",
+    "substantive_zip_conflict": "manual_zip_review_required",
+    "likely_label_scheme_conflict": "confirm_and_accept_canonical_school_type",
+    "substantive_sector_conflict": "manual_school_type_review_required",
+    "state_mismatch": "verify_true_state_conflict",
+    "manual_review": "manual_review_required",
+}
+
+
+def manual_review_package_dir(layout: DataRootLayout) -> Path:
+    return layout.checks / "panel_qc" / "manual_review_package"
+
+
+def school_similarity_metrics(values: Sequence[str]) -> tuple[float, bool]:
+    normalized = [school_compare_key(value) for value in values]
+    normalized = [value for value in normalized if value]
+    if len(normalized) < 2:
+        return 0.0, False
+    token_sets = []
+    stopwords = {"THE", "OF", "AT", "IN", "AND", "FOR"}
+    for value in normalized:
+        tokens = {token for token in value.split() if token and token not in stopwords}
+        token_sets.append(tokens)
+    max_jaccard = 0.0
+    contains = False
+    for idx, left in enumerate(normalized):
+        for jdx in range(idx + 1, len(normalized)):
+            right = normalized[jdx]
+            if left in right or right in left:
+                contains = True
+            union = token_sets[idx] | token_sets[jdx]
+            if union:
+                score = len(token_sets[idx] & token_sets[jdx]) / len(union)
+                max_jaccard = max(max_jaccard, score)
+    return max_jaccard, contains
+
+
+def zip_similarity_metrics(values: Sequence[str]) -> tuple[bool, int | None]:
+    normalized = [zip_base5(value) for value in values]
+    normalized = [value for value in normalized if value]
+    if len(normalized) < 2:
+        return False, None
+    same_prefix3 = any(left[:3] == right[:3] for idx, left in enumerate(normalized) for right in normalized[idx + 1 :])
+    digit_distance: int | None = None
+    for idx, left in enumerate(normalized):
+        for right in normalized[idx + 1 :]:
+            if len(left) != len(right):
+                continue
+            distance = sum(a != b for a, b in zip(left, right))
+            digit_distance = distance if digit_distance is None else min(digit_distance, distance)
+    return same_prefix3, digit_distance
+
+
+def school_type_broad_groups(values: Sequence[str]) -> list[str]:
+    groups: list[str] = []
+    for value in values:
+        key, _ = canonical_school_type(value)
+        if key is None:
+            continue
+        if key.startswith("foreign_"):
+            groups.append("foreign")
+        elif key.startswith("private_"):
+            groups.append("private")
+        else:
+            groups.append(key)
+    return groups
+
+
+def annotate_manual_review_rows(frame: pd.DataFrame) -> pd.DataFrame:
+    out = frame.copy()
+    out["descriptor_order"] = out["descriptor"].map(REVIEW_DESCRIPTOR_ORDER).fillna(99).astype(int)
+    out["raw_value_count"] = out["raw_values"].fillna("").apply(lambda value: len([item.strip() for item in str(value).split("|") if item.strip()]))
+    out["review_sort_rank"] = 9
+    out["review_bucket"] = "manual_review"
+    out["review_note"] = ""
+    out["review_score"] = 0.0
+
+    for index, row in out.iterrows():
+        raw_values = [item.strip() for item in str(row["raw_values"]).split("|") if item.strip()]
+        descriptor = row["descriptor"]
+        if descriptor == "school":
+            similarity, contains = school_similarity_metrics(raw_values)
+            likely = contains or similarity >= 0.6
+            out.at[index, "review_sort_rank"] = 0 if likely else 1
+            out.at[index, "review_bucket"] = "likely_rename_pattern" if likely else "substantive_name_conflict"
+            note_parts = []
+            if contains:
+                note_parts.append("normalized_name_contains_other")
+            if similarity:
+                note_parts.append(f"token_jaccard={similarity:.3f}")
+            out.at[index, "review_note"] = "; ".join(note_parts)
+            out.at[index, "review_score"] = similarity
+        elif descriptor == "zip_code":
+            same_prefix3, digit_distance = zip_similarity_metrics(raw_values)
+            likely = same_prefix3 or (digit_distance is not None and digit_distance <= 2)
+            out.at[index, "review_sort_rank"] = 0 if likely else 1
+            out.at[index, "review_bucket"] = "likely_address_change_or_typo" if likely else "substantive_zip_conflict"
+            note_parts = []
+            if same_prefix3:
+                note_parts.append("shared_zip_prefix3")
+            if digit_distance is not None:
+                note_parts.append(f"min_digit_distance={digit_distance}")
+            out.at[index, "review_note"] = "; ".join(note_parts)
+            out.at[index, "review_score"] = float(0 if digit_distance is None else max(0, 5 - digit_distance))
+        elif descriptor == "school_type":
+            groups = unique_preserving_order(school_type_broad_groups(raw_values))
+            likely = len(groups) == 1 and bool(groups)
+            out.at[index, "review_sort_rank"] = 0 if likely else 1
+            out.at[index, "review_bucket"] = "likely_label_scheme_conflict" if likely else "substantive_sector_conflict"
+            out.at[index, "review_note"] = "" if not groups else f"broad_groups={'|'.join(groups)}"
+            out.at[index, "review_score"] = float(1 if likely else 0)
+        elif descriptor == "state":
+            out.at[index, "review_sort_rank"] = 1
+            out.at[index, "review_bucket"] = "state_mismatch"
+            out.at[index, "review_note"] = "different_state_codes_reported"
+            out.at[index, "review_score"] = 0.0
+
+    out["review_decision"] = out["review_bucket"].map(REVIEW_DECISION_DEFAULTS).fillna("manual_review_required")
+    out["priority_sort_rank"] = out["review_bucket"].map(PRIORITY_REVIEW_BUCKET_ORDER).fillna(9).astype(int)
+    out["priority_scope"] = out["review_bucket"].apply(
+        lambda value: "highest_priority_review" if value in PRIORITY_REVIEW_BUCKETS else "standard_manual_review"
+    )
+    sort_columns = ["descriptor_order", "review_sort_rank", "review_score", "opeid8", "award_year"]
+    ascending = [True, True, False, True, True]
+    out = out.sort_values(sort_columns, ascending=ascending).reset_index(drop=True)
+    return out
+
+
+def build_priority_manual_review_frame(frame: pd.DataFrame) -> pd.DataFrame:
+    if frame.empty:
+        return frame.copy()
+    priority = frame.loc[frame["review_bucket"].isin(PRIORITY_REVIEW_BUCKETS)].copy()
+    priority["priority_group"] = priority["review_bucket"].map(
+        {
+            "state_mismatch": "true_state_conflict",
+            "likely_rename_pattern": "likely_rename",
+        }
+    ).fillna("other")
+    sort_columns = ["priority_sort_rank", "review_score", "opeid8", "award_year"]
+    ascending = [True, False, True, True]
+    priority = priority.sort_values(sort_columns, ascending=ascending).reset_index(drop=True)
+    return priority
+
+
+def style_review_sheet(worksheet, frame: pd.DataFrame) -> None:
+    worksheet.freeze_panes = "A2"
+    worksheet.auto_filter.ref = worksheet.dimensions
+    header_fill = PatternFill(fill_type="solid", fgColor="D9EAF7")
+    header_font = Font(bold=True)
+    for cell in worksheet[1]:
+        cell.fill = header_fill
+        cell.font = header_font
+        cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+    worksheet.sheet_view.showGridLines = False
+    worksheet.row_dimensions[1].height = 24
+    for idx, column_name in enumerate(frame.columns, start=1):
+        values = [column_name] + frame[column_name].astype(str).tolist()
+        width = min(max(len(str(value)) for value in values) + 2, 48)
+        worksheet.column_dimensions[get_column_letter(idx)].width = width
+
+
+def write_frame_to_sheet(worksheet, frame: pd.DataFrame) -> None:
+    worksheet.append(list(frame.columns))
+    for row in frame.itertuples(index=False, name=None):
+        worksheet.append(list(row))
+    style_review_sheet(worksheet, frame)
+
+
+def build_manual_review_workbook(
+    root: str | Path | None = None,
+    *,
+    input_csv: str | Path | None = None,
+    summary_csv: str | Path | None = None,
+    output_xlsx: str | Path | None = None,
+    output_dir: str | Path | None = None,
+) -> tuple[Path, Path]:
+    layout = ensure_data_layout(root)
+    manual_review_path = Path(input_csv) if input_csv else layout.checks / "panel_qc" / "final_descriptor_manual_review.csv"
+    summary_path = Path(summary_csv) if summary_csv else layout.checks / "panel_qc" / "final_descriptor_resolution_summary.csv"
+    if not manual_review_path.exists():
+        raise SystemExit(f"Missing manual review artifact: {manual_review_path}")
+    if not summary_path.exists():
+        raise SystemExit(f"Missing descriptor resolution summary: {summary_path}")
+
+    manual = pd.read_csv(manual_review_path, dtype=str).fillna("")
+    summary = pd.read_csv(summary_path, dtype={"descriptor": str, "resolution_status": str, "needs_manual_review": bool, "rows": int})
+    annotated = annotate_manual_review_rows(manual) if len(manual.columns) else manual.copy()
+    priority = build_priority_manual_review_frame(annotated) if "review_bucket" in annotated.columns else annotated.copy()
+
+    target_package_dir = Path(output_dir) if output_dir else manual_review_package_dir(layout)
+    use_atomic_replace = output_xlsx is None and target_package_dir.exists()
+    if use_atomic_replace:
+        package_dir = target_package_dir.parent / f".{target_package_dir.name}__staging"
+        if package_dir.exists():
+            shutil.rmtree(package_dir)
+    else:
+        package_dir = target_package_dir
+    package_dir.mkdir(parents=True, exist_ok=True)
+    workbook_path = Path(output_xlsx) if output_xlsx else package_dir / "final_descriptor_manual_review_workbook.xlsx"
+    priority_workbook_path = package_dir / "priority_manual_review_workbook.xlsx"
+
+    annotated.to_csv(package_dir / "all_manual_review.csv", index=False)
+    for descriptor in REVIEW_DESCRIPTOR_ORDER:
+        descriptor_frame = annotated.loc[annotated["descriptor"] == descriptor].copy()
+        descriptor_frame.to_csv(package_dir / f"{descriptor}_manual_review.csv", index=False)
+    priority.to_csv(package_dir / "priority_manual_review.csv", index=False)
+    priority.loc[priority["review_bucket"] == "state_mismatch"].copy().to_csv(package_dir / "priority_state_conflicts.csv", index=False)
+    priority.loc[priority["review_bucket"] == "likely_rename_pattern"].copy().to_csv(package_dir / "priority_likely_renames.csv", index=False)
+
+    workbook = Workbook()
+    summary_ws = workbook.active
+    summary_ws.title = REVIEW_SHEET_NAMES["summary"]
+
+    summary_intro = pd.DataFrame(
+        [
+            {"item": "manual_review_rows", "value": int(len(annotated))},
+            {"item": "package_dir", "value": str(package_dir)},
+            {"item": "source_manual_review_csv", "value": str(manual_review_path)},
+            {"item": "source_resolution_summary_csv", "value": str(summary_path)},
+        ]
+    )
+    write_frame_to_sheet(summary_ws, summary_intro)
+    summary_ws.append([])
+
+    summary_table = summary.copy()
+    summary_table["needs_manual_review"] = summary_table["needs_manual_review"].astype(bool)
+    for row in summary_table.itertuples(index=False, name=None):
+        summary_ws.append(list(row))
+    summary_start_row = len(summary_intro) + 3
+    summary_ws.auto_filter.ref = f"A{summary_start_row}:D{summary_start_row + len(summary_table)}"
+    for cell in summary_ws[summary_start_row]:
+        cell.fill = PatternFill(fill_type="solid", fgColor="FDE9D9")
+        cell.font = Font(bold=True)
+        cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+    for idx in range(1, 5):
+        width = min(max(len(str(summary_ws.cell(row=row_idx, column=idx).value or "")) for row_idx in range(1, summary_ws.max_row + 1)) + 2, 48)
+        summary_ws.column_dimensions[get_column_letter(idx)].width = width
+
+    if not annotated.empty:
+        all_sheet = workbook.create_sheet(REVIEW_SHEET_NAMES["all"])
+        write_frame_to_sheet(all_sheet, annotated)
+        for descriptor in REVIEW_DESCRIPTOR_ORDER:
+            descriptor_frame = annotated.loc[annotated["descriptor"] == descriptor].copy()
+            sheet = workbook.create_sheet(REVIEW_SHEET_NAMES[descriptor])
+            write_frame_to_sheet(sheet, descriptor_frame if not descriptor_frame.empty else pd.DataFrame(columns=annotated.columns))
+
+    workbook.save(workbook_path)
+
+    priority_workbook = Workbook()
+    priority_summary_ws = priority_workbook.active
+    priority_summary_ws.title = REVIEW_SHEET_NAMES["summary"]
+    priority_summary = pd.DataFrame(
+        [
+            {"item": "priority_manual_review_rows", "value": int(len(priority))},
+            {"item": "true_state_conflict_rows", "value": int((priority["review_bucket"] == "state_mismatch").sum()) if not priority.empty else 0},
+            {"item": "likely_rename_rows", "value": int((priority["review_bucket"] == "likely_rename_pattern").sum()) if not priority.empty else 0},
+            {"item": "default_state_review_decision", "value": REVIEW_DECISION_DEFAULTS["state_mismatch"]},
+            {"item": "default_likely_rename_review_decision", "value": REVIEW_DECISION_DEFAULTS["likely_rename_pattern"]},
+            {"item": "source_manual_review_csv", "value": str(manual_review_path)},
+        ]
+    )
+    write_frame_to_sheet(priority_summary_ws, priority_summary)
+
+    priority_columns = priority.columns if not priority.empty else annotated.columns
+    priority_all_sheet = priority_workbook.create_sheet(REVIEW_SHEET_NAMES["priority_all"])
+    write_frame_to_sheet(
+        priority_all_sheet,
+        priority if not priority.empty else pd.DataFrame(columns=priority_columns),
+    )
+    priority_state = priority.loc[priority["review_bucket"] == "state_mismatch"].copy() if not priority.empty else pd.DataFrame(columns=priority_columns)
+    priority_state_sheet = priority_workbook.create_sheet(REVIEW_SHEET_NAMES["priority_state"])
+    write_frame_to_sheet(priority_state_sheet, priority_state if not priority_state.empty else pd.DataFrame(columns=priority_columns))
+    priority_renames = priority.loc[priority["review_bucket"] == "likely_rename_pattern"].copy() if not priority.empty else pd.DataFrame(columns=priority_columns)
+    priority_rename_sheet = priority_workbook.create_sheet(REVIEW_SHEET_NAMES["priority_renames"])
+    write_frame_to_sheet(priority_rename_sheet, priority_renames if not priority_renames.empty else pd.DataFrame(columns=priority_columns))
+
+    priority_workbook.save(priority_workbook_path)
+    if use_atomic_replace:
+        backup_suffix = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+        backup_dir = target_package_dir.parent / f"{target_package_dir.name}__backup_{backup_suffix}"
+        shutil.move(str(target_package_dir), str(backup_dir))
+        shutil.move(str(package_dir), str(target_package_dir))
+        package_dir = target_package_dir
+        workbook_path = target_package_dir / "final_descriptor_manual_review_workbook.xlsx"
+    return workbook_path, package_dir
 
 
 def source_qaqc(root: str | Path | None = None) -> pd.DataFrame:
@@ -1754,6 +2427,47 @@ def acceptance_audit(root: str | Path | None = None) -> pd.DataFrame:
                 "details": f"conflict_rows={len(conflicts)}",
             }
         )
+    resolution_summary_path = layout.checks / "panel_qc" / "final_descriptor_resolution_summary.csv"
+    results.append(
+        {
+            "check": "descriptor_resolution_summary_exists",
+            "passed": resolution_summary_path.exists(),
+            "details": str(resolution_summary_path),
+        }
+    )
+    manual_review_path = layout.checks / "panel_qc" / "final_descriptor_manual_review.csv"
+    results.append(
+        {
+            "check": "descriptor_manual_review_artifact_exists",
+            "passed": manual_review_path.exists(),
+            "details": str(manual_review_path),
+        }
+    )
+    if manual_review_path.exists():
+        manual_review = pd.read_csv(manual_review_path)
+        results.append(
+            {
+                "check": "descriptor_manual_review_rows_are_auditable",
+                "passed": True,
+                "details": f"manual_review_rows={len(manual_review)}",
+            }
+        )
+    workbook_path = manual_review_package_dir(layout) / "final_descriptor_manual_review_workbook.xlsx"
+    results.append(
+        {
+            "check": "descriptor_manual_review_workbook_exists",
+            "passed": workbook_path.exists(),
+            "details": str(workbook_path),
+        }
+    )
+    priority_workbook_path = manual_review_package_dir(layout) / "priority_manual_review_workbook.xlsx"
+    results.append(
+        {
+            "check": "priority_manual_review_workbook_exists",
+            "passed": priority_workbook_path.exists(),
+            "details": str(priority_workbook_path),
+        }
+    )
 
     selected_path = selected_panel_files_path(layout)
     if selected_path.exists():
