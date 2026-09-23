@@ -16,7 +16,7 @@ curl -fsSL https://raw.githubusercontent.com/markjayson13/FSAVolumeReports_Panel
 
 The command creates `FSA-reproduction/` in your current directory. It downloads and checks the versioned release assets, installs an isolated Python 3.13.0 environment with pinned dependencies, rebuilds the panels from frozen local FSA/IPEDS files, and compares every cell in the three principal panels with the published reference. It also retrieves the labeled Stata, CSV, Excel and Parquet exports, codebooks, original code and validation records. It does not change shell profiles or overwrite existing work. Installation/downloads require internet access; the rebuild itself uses frozen local inputs.
 
-For data without a rebuild, download the appropriate format asset from the [versioned release](https://github.com/markjayson13/FSAVolumeReports_Panel/releases/tag/fsa-research-v2-2026-09-22). GitHub's automatic source-code ZIP does not contain the dataset assets. See [replication instructions](Documentation/reproduce_release.md) for output paths, custom destinations, exact environment requirements and interpretation of the comparison checks.
+The [versioned release](https://github.com/markjayson13/FSAVolumeReports_Panel/releases/tag/fsa-research-v2-2026-09-22) stores Stata as one ZIP and the other four archives as numbered 16 MiB pieces. The command verifies and joins those pieces automatically, preserving the original archive bytes. For manual downloads or data without a rebuild, see the [replication instructions](Documentation/reproduce_release.md). GitHub's automatic source-code ZIP does not contain the dataset assets.
 
 ## Versioned scope
 

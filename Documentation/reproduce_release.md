@@ -16,7 +16,7 @@ Run this in a terminal with Bash and curl (macOS, Linux, or Windows WSL):
 curl -fsSL https://raw.githubusercontent.com/markjayson13/FSAVolumeReports_Panel/fsa-research-v2-2026-09-22/Scripts/bootstrap_reproduction.sh | bash
 ```
 
-This downloads all five dataset/replication archives and their checksum manifest, verifies the downloaded bytes, creates an isolated Python 3.13.0 environment with pinned dependencies, rebuilds the canonical panels, and checks them against the reference release. No preinstalled Python, Git, Stata, or Excel is required to reproduce the panels. The computer needs sufficient storage for the downloads, extracted data, environment and rebuilt outputs; keep at least 10 GB available. Network access is needed for installation and downloads; the panel build then uses local frozen inputs.
+This retrieves all five dataset/replication archives, creates an isolated Python 3.13.0 environment with pinned dependencies, rebuilds the canonical panels, and checks them against the reference release. Four archives travel as numbered 16 MiB pieces; Stata is one complete ZIP. The bootstrap checks the pinned `download_manifest.json`, verifies every piece, joins the pieces, and verifies each reconstructed archive against its original checksum before extraction. Successfully assembled pieces are removed to save space. No preinstalled Python, Git, Stata, or Excel is required to reproduce the panels. Keep at least 10 GB available for downloads, extracted data, the environment and rebuilt outputs. Network access is needed for installation and downloads; the panel build then uses local frozen inputs.
 
 The default destination is a new `FSA-reproduction/` directory. For another location, set the variable on the Bash side of the pipe:
 
@@ -26,9 +26,18 @@ curl -fsSL https://raw.githubusercontent.com/markjayson13/FSAVolumeReports_Panel
 
 The bootstrap refuses a nonempty destination, including an interrupted run's directory; select a new destination for a retry. It preserves existing work and does not modify shell profiles. Its local environment/tools are under `.venv/` and `.tools/` within the destination. Output folders are `rebuilt/` (new panels and comparison report), `canonical/` (exact reference data), `unitid/` (labeled exports and codebooks), and `replication/` (frozen inputs and code). Downloads remain under `downloads/`.
 
-The bootstrap and assets are pinned to the release tag, rather than a changing `main` branch. The frozen pipeline remains the original validated snapshot; the portable runner only relocates runtime file paths. The [reviewable bootstrap source](../Scripts/bootstrap_reproduction.sh) records the pinned uv installer used to provide Python and the isolated environment. Native Windows PowerShell/CMD is not supported by this Bash command; use WSL.
+The bootstrap and assets are pinned to the release tag, rather than a changing `main` branch. The frozen pipeline remains the original validated snapshot; the portable runner only relocates runtime file paths. The [reviewable bootstrap source](../Scripts/bootstrap_reproduction.sh) records the pinned uv installer and download-manifest hash. Archived source copies preserve their original provenance; use the command at the public release tag for the current multipart download procedure. Native Windows PowerShell/CMD is not supported by this Bash command; use WSL.
 
 ## Manual reproduction
+
+For a manual download, obtain every numbered piece of each desired archive listed in `download_manifest.json`. A `.partNNNN` file is a slice, not an independently extractable ZIP. Join pieces in numerical order, for example:
+
+```sh
+cat fsa-research-v2-replication.zip.part[0-9][0-9][0-9][0-9] > fsa-research-v2-replication.zip
+cat fsa-research-v2-canonical.zip.part[0-9][0-9][0-9][0-9] > fsa-research-v2-canonical.zip
+```
+
+Compare the resulting SHA256 hashes and byte lengths with `distribution_manifest.json` before extraction. Stata downloads directly as `fsa-research-v2-stata.zip`; the portable-data and Excel archives follow the same piece-joining procedure. The one-command method performs all assembly and checks automatically. `SHA256SUMS.txt` continues to describe the original full archives, while `download_manifest.json` also lists each transported piece.
 
 Extract the replication and canonical archives alongside one another. Their
 top-level directories are `replication/` and `canonical/`. Use Python **3.13.0**
