@@ -1,0 +1,87 @@
+family,award_year,filename,valid_rows,id_mismatches,raw_id_lengths,non_strict_accepted
+campus_based,2001-2002,CBDashboard0102.xls,4038,0,"{""8"": 4038}",0
+campus_based,2002-2003,CBDashboard0203.xls,4035,0,"{""8"": 4035}",0
+campus_based,2003-2004,CBDashboard0304.xls,4067,0,"{""8"": 4067}",0
+campus_based,2004-2005,CBDashboard0405.xls,4071,0,"{""8"": 4071}",0
+campus_based,2005-2006,CBDashboard0506.xls,4064,0,"{""8"": 4064}",0
+campus_based,2006-2007,CBDashboard0607.xls,3942,0,"{""8"": 3942}",0
+campus_based,2007-2008,CBDashboard0708.xls,3963,0,"{""8"": 3963}",0
+campus_based,2008-2009,CBDashboard0809.xls,3925,0,"{""8"": 3925}",0
+campus_based,2009-2010,CBDashboard0910.xls,3970,0,"{""8"": 3970}",0
+campus_based,2010-2011,2010-2011CBData.xls,4086,0,"{""8"": 4086}",0
+campus_based,2011-2012,2011-2012CBData.xls,4061,0,"{""8"": 4061}",0
+campus_based,2012-2013,2012-13CampusBasedFunding.xls,4046,2617,"{""6"": 2617, ""7"": 1429}",0
+campus_based,2013-2014,2013-14CampusBased.xls,4010,2603,"{""6"": 2603, ""7"": 1407}",0
+campus_based,2014-2015,2014-15CampusBased.xls,4013,0,"{""8"": 4013}",0
+campus_based,2015-2016,2015-16CampusBased.xls,3947,2577,"{""6"": 2577, ""7"": 1369, ""8"": 1}",0
+campus_based,2016-2017,2016-17CampusBased.xls,3868,0,"{""8"": 3868}",0
+campus_based,2017-2018,ay17-18-campus-based.xls,3678,0,"{""8"": 3678}",0
+campus_based,2018-2019,ay18-19-campus-based.xls,3707,0,"{""8"": 3707}",0
+campus_based,2019-2020,ay19-20-campus-based.xls,3607,2464,"{""6"": 2464, ""7"": 1143}",0
+campus_based,2020-2021,ay20-21-campus-based.xls,3589,0,"{""8"": 3589}",0
+campus_based,2021-2022,ay21-22-campus-based.xls,3580,0,"{""8"": 3580}",0
+campus_based,2022-2023,ay22-23-campus-based.xls,3551,0,"{""8"": 3551}",0
+campus_based,2023-2024,ay23-24-campus-based.xls,3220,0,"{""8"": 3220}",0
+grants,1999-2000,AY1999-00Pell.xls,5219,2883,"{""6"": 2883, ""7"": 2336}",0
+grants,2000-2001,AY2000-01Pell.xls,5199,2863,"{""6"": 2863, ""7"": 2336}",0
+grants,2001-2002,AY2001-02Pell.xls,5180,2845,"{""6"": 2845, ""7"": 2335}",0
+grants,2002-2003,AY2002-03Pell.xls,5169,2827,"{""6"": 2827, ""7"": 2342}",0
+grants,2003-2004,AY2003-04Pell.xls,5197,2813,"{""6"": 2813, ""7"": 2384}",0
+grants,2004-2005,AY2004-05Pell.xls,5206,2804,"{""6"": 2804, ""7"": 2402}",0
+grants,2005-2006,AY2005-06Pell.xls,5248,2789,"{""6"": 2789, ""7"": 2459}",0
+grants,2006-2007,Q40607AY.xls,5503,2937,"{""6"": 2937, ""7"": 2566}",0
+grants,2007-2008,Q40708AY.xls,5505,2933,"{""6"": 2933, ""7"": 2572}",0
+grants,2008-2009,Q40809AY.xls,5539,2948,"{""6"": 2948, ""7"": 2580, ""8"": 11}",0
+grants,2009-2010,Q40910AY.xls,5599,2927,"{""6"": 2927, ""7"": 2672}",0
+grants,2010-2011,Q41011AY.xls,5529,2782,"{""6"": 2782, ""7"": 2747}",0
+grants,2011-2012,Q41112AY.xls,5487,2745,"{""6"": 2745, ""7"": 2742}",0
+grants,2012-2013,Q41213AY.xls,5475,2737,"{""6"": 2737, ""7"": 2738}",0
+grants,2013-2014,Q41314AY.xls,5481,2726,"{""6"": 2726, ""7"": 2755}",0
+grants,2014-2015,Q41415AY.xls,5449,0,"{""8"": 5449}",0
+grants,2015-2016,Q41516AY.xls,5397,0,"{""8"": 5397}",0
+grants,2016-2017,Q41617AY.xls,5310,0,"{""8"": 5310}",0
+grants,2017-2018,Q41718AY.xls,5212,0,"{""8"": 5212}",0
+grants,2018-2019,grants-ay18-19-q4.xls,5118,0,"{""8"": 5118}",0
+grants,2019-2020,grants-ay19-20-q4.xls,5029,0,"{""8"": 5029}",0
+grants,2020-2021,grants-ay20-21-q4.xls,4952,0,"{""8"": 4952}",0
+grants,2021-2022,grants-ay21-22-q4.xls,4883,0,"{""8"": 4883}",0
+grants,2022-2023,grants-ay22-23-q4.xls,4843,0,"{""8"": 4843}",0
+grants,2023-2024,grants-ay23-24-q4.xls,4780,0,"{""8"": 4780}",0
+grants,2024-2025,grants-ay24-25-q4.xls,4713,0,"{""8"": 4713}",0
+direct_loans,1999-2000,DL_AwardYr_Summary_AY1999_2000_All.xls,1241,0,"{""8"": 1241}",0
+direct_loans,2000-2001,DL_AwardYr_Summary_AY2000_2001_All.xls,1204,0,"{""8"": 1204}",0
+direct_loans,2001-2002,DL_AwardYr_Summary_AY2001_2002_All.xls,1154,0,"{""8"": 1154}",0
+direct_loans,2002-2003,DL_AwardYr_Summary_AY2002_2003_All.xls,1114,0,"{""8"": 1114}",0
+direct_loans,2003-2004,DL_AwardYr_Summary_AY2003_2004_All.xls,1086,0,"{""8"": 1086}",0
+direct_loans,2004-2005,DL_AwardYr_Summary_AY2004_2005_All.xls,1082,0,"{""8"": 1082}",0
+direct_loans,2005-2006,DL_AwardYr_Summary_AY2005_2006_All.xls,1077,0,"{""8"": 1077}",0
+direct_loans,2006-2007,DL_Dashboard_AY2006_2007_Q4.xls,1086,0,"{""8"": 1086}",0
+direct_loans,2007-2008,DL_Dashboard_AY2007_2008_Q4.xls,1381,0,"{""8"": 1381}",0
+direct_loans,2008-2009,DL_Dashboard_AY2008_2009_Q4.xls,2363,0,"{""8"": 2363}",0
+direct_loans,2009-2010,DL_Dashboard_AY2009_2010_Q4.xls,4260,0,"{""8"": 4260}",0
+direct_loans,2010-2011,DL_Dashboard_AY2010_2011_Q4.xls,5661,0,"{""8"": 5661}",0
+direct_loans,2011-2012,DL_Dashboard_AY2011_2012_Q4.xls,5670,0,"{""8"": 5670}",0
+direct_loans,2012-2013,DL_Dashboard_AY2012_2013_Q4.xls,5650,0,"{""8"": 5650}",0
+direct_loans,2013-2014,DL_Dashboard_AY2013_2014_Q4.xls,5516,2749,"{""6"": 2749, ""7"": 2767}",0
+direct_loans,2014-2015,DL_Dashboard_AY2014_2015_Q4.xls,5473,0,"{""8"": 5473}",0
+direct_loans,2015-2016,DL_Dashboard_AY2015_2016_Q4.xls,5441,0,"{""8"": 5441}",0
+direct_loans,2016-2017,DL_Dashboard_AY2016_2017_Q4.xls,5339,0,"{""8"": 5339}",0
+direct_loans,2017-2018,DL_Dashboard_AY2017_2018_Q4.xls,5249,0,"{""8"": 5249}",0
+direct_loans,2018-2019,dl-dashboard-ay2018-2019-q4.xls,5150,0,"{""8"": 5150}",0
+direct_loans,2019-2020,dl-dashboard-ay2019-2020-q4.xls,5056,0,"{""8"": 5056}",0
+direct_loans,2020-2021,dl-dashboard-ay2020-2021-q4.xls,5006,0,"{""8"": 5006}",0
+direct_loans,2021-2022,dl-dashboard-ay2021-2022-q4.xls,4958,0,"{""8"": 4958}",0
+direct_loans,2022-2023,dl-dashboard-ay2022-2023-q4.xls,4891,0,"{""8"": 4891}",0
+direct_loans,2023-2024,dl-dashboard-ay2023-2024-q4.xls,4816,0,"{""8"": 4816}",0
+direct_loans,2024-2025,dl-dashboard-ay2024-2025-q4.xls,4721,0,"{""8"": 4721}",0
+ffel,1999-2000,FFEL_AwardYr_Summary_AY1999_2000_All.xls,4366,0,"{""8"": 4366}",0
+ffel,2000-2001,FFEL_AwardYr_Summary_AY2000_2001_All.xls,4397,0,"{""8"": 4397}",0
+ffel,2001-2002,FFEL_AwardYr_Summary_AY2001_2002_All.xls,4418,0,"{""8"": 4418}",0
+ffel,2002-2003,FFEL_AwardYr_Summary_AY2002_2003_All.xls,4448,0,"{""8"": 4448}",0
+ffel,2003-2004,FFEL_AwardYr_Summary_AY2003_2004_All.xls,4498,0,"{""8"": 4498}",0
+ffel,2004-2005,FFEL_AwardYr_Summary_AY2004_2005_All.xls,4515,0,"{""8"": 4515}",0
+ffel,2005-2006,FFEL_AwardYr_Summary_AY2005_2006_All.xls,4578,0,"{""8"": 4578}",0
+ffel,2006-2007,FL_Dashboard_AY2006_2007_Q4.xls,4617,0,"{""8"": 4617}",0
+ffel,2007-2008,FL_Dashboard_AY2007_2008_Q4.xls,4847,0,"{""8"": 4847}",0
+ffel,2008-2009,FL_Dashboard_AY2008_2009_Q4.xls,4543,0,"{""8"": 4543}",0
+ffel,2009-2010,FL_Dashboard_AY2009_2010_Q4.xls,4188,0,"{""8"": 4188}",0

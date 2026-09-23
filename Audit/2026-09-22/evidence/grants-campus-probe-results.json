@@ -1,0 +1,2758 @@
+{
+  "summary": [
+    {
+      "family": "campus_based",
+      "file": "CBDashboard0102.xls",
+      "year": "2001-2002",
+      "rows": 4038,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "campus_based",
+      "file": "CBDashboard0203.xls",
+      "year": "2002-2003",
+      "rows": 4035,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "campus_based",
+      "file": "CBDashboard0304.xls",
+      "year": "2003-2004",
+      "rows": 4067,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "campus_based",
+      "file": "CBDashboard0405.xls",
+      "year": "2004-2005",
+      "rows": 4071,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "campus_based",
+      "file": "CBDashboard0506.xls",
+      "year": "2005-2006",
+      "rows": 4064,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "campus_based",
+      "file": "CBDashboard0607.xls",
+      "year": "2006-2007",
+      "rows": 3942,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "campus_based",
+      "file": "CBDashboard0708.xls",
+      "year": "2007-2008",
+      "rows": 3963,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "campus_based",
+      "file": "CBDashboard0809.xls",
+      "year": "2008-2009",
+      "rows": 3925,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "campus_based",
+      "file": "CBDashboard0910.xls",
+      "year": "2009-2010",
+      "rows": 3970,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "campus_based",
+      "file": "2010-2011CBData.xls",
+      "year": "2010-2011",
+      "rows": 4086,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "campus_based",
+      "file": "2011-2012CBData.xls",
+      "year": "2011-2012",
+      "rows": 4061,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "campus_based",
+      "file": "2012-13CampusBasedFunding.xls",
+      "year": "2012-2013",
+      "rows": 4046,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "campus_based",
+      "file": "2013-14CampusBased.xls",
+      "year": "2013-2014",
+      "rows": 4010,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "campus_based",
+      "file": "2014-15CampusBased.xls",
+      "year": "2014-2015",
+      "rows": 4013,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "campus_based",
+      "file": "2015-16CampusBased.xls",
+      "year": "2015-2016",
+      "rows": 3947,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "campus_based",
+      "file": "2016-17CampusBased.xls",
+      "year": "2016-2017",
+      "rows": 3868,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "campus_based",
+      "file": "ay17-18-campus-based.xls",
+      "year": "2017-2018",
+      "rows": 3678,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "campus_based",
+      "file": "ay18-19-campus-based.xls",
+      "year": "2018-2019",
+      "rows": 3707,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "campus_based",
+      "file": "ay19-20-campus-based.xls",
+      "year": "2019-2020",
+      "rows": 3607,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "campus_based",
+      "file": "ay20-21-campus-based.xls",
+      "year": "2020-2021",
+      "rows": 3589,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "campus_based",
+      "file": "ay21-22-campus-based.xls",
+      "year": "2021-2022",
+      "rows": 3580,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "campus_based",
+      "file": "ay22-23-campus-based.xls",
+      "year": "2022-2023",
+      "rows": 3551,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "campus_based",
+      "file": "ay23-24-campus-based.xls",
+      "year": "2023-2024",
+      "rows": 3220,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "grants",
+      "file": "AY1999-00Pell.xls",
+      "year": "1999-2000",
+      "rows": 5219,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "grants",
+      "file": "AY2000-01Pell.xls",
+      "year": "2000-2001",
+      "rows": 5199,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "grants",
+      "file": "AY2001-02Pell.xls",
+      "year": "2001-2002",
+      "rows": 5180,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "grants",
+      "file": "AY2002-03Pell.xls",
+      "year": "2002-2003",
+      "rows": 5169,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "grants",
+      "file": "AY2003-04Pell.xls",
+      "year": "2003-2004",
+      "rows": 5197,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "grants",
+      "file": "AY2004-05Pell.xls",
+      "year": "2004-2005",
+      "rows": 5206,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "grants",
+      "file": "AY2005-06Pell.xls",
+      "year": "2005-2006",
+      "rows": 5248,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "grants",
+      "file": "Q40607AY.xls",
+      "year": "2006-2007",
+      "rows": 5503,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "grants",
+      "file": "Q40708AY.xls",
+      "year": "2007-2008",
+      "rows": 5505,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "grants",
+      "file": "Q40809AY.xls",
+      "year": "2008-2009",
+      "rows": 5539,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "grants",
+      "file": "Q40910AY.xls",
+      "year": "2009-2010",
+      "rows": 5599,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "grants",
+      "file": "Q41011AY.xls",
+      "year": "2010-2011",
+      "rows": 5529,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "grants",
+      "file": "Q41112AY.xls",
+      "year": "2011-2012",
+      "rows": 5487,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "grants",
+      "file": "Q41213AY.xls",
+      "year": "2012-2013",
+      "rows": 5475,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "grants",
+      "file": "Q41314AY.xls",
+      "year": "2013-2014",
+      "rows": 5481,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "grants",
+      "file": "Q41415AY.xls",
+      "year": "2014-2015",
+      "rows": 5449,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "grants",
+      "file": "Q41516AY.xls",
+      "year": "2015-2016",
+      "rows": 5397,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "grants",
+      "file": "Q41617AY.xls",
+      "year": "2016-2017",
+      "rows": 5310,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "grants",
+      "file": "Q41718AY.xls",
+      "year": "2017-2018",
+      "rows": 5212,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "grants",
+      "file": "grants-ay18-19-q4.xls",
+      "year": "2018-2019",
+      "rows": 5118,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "grants",
+      "file": "grants-ay19-20-q4.xls",
+      "year": "2019-2020",
+      "rows": 5029,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "grants",
+      "file": "grants-ay20-21-q4.xls",
+      "year": "2020-2021",
+      "rows": 4952,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "grants",
+      "file": "grants-ay21-22-q4.xls",
+      "year": "2021-2022",
+      "rows": 4883,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "grants",
+      "file": "grants-ay22-23-q4.xls",
+      "year": "2022-2023",
+      "rows": 4843,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "grants",
+      "file": "grants-ay23-24-q4.xls",
+      "year": "2023-2024",
+      "rows": 4780,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    },
+    {
+      "family": "grants",
+      "file": "grants-ay24-25-q4.xls",
+      "year": "2024-2025",
+      "rows": 4713,
+      "rebuild_equal": true,
+      "unmapped": [],
+      "warnings": []
+    }
+  ],
+  "coercions": [
+    {
+      "file": "2010-2011CBData.xls",
+      "family": "campus_based",
+      "year": "2010-2011",
+      "column": "perkins_federal_award",
+      "tokens": {
+        "$                      -   ": 4086
+      },
+      "n": 4086
+    },
+    {
+      "file": "ay18-19-campus-based.xls",
+      "family": "campus_based",
+      "year": "2018-2019",
+      "column": "perkins_disbursements_amt",
+      "tokens": {
+        "-": 10
+      },
+      "n": 10
+    },
+    {
+      "file": "ay18-19-campus-based.xls",
+      "family": "campus_based",
+      "year": "2018-2019",
+      "column": "fseog_federal_award",
+      "tokens": {
+        "-": 36
+      },
+      "n": 36
+    },
+    {
+      "file": "ay18-19-campus-based.xls",
+      "family": "campus_based",
+      "year": "2018-2019",
+      "column": "fseog_disbursements",
+      "tokens": {
+        "-": 10
+      },
+      "n": 10
+    },
+    {
+      "file": "ay18-19-campus-based.xls",
+      "family": "campus_based",
+      "year": "2018-2019",
+      "column": "fws_federal_award",
+      "tokens": {
+        "-": 171
+      },
+      "n": 171
+    },
+    {
+      "file": "ay18-19-campus-based.xls",
+      "family": "campus_based",
+      "year": "2018-2019",
+      "column": "fws_disbursements",
+      "tokens": {
+        "-": 10
+      },
+      "n": 10
+    },
+    {
+      "file": "ay20-21-campus-based.xls",
+      "family": "campus_based",
+      "year": "2020-2021",
+      "column": "fseog_federal_award",
+      "tokens": {
+        "-": 33
+      },
+      "n": 33
+    },
+    {
+      "file": "ay20-21-campus-based.xls",
+      "family": "campus_based",
+      "year": "2020-2021",
+      "column": "fseog_disbursements",
+      "tokens": {
+        "-": 6
+      },
+      "n": 6
+    },
+    {
+      "file": "ay20-21-campus-based.xls",
+      "family": "campus_based",
+      "year": "2020-2021",
+      "column": "fws_federal_award",
+      "tokens": {
+        "-": 172
+      },
+      "n": 172
+    },
+    {
+      "file": "ay20-21-campus-based.xls",
+      "family": "campus_based",
+      "year": "2020-2021",
+      "column": "fws_disbursements",
+      "tokens": {
+        "-": 6
+      },
+      "n": 6
+    },
+    {
+      "file": "ay21-22-campus-based.xls",
+      "family": "campus_based",
+      "year": "2021-2022",
+      "column": "fseog_recipients",
+      "tokens": {
+        "<10": 52
+      },
+      "n": 52
+    },
+    {
+      "file": "ay21-22-campus-based.xls",
+      "family": "campus_based",
+      "year": "2021-2022",
+      "column": "fseog_disbursements",
+      "tokens": {
+        "Privacy Redacted": 52
+      },
+      "n": 52
+    },
+    {
+      "file": "ay21-22-campus-based.xls",
+      "family": "campus_based",
+      "year": "2021-2022",
+      "column": "fws_recipients",
+      "tokens": {
+        "<10": 331
+      },
+      "n": 331
+    },
+    {
+      "file": "ay21-22-campus-based.xls",
+      "family": "campus_based",
+      "year": "2021-2022",
+      "column": "fws_disbursements",
+      "tokens": {
+        "Privacy Redacted": 331
+      },
+      "n": 331
+    },
+    {
+      "file": "ay22-23-campus-based.xls",
+      "family": "campus_based",
+      "year": "2022-2023",
+      "column": "fseog_recipients",
+      "tokens": {
+        "<10": 73
+      },
+      "n": 73
+    },
+    {
+      "file": "ay22-23-campus-based.xls",
+      "family": "campus_based",
+      "year": "2022-2023",
+      "column": "fseog_disbursements",
+      "tokens": {
+        "Privacy Redacted": 73
+      },
+      "n": 73
+    },
+    {
+      "file": "ay22-23-campus-based.xls",
+      "family": "campus_based",
+      "year": "2022-2023",
+      "column": "fws_recipients",
+      "tokens": {
+        "<10": 324
+      },
+      "n": 324
+    },
+    {
+      "file": "ay22-23-campus-based.xls",
+      "family": "campus_based",
+      "year": "2022-2023",
+      "column": "fws_disbursements",
+      "tokens": {
+        "Privacy Redacted": 324
+      },
+      "n": 324
+    },
+    {
+      "file": "ay23-24-campus-based.xls",
+      "family": "campus_based",
+      "year": "2023-2024",
+      "column": "fseog_federal_award",
+      "tokens": {
+        "-": 179
+      },
+      "n": 179
+    },
+    {
+      "file": "ay23-24-campus-based.xls",
+      "family": "campus_based",
+      "year": "2023-2024",
+      "column": "fseog_recipients",
+      "tokens": {
+        "<10": 78
+      },
+      "n": 78
+    },
+    {
+      "file": "ay23-24-campus-based.xls",
+      "family": "campus_based",
+      "year": "2023-2024",
+      "column": "fseog_disbursements",
+      "tokens": {
+        "Privacy Redaction": 78,
+        "-": 25
+      },
+      "n": 103
+    },
+    {
+      "file": "ay23-24-campus-based.xls",
+      "family": "campus_based",
+      "year": "2023-2024",
+      "column": "fws_federal_award",
+      "tokens": {
+        "-": 304
+      },
+      "n": 304
+    },
+    {
+      "file": "ay23-24-campus-based.xls",
+      "family": "campus_based",
+      "year": "2023-2024",
+      "column": "fws_recipients",
+      "tokens": {
+        "<10": 280
+      },
+      "n": 280
+    },
+    {
+      "file": "ay23-24-campus-based.xls",
+      "family": "campus_based",
+      "year": "2023-2024",
+      "column": "fws_disbursements",
+      "tokens": {
+        "Privacy Redacted": 280,
+        "-": 25
+      },
+      "n": 305
+    },
+    {
+      "file": "Q40607AY.xls",
+      "family": "grants",
+      "year": "2006-2007",
+      "column": "pell_recipients",
+      "tokens": {
+        "-": 3
+      },
+      "n": 3
+    },
+    {
+      "file": "Q40607AY.xls",
+      "family": "grants",
+      "year": "2006-2007",
+      "column": "pell_disbursements",
+      "tokens": {
+        "-": 3
+      },
+      "n": 3
+    },
+    {
+      "file": "Q40607AY.xls",
+      "family": "grants",
+      "year": "2006-2007",
+      "column": "acg_recipients",
+      "tokens": {
+        "-": 2678
+      },
+      "n": 2678
+    },
+    {
+      "file": "Q40607AY.xls",
+      "family": "grants",
+      "year": "2006-2007",
+      "column": "acg_disbursements",
+      "tokens": {
+        "-": 2678
+      },
+      "n": 2678
+    },
+    {
+      "file": "Q40607AY.xls",
+      "family": "grants",
+      "year": "2006-2007",
+      "column": "smart_recipients",
+      "tokens": {
+        "-": 4063
+      },
+      "n": 4063
+    },
+    {
+      "file": "Q40607AY.xls",
+      "family": "grants",
+      "year": "2006-2007",
+      "column": "smart_disbursements",
+      "tokens": {
+        "-": 4063
+      },
+      "n": 4063
+    },
+    {
+      "file": "Q40708AY.xls",
+      "family": "grants",
+      "year": "2007-2008",
+      "column": "pell_recipients",
+      "tokens": {
+        "-": 1
+      },
+      "n": 1
+    },
+    {
+      "file": "Q40708AY.xls",
+      "family": "grants",
+      "year": "2007-2008",
+      "column": "pell_disbursements",
+      "tokens": {
+        "-": 1
+      },
+      "n": 1
+    },
+    {
+      "file": "Q40708AY.xls",
+      "family": "grants",
+      "year": "2007-2008",
+      "column": "acg_recipients",
+      "tokens": {
+        "-": 2528
+      },
+      "n": 2528
+    },
+    {
+      "file": "Q40708AY.xls",
+      "family": "grants",
+      "year": "2007-2008",
+      "column": "acg_disbursements",
+      "tokens": {
+        "-": 2528
+      },
+      "n": 2528
+    },
+    {
+      "file": "Q40708AY.xls",
+      "family": "grants",
+      "year": "2007-2008",
+      "column": "smart_recipients",
+      "tokens": {
+        "-": 4025
+      },
+      "n": 4025
+    },
+    {
+      "file": "Q40708AY.xls",
+      "family": "grants",
+      "year": "2007-2008",
+      "column": "smart_disbursements",
+      "tokens": {
+        "-": 4025
+      },
+      "n": 4025
+    },
+    {
+      "file": "Q40809AY.xls",
+      "family": "grants",
+      "year": "2008-2009",
+      "column": "pell_recipients",
+      "tokens": {
+        "-": 12
+      },
+      "n": 12
+    },
+    {
+      "file": "Q40809AY.xls",
+      "family": "grants",
+      "year": "2008-2009",
+      "column": "pell_disbursements",
+      "tokens": {
+        "-": 12
+      },
+      "n": 12
+    },
+    {
+      "file": "Q40809AY.xls",
+      "family": "grants",
+      "year": "2008-2009",
+      "column": "acg_recipients",
+      "tokens": {
+        "-": 2504
+      },
+      "n": 2504
+    },
+    {
+      "file": "Q40809AY.xls",
+      "family": "grants",
+      "year": "2008-2009",
+      "column": "acg_disbursements",
+      "tokens": {
+        "-": 2504
+      },
+      "n": 2504
+    },
+    {
+      "file": "Q40809AY.xls",
+      "family": "grants",
+      "year": "2008-2009",
+      "column": "smart_recipients",
+      "tokens": {
+        "-": 4059
+      },
+      "n": 4059
+    },
+    {
+      "file": "Q40809AY.xls",
+      "family": "grants",
+      "year": "2008-2009",
+      "column": "smart_disbursements",
+      "tokens": {
+        "-": 4059
+      },
+      "n": 4059
+    },
+    {
+      "file": "Q40809AY.xls",
+      "family": "grants",
+      "year": "2008-2009",
+      "column": "teach_recipients",
+      "tokens": {
+        "-": 5038
+      },
+      "n": 5038
+    },
+    {
+      "file": "Q40809AY.xls",
+      "family": "grants",
+      "year": "2008-2009",
+      "column": "teach_disbursements",
+      "tokens": {
+        "-": 5038
+      },
+      "n": 5038
+    },
+    {
+      "file": "Q40910AY.xls",
+      "family": "grants",
+      "year": "2009-2010",
+      "column": "pell_recipients",
+      "tokens": {
+        "-": 8
+      },
+      "n": 8
+    },
+    {
+      "file": "Q40910AY.xls",
+      "family": "grants",
+      "year": "2009-2010",
+      "column": "pell_disbursements",
+      "tokens": {
+        "-": 8
+      },
+      "n": 8
+    },
+    {
+      "file": "Q40910AY.xls",
+      "family": "grants",
+      "year": "2009-2010",
+      "column": "acg_recipients",
+      "tokens": {
+        "-": 2474
+      },
+      "n": 2474
+    },
+    {
+      "file": "Q40910AY.xls",
+      "family": "grants",
+      "year": "2009-2010",
+      "column": "acg_disbursements",
+      "tokens": {
+        "-": 2474
+      },
+      "n": 2474
+    },
+    {
+      "file": "Q40910AY.xls",
+      "family": "grants",
+      "year": "2009-2010",
+      "column": "smart_recipients",
+      "tokens": {
+        "-": 4106
+      },
+      "n": 4106
+    },
+    {
+      "file": "Q40910AY.xls",
+      "family": "grants",
+      "year": "2009-2010",
+      "column": "smart_disbursements",
+      "tokens": {
+        "-": 4106
+      },
+      "n": 4106
+    },
+    {
+      "file": "Q40910AY.xls",
+      "family": "grants",
+      "year": "2009-2010",
+      "column": "teach_recipients",
+      "tokens": {
+        "-": 4869
+      },
+      "n": 4869
+    },
+    {
+      "file": "Q40910AY.xls",
+      "family": "grants",
+      "year": "2009-2010",
+      "column": "teach_disbursements",
+      "tokens": {
+        "-": 4869
+      },
+      "n": 4869
+    },
+    {
+      "file": "Q41718AY.xls",
+      "family": "grants",
+      "year": "2017-2018",
+      "column": "pell_recipients",
+      "tokens": {
+        "-": 4
+      },
+      "n": 4
+    },
+    {
+      "file": "Q41718AY.xls",
+      "family": "grants",
+      "year": "2017-2018",
+      "column": "pell_disbursements",
+      "tokens": {
+        " -": 4
+      },
+      "n": 4
+    },
+    {
+      "file": "Q41718AY.xls",
+      "family": "grants",
+      "year": "2017-2018",
+      "column": "teach_recipients",
+      "tokens": {
+        "-": 4462
+      },
+      "n": 4462
+    },
+    {
+      "file": "Q41718AY.xls",
+      "family": "grants",
+      "year": "2017-2018",
+      "column": "teach_disbursements",
+      "tokens": {
+        " -": 4462
+      },
+      "n": 4462
+    },
+    {
+      "file": "Q41718AY.xls",
+      "family": "grants",
+      "year": "2017-2018",
+      "column": "iasg_recipients",
+      "tokens": {
+        "-": 5153
+      },
+      "n": 5153
+    },
+    {
+      "file": "Q41718AY.xls",
+      "family": "grants",
+      "year": "2017-2018",
+      "column": "iasg_disbursements",
+      "tokens": {
+        " -": 5153
+      },
+      "n": 5153
+    },
+    {
+      "file": "grants-ay18-19-q4.xls",
+      "family": "grants",
+      "year": "2018-2019",
+      "column": "pell_recipients",
+      "tokens": {
+        "-": 4
+      },
+      "n": 4
+    },
+    {
+      "file": "grants-ay18-19-q4.xls",
+      "family": "grants",
+      "year": "2018-2019",
+      "column": "pell_disbursements",
+      "tokens": {
+        " -": 4
+      },
+      "n": 4
+    },
+    {
+      "file": "grants-ay18-19-q4.xls",
+      "family": "grants",
+      "year": "2018-2019",
+      "column": "teach_recipients",
+      "tokens": {
+        "-": 4381
+      },
+      "n": 4381
+    },
+    {
+      "file": "grants-ay18-19-q4.xls",
+      "family": "grants",
+      "year": "2018-2019",
+      "column": "teach_disbursements",
+      "tokens": {
+        " -": 4381
+      },
+      "n": 4381
+    },
+    {
+      "file": "grants-ay18-19-q4.xls",
+      "family": "grants",
+      "year": "2018-2019",
+      "column": "iasg_recipients",
+      "tokens": {
+        "-": 5053
+      },
+      "n": 5053
+    },
+    {
+      "file": "grants-ay18-19-q4.xls",
+      "family": "grants",
+      "year": "2018-2019",
+      "column": "iasg_disbursements",
+      "tokens": {
+        " -": 5053
+      },
+      "n": 5053
+    },
+    {
+      "file": "grants-ay19-20-q4.xls",
+      "family": "grants",
+      "year": "2019-2020",
+      "column": "pell_recipients",
+      "tokens": {
+        "-": 5
+      },
+      "n": 5
+    },
+    {
+      "file": "grants-ay19-20-q4.xls",
+      "family": "grants",
+      "year": "2019-2020",
+      "column": "pell_disbursements",
+      "tokens": {
+        " -": 5
+      },
+      "n": 5
+    },
+    {
+      "file": "grants-ay19-20-q4.xls",
+      "family": "grants",
+      "year": "2019-2020",
+      "column": "teach_recipients",
+      "tokens": {
+        "-": 4288
+      },
+      "n": 4288
+    },
+    {
+      "file": "grants-ay19-20-q4.xls",
+      "family": "grants",
+      "year": "2019-2020",
+      "column": "teach_disbursements",
+      "tokens": {
+        " -": 4288
+      },
+      "n": 4288
+    },
+    {
+      "file": "grants-ay19-20-q4.xls",
+      "family": "grants",
+      "year": "2019-2020",
+      "column": "iasg_recipients",
+      "tokens": {
+        "-": 4955
+      },
+      "n": 4955
+    },
+    {
+      "file": "grants-ay19-20-q4.xls",
+      "family": "grants",
+      "year": "2019-2020",
+      "column": "iasg_disbursements",
+      "tokens": {
+        " -": 4955
+      },
+      "n": 4955
+    },
+    {
+      "file": "grants-ay20-21-q4.xls",
+      "family": "grants",
+      "year": "2020-2021",
+      "column": "pell_recipients",
+      "tokens": {
+        "-": 6
+      },
+      "n": 6
+    },
+    {
+      "file": "grants-ay20-21-q4.xls",
+      "family": "grants",
+      "year": "2020-2021",
+      "column": "pell_disbursements",
+      "tokens": {
+        " -": 6
+      },
+      "n": 6
+    },
+    {
+      "file": "grants-ay20-21-q4.xls",
+      "family": "grants",
+      "year": "2020-2021",
+      "column": "teach_recipients",
+      "tokens": {
+        "-": 4219
+      },
+      "n": 4219
+    },
+    {
+      "file": "grants-ay20-21-q4.xls",
+      "family": "grants",
+      "year": "2020-2021",
+      "column": "teach_disbursements",
+      "tokens": {
+        " -": 4219
+      },
+      "n": 4219
+    },
+    {
+      "file": "grants-ay20-21-q4.xls",
+      "family": "grants",
+      "year": "2020-2021",
+      "column": "iasg_recipients",
+      "tokens": {
+        "-": 4860
+      },
+      "n": 4860
+    },
+    {
+      "file": "grants-ay20-21-q4.xls",
+      "family": "grants",
+      "year": "2020-2021",
+      "column": "iasg_disbursements",
+      "tokens": {
+        " -": 4860
+      },
+      "n": 4860
+    },
+    {
+      "file": "grants-ay21-22-q4.xls",
+      "family": "grants",
+      "year": "2021-2022",
+      "column": "pell_recipients",
+      "tokens": {
+        "-": 6
+      },
+      "n": 6
+    },
+    {
+      "file": "grants-ay21-22-q4.xls",
+      "family": "grants",
+      "year": "2021-2022",
+      "column": "pell_disbursements",
+      "tokens": {
+        " -": 6
+      },
+      "n": 6
+    },
+    {
+      "file": "grants-ay21-22-q4.xls",
+      "family": "grants",
+      "year": "2021-2022",
+      "column": "teach_recipients",
+      "tokens": {
+        "-": 4182
+      },
+      "n": 4182
+    },
+    {
+      "file": "grants-ay21-22-q4.xls",
+      "family": "grants",
+      "year": "2021-2022",
+      "column": "teach_disbursements",
+      "tokens": {
+        " -": 4182
+      },
+      "n": 4182
+    },
+    {
+      "file": "grants-ay21-22-q4.xls",
+      "family": "grants",
+      "year": "2021-2022",
+      "column": "iasg_recipients",
+      "tokens": {
+        "-": 4806
+      },
+      "n": 4806
+    },
+    {
+      "file": "grants-ay21-22-q4.xls",
+      "family": "grants",
+      "year": "2021-2022",
+      "column": "iasg_disbursements",
+      "tokens": {
+        " -": 4806
+      },
+      "n": 4806
+    },
+    {
+      "file": "grants-ay22-23-q4.xls",
+      "family": "grants",
+      "year": "2022-2023",
+      "column": "pell_recipients",
+      "tokens": {
+        "-": 5
+      },
+      "n": 5
+    },
+    {
+      "file": "grants-ay22-23-q4.xls",
+      "family": "grants",
+      "year": "2022-2023",
+      "column": "pell_disbursements",
+      "tokens": {
+        " -": 5
+      },
+      "n": 5
+    },
+    {
+      "file": "grants-ay22-23-q4.xls",
+      "family": "grants",
+      "year": "2022-2023",
+      "column": "teach_recipients",
+      "tokens": {
+        "-": 4127
+      },
+      "n": 4127
+    },
+    {
+      "file": "grants-ay22-23-q4.xls",
+      "family": "grants",
+      "year": "2022-2023",
+      "column": "teach_disbursements",
+      "tokens": {
+        " -": 4127
+      },
+      "n": 4127
+    },
+    {
+      "file": "grants-ay22-23-q4.xls",
+      "family": "grants",
+      "year": "2022-2023",
+      "column": "iasg_recipients",
+      "tokens": {
+        "-": 4757
+      },
+      "n": 4757
+    },
+    {
+      "file": "grants-ay22-23-q4.xls",
+      "family": "grants",
+      "year": "2022-2023",
+      "column": "iasg_disbursements",
+      "tokens": {
+        " -": 4757
+      },
+      "n": 4757
+    },
+    {
+      "file": "grants-ay23-24-q4.xls",
+      "family": "grants",
+      "year": "2023-2024",
+      "column": "pell_recipients",
+      "tokens": {
+        "-": 6
+      },
+      "n": 6
+    },
+    {
+      "file": "grants-ay23-24-q4.xls",
+      "family": "grants",
+      "year": "2023-2024",
+      "column": "pell_disbursements",
+      "tokens": {
+        " -": 6
+      },
+      "n": 6
+    },
+    {
+      "file": "grants-ay23-24-q4.xls",
+      "family": "grants",
+      "year": "2023-2024",
+      "column": "teach_recipients",
+      "tokens": {
+        "-": 4054
+      },
+      "n": 4054
+    },
+    {
+      "file": "grants-ay23-24-q4.xls",
+      "family": "grants",
+      "year": "2023-2024",
+      "column": "teach_disbursements",
+      "tokens": {
+        " -": 4054
+      },
+      "n": 4054
+    },
+    {
+      "file": "grants-ay23-24-q4.xls",
+      "family": "grants",
+      "year": "2023-2024",
+      "column": "iasg_recipients",
+      "tokens": {
+        "-": 4691
+      },
+      "n": 4691
+    },
+    {
+      "file": "grants-ay23-24-q4.xls",
+      "family": "grants",
+      "year": "2023-2024",
+      "column": "iasg_disbursements",
+      "tokens": {
+        " -": 4691
+      },
+      "n": 4691
+    },
+    {
+      "file": "grants-ay24-25-q4.xls",
+      "family": "grants",
+      "year": "2024-2025",
+      "column": "pell_recipients",
+      "tokens": {
+        "-": 6
+      },
+      "n": 6
+    },
+    {
+      "file": "grants-ay24-25-q4.xls",
+      "family": "grants",
+      "year": "2024-2025",
+      "column": "pell_disbursements",
+      "tokens": {
+        " -": 6
+      },
+      "n": 6
+    },
+    {
+      "file": "grants-ay24-25-q4.xls",
+      "family": "grants",
+      "year": "2024-2025",
+      "column": "teach_recipients",
+      "tokens": {
+        "-": 4000
+      },
+      "n": 4000
+    },
+    {
+      "file": "grants-ay24-25-q4.xls",
+      "family": "grants",
+      "year": "2024-2025",
+      "column": "teach_disbursements",
+      "tokens": {
+        " -": 4000
+      },
+      "n": 4000
+    }
+  ],
+  "fractional": [
+    {
+      "file": "AY1999-00Pell.xls",
+      "column": "pell_disbursements",
+      "fractional_count": 2288,
+      "rounding_delta": -0.2600000147066339,
+      "examples": [
+        "197232.93",
+        "140242.66",
+        "3425148.83",
+        "222195.11"
+      ]
+    },
+    {
+      "file": "AY2000-01Pell.xls",
+      "column": "pell_disbursements",
+      "fractional_count": 2393,
+      "rounding_delta": 8.370000026417983,
+      "examples": [
+        "3499882.17",
+        "293941.8",
+        "379872.17",
+        "111287.57"
+      ]
+    },
+    {
+      "file": "AY2001-02Pell.xls",
+      "column": "pell_disbursements",
+      "fractional_count": 2473,
+      "rounding_delta": -0.32999997525894287,
+      "examples": [
+        "160222.68",
+        "4019437.5",
+        "456453.19",
+        "501878.74"
+      ]
+    },
+    {
+      "file": "AY2002-03Pell.xls",
+      "column": "pell_disbursements",
+      "fractional_count": 2523,
+      "rounding_delta": 31.89999999376596,
+      "examples": [
+        "161015.41",
+        "541051.98",
+        "506867.96",
+        "206445.61"
+      ]
+    },
+    {
+      "file": "AY2003-04Pell.xls",
+      "column": "pell_disbursements",
+      "fractional_count": 2418,
+      "rounding_delta": 9.470000008372608,
+      "examples": [
+        "157549.11",
+        "736044.9",
+        "5053064.67",
+        "508240.33"
+      ]
+    },
+    {
+      "file": "AY2004-05Pell.xls",
+      "column": "pell_disbursements",
+      "fractional_count": 2456,
+      "rounding_delta": 12.660000031982236,
+      "examples": [
+        "720673.1",
+        "5380912.64",
+        "579762.1",
+        "548322.68"
+      ]
+    },
+    {
+      "file": "AY2005-06Pell.xls",
+      "column": "pell_disbursements",
+      "fractional_count": 2518,
+      "rounding_delta": 15.279999979150034,
+      "examples": [
+        "144749.42",
+        "679106.9",
+        "5349198.05",
+        "559824.03"
+      ]
+    },
+    {
+      "file": "Q40607AY.xls",
+      "column": "pell_disbursements",
+      "fractional_count": 2635,
+      "rounding_delta": 0.9700000019900017,
+      "examples": [
+        "9524800.92",
+        "1806796.5",
+        "3249134.9",
+        "444392.03"
+      ]
+    },
+    {
+      "file": "Q40607AY.xls",
+      "column": "acg_disbursements",
+      "fractional_count": 142,
+      "rounding_delta": -1.2399999999192914,
+      "examples": [
+        "63655.18",
+        "140561.48",
+        "64596.4",
+        "19512.5"
+      ]
+    },
+    {
+      "file": "Q40607AY.xls",
+      "column": "smart_disbursements",
+      "fractional_count": 37,
+      "rounding_delta": 1.3900000000212458,
+      "examples": [
+        "22786.83",
+        "42661.7",
+        "540065.5",
+        "2020572.17"
+      ]
+    },
+    {
+      "file": "Q40708AY.xls",
+      "column": "pell_disbursements",
+      "fractional_count": 2668,
+      "rounding_delta": 18.04000001636905,
+      "examples": [
+        "9110415.12",
+        "3697833.82",
+        "8119698.24",
+        "649356.67"
+      ]
+    },
+    {
+      "file": "Q40708AY.xls",
+      "column": "acg_disbursements",
+      "fractional_count": 214,
+      "rounding_delta": 0.3800000000746877,
+      "examples": [
+        "21699.75",
+        "61181.42",
+        "83355.85",
+        "65647.2"
+      ]
+    },
+    {
+      "file": "Q40708AY.xls",
+      "column": "smart_disbursements",
+      "fractional_count": 63,
+      "rounding_delta": -0.7799999998351268,
+      "examples": [
+        "74532.83",
+        "983173.5",
+        "2034144.72",
+        "90313.56"
+      ]
+    },
+    {
+      "file": "Q40809AY.xls",
+      "column": "pell_disbursements",
+      "fractional_count": 2832,
+      "rounding_delta": 5.83000002524841,
+      "examples": [
+        "10254937.53",
+        "4274301.5",
+        "851386.12",
+        "9449540.23"
+      ]
+    },
+    {
+      "file": "Q40809AY.xls",
+      "column": "acg_disbursements",
+      "fractional_count": 193,
+      "rounding_delta": -5.16000000025366,
+      "examples": [
+        "60033.59",
+        "79516.05",
+        "158092.85",
+        "30872.5"
+      ]
+    },
+    {
+      "file": "Q40809AY.xls",
+      "column": "smart_disbursements",
+      "fractional_count": 51,
+      "rounding_delta": -4.4799999999850115,
+      "examples": [
+        "830668.5",
+        "2523152.16",
+        "759037.5",
+        "1202795.15"
+      ]
+    },
+    {
+      "file": "Q40809AY.xls",
+      "column": "teach_disbursements",
+      "fractional_count": 13,
+      "rounding_delta": 1.1899999999513966,
+      "examples": [
+        "17937.5",
+        "59300.79",
+        "224049.58",
+        "176100.5"
+      ]
+    },
+    {
+      "file": "Q40910AY.xls",
+      "column": "pell_disbursements",
+      "fractional_count": 2802,
+      "rounding_delta": 25.85999995243037,
+      "examples": [
+        "519538.65",
+        "10533307.94",
+        "1216263.13",
+        "6560096.55"
+      ]
+    },
+    {
+      "file": "Q40910AY.xls",
+      "column": "acg_disbursements",
+      "fractional_count": 390,
+      "rounding_delta": 9.29000000024871,
+      "examples": [
+        "96694.53",
+        "26777.5",
+        "55796.78",
+        "12818.75"
+      ]
+    },
+    {
+      "file": "Q40910AY.xls",
+      "column": "smart_disbursements",
+      "fractional_count": 89,
+      "rounding_delta": -1.500000000167347,
+      "examples": [
+        "194346.5",
+        "157218.23",
+        "104220.77",
+        "2369934.94"
+      ]
+    },
+    {
+      "file": "Q40910AY.xls",
+      "column": "teach_disbursements",
+      "fractional_count": 13,
+      "rounding_delta": -1.3899999999753163,
+      "examples": [
+        "13000.24",
+        "21416.5",
+        "319997.5",
+        "67834.67"
+      ]
+    },
+    {
+      "file": "Q41011AY.xls",
+      "column": "pell_disbursements",
+      "fractional_count": 2647,
+      "rounding_delta": 25.3400000281963,
+      "examples": [
+        "15567893.4",
+        "1850704.59",
+        "178277.75",
+        "16678976.76"
+      ]
+    },
+    {
+      "file": "Q41011AY.xls",
+      "column": "acg_disbursements",
+      "fractional_count": 386,
+      "rounding_delta": 12.960000000673062,
+      "examples": [
+        "40049.83",
+        "58671.25",
+        "63131.25",
+        "27573.75"
+      ]
+    },
+    {
+      "file": "Q41011AY.xls",
+      "column": "smart_disbursements",
+      "fractional_count": 64,
+      "rounding_delta": 2.7500000001055014,
+      "examples": [
+        "250929.5",
+        "1988393.25",
+        "1043482.5",
+        "545027.64"
+      ]
+    },
+    {
+      "file": "Q41011AY.xls",
+      "column": "teach_disbursements",
+      "fractional_count": 22,
+      "rounding_delta": -1.2100000003483729,
+      "examples": [
+        "5836051.36",
+        "771405.41",
+        "83788.42",
+        "485336.25"
+      ]
+    },
+    {
+      "file": "Q41112AY.xls",
+      "column": "pell_disbursements",
+      "fractional_count": 2425,
+      "rounding_delta": -0.5799999566270344,
+      "examples": [
+        "14303578.85",
+        "7084171.99",
+        "1154376.55",
+        "21613640.47"
+      ]
+    },
+    {
+      "file": "Q41112AY.xls",
+      "column": "teach_disbursements",
+      "fractional_count": 21,
+      "rounding_delta": -1.2899999999281135,
+      "examples": [
+        "70326.25",
+        "482104.44",
+        "216336.75",
+        "40336.13"
+      ]
+    },
+    {
+      "file": "Q41112AY.xls",
+      "column": "iasg_disbursements",
+      "fractional_count": 1,
+      "rounding_delta": -0.45999999999997954,
+      "examples": [
+        "409.46"
+      ]
+    },
+    {
+      "file": "Q41213AY.xls",
+      "column": "pell_disbursements",
+      "fractional_count": 2560,
+      "rounding_delta": -2.559999950643032,
+      "examples": [
+        "438410.29",
+        "198155.1",
+        "7354516.6",
+        "16079471.63"
+      ]
+    },
+    {
+      "file": "Q41213AY.xls",
+      "column": "teach_disbursements",
+      "fractional_count": 24,
+      "rounding_delta": 0.5099999998637941,
+      "examples": [
+        "3716021.93",
+        "74666.66",
+        "35559.62",
+        "311157.79"
+      ]
+    },
+    {
+      "file": "Q41213AY.xls",
+      "column": "iasg_disbursements",
+      "fractional_count": 2,
+      "rounding_delta": 1.0,
+      "examples": [
+        "2497.5",
+        "2497.5"
+      ]
+    },
+    {
+      "file": "Q41314AY.xls",
+      "column": "pell_disbursements",
+      "fractional_count": 2745,
+      "rounding_delta": 14.600000131502384,
+      "examples": [
+        "13977019.93",
+        "18689104.74",
+        "5065909.26",
+        "5276354.36"
+      ]
+    },
+    {
+      "file": "Q41314AY.xls",
+      "column": "teach_disbursements",
+      "fractional_count": 199,
+      "rounding_delta": -5.650000000283171,
+      "examples": [
+        "7113.1",
+        "5450.85",
+        "3457994.04",
+        "196125.25"
+      ]
+    },
+    {
+      "file": "Q41314AY.xls",
+      "column": "iasg_disbursements",
+      "fractional_count": 22,
+      "rounding_delta": -1.3600000000034242,
+      "examples": [
+        "4445.43",
+        "5238.56",
+        "4445.43",
+        "5238.56"
+      ]
+    },
+    {
+      "file": "Q41415AY.xls",
+      "column": "pell_disbursements",
+      "fractional_count": 2609,
+      "rounding_delta": 13.10000004439462,
+      "examples": [
+        "14341096.35",
+        "4661567.7",
+        "5378183.68",
+        "1057138.07"
+      ]
+    },
+    {
+      "file": "Q41415AY.xls",
+      "column": "teach_disbursements",
+      "fractional_count": 197,
+      "rounding_delta": -10.400000000296586,
+      "examples": [
+        "51580.5",
+        "23786.4",
+        "36311.8",
+        "2829470.6100000003"
+      ]
+    },
+    {
+      "file": "Q41415AY.xls",
+      "column": "iasg_disbursements",
+      "fractional_count": 31,
+      "rounding_delta": -2.779999999992924,
+      "examples": [
+        "5317.44",
+        "1994.04",
+        "5317.44",
+        "5311.7"
+      ]
+    },
+    {
+      "file": "Q41516AY.xls",
+      "column": "pell_disbursements",
+      "fractional_count": 2530,
+      "rounding_delta": -13.580000021821434,
+      "examples": [
+        "15307465.11",
+        "4033907.95",
+        "5230577.26",
+        "1078080.05"
+      ]
+    },
+    {
+      "file": "Q41516AY.xls",
+      "column": "teach_disbursements",
+      "fractional_count": 66,
+      "rounding_delta": 6.689999999960719,
+      "examples": [
+        "21814.5",
+        "2412991.94",
+        "85740.75",
+        "138605.5"
+      ]
+    },
+    {
+      "file": "Q41516AY.xls",
+      "column": "iasg_disbursements",
+      "fractional_count": 32,
+      "rounding_delta": -9.690000000004716,
+      "examples": [
+        "5353.43",
+        "2018.36",
+        "5353.43",
+        "3588.2"
+      ]
+    },
+    {
+      "file": "Q41617AY.xls",
+      "column": "pell_disbursements",
+      "fractional_count": 2499,
+      "rounding_delta": -6.9100000024909605,
+      "examples": [
+        "16500601.81",
+        "3739367.97",
+        "5270897.5",
+        "1068047.09"
+      ]
+    },
+    {
+      "file": "Q41617AY.xls",
+      "column": "teach_disbursements",
+      "fractional_count": 55,
+      "rounding_delta": 4.670000000458458,
+      "examples": [
+        "35845.5",
+        "132310.95",
+        "156874.5",
+        "204917.5"
+      ]
+    },
+    {
+      "file": "Q41617AY.xls",
+      "column": "iasg_disbursements",
+      "fractional_count": 40,
+      "rounding_delta": 8.42999999999688,
+      "examples": [
+        "5419.58",
+        "5413.77",
+        "2030.05",
+        "5419.58"
+      ]
+    },
+    {
+      "file": "Q41718AY.xls",
+      "column": "pell_disbursements",
+      "fractional_count": 2470,
+      "rounding_delta": -2.3700000058472597,
+      "examples": [
+        "6081074.78",
+        "80979.68",
+        "13562287.24",
+        "365416.5"
+      ]
+    },
+    {
+      "file": "Q41718AY.xls",
+      "column": "teach_disbursements",
+      "fractional_count": 51,
+      "rounding_delta": -3.590000000330292,
+      "examples": [
+        "2163471.24",
+        "145957.5",
+        "178534.5",
+        "184461.72"
+      ]
+    },
+    {
+      "file": "Q41718AY.xls",
+      "column": "iasg_disbursements",
+      "fractional_count": 30,
+      "rounding_delta": 4.559999999993352,
+      "examples": [
+        "5529.28",
+        "5511.52",
+        "5511.52",
+        "1817.95"
+      ]
+    },
+    {
+      "file": "grants-ay18-19-q4.xls",
+      "column": "pell_disbursements",
+      "fractional_count": 2585,
+      "rounding_delta": 21.829999975129795,
+      "examples": [
+        "6573915.53",
+        "1496817.91",
+        "98240.42",
+        "14084820.43"
+      ]
+    },
+    {
+      "file": "grants-ay18-19-q4.xls",
+      "column": "teach_disbursements",
+      "fractional_count": 29,
+      "rounding_delta": 2.2899999998696785,
+      "examples": [
+        "2085942.49",
+        "203968.11",
+        "1875.98",
+        "168700.72"
+      ]
+    },
+    {
+      "file": "grants-ay18-19-q4.xls",
+      "column": "iasg_disbursements",
+      "fractional_count": 26,
+      "rounding_delta": 1.0700000000097134,
+      "examples": [
+        "2846.83",
+        "5717.11",
+        "11434.22",
+        "7115.91"
+      ]
+    },
+    {
+      "file": "grants-ay19-20-q4.xls",
+      "column": "pell_disbursements",
+      "fractional_count": 2461,
+      "rounding_delta": 2.5699999615428624,
+      "examples": [
+        "6214714.65",
+        "12424246.87",
+        "188505.38",
+        "19256051.2"
+      ]
+    },
+    {
+      "file": "grants-ay19-20-q4.xls",
+      "column": "teach_disbursements",
+      "fractional_count": 36,
+      "rounding_delta": -1.4500000000534783,
+      "examples": [
+        "1835550.74",
+        "66617.5",
+        "31447.5",
+        "16235.99"
+      ]
+    },
+    {
+      "file": "grants-ay19-20-q4.xls",
+      "column": "iasg_disbursements",
+      "fractional_count": 32,
+      "rounding_delta": 6.290000000002465,
+      "examples": [
+        "2905.45",
+        "5810.91",
+        "8743.75",
+        "2905.46"
+      ]
+    },
+    {
+      "file": "grants-ay20-21-q4.xls",
+      "column": "pell_disbursements",
+      "fractional_count": 2388,
+      "rounding_delta": 3.439999968102711,
+      "examples": [
+        "705004.78",
+        "5461196.12",
+        "1276378.93",
+        "95120.77"
+      ]
+    },
+    {
+      "file": "grants-ay20-21-q4.xls",
+      "column": "teach_disbursements",
+      "fractional_count": 50,
+      "rounding_delta": -3.610000000248874,
+      "examples": [
+        "7535.5",
+        "1848311.78",
+        "183836.26",
+        "186656.29"
+      ]
+    },
+    {
+      "file": "grants-ay20-21-q4.xls",
+      "column": "iasg_disbursements",
+      "fractional_count": 25,
+      "rounding_delta": -1.9599999999966258,
+      "examples": [
+        "5970.65",
+        "11207.43",
+        "2991.67",
+        "11938.3"
+      ]
+    },
+    {
+      "file": "grants-ay21-22-q4.xls",
+      "column": "pell_disbursements",
+      "fractional_count": 2390,
+      "rounding_delta": -9.379999977486477,
+      "examples": [
+        "715638.91",
+        "5553465.26",
+        "95649.1",
+        "8676164.04"
+      ]
+    },
+    {
+      "file": "grants-ay21-22-q4.xls",
+      "column": "teach_disbursements",
+      "fractional_count": 37,
+      "rounding_delta": -1.2500000000172804,
+      "examples": [
+        "34834.41",
+        "13673.5",
+        "3560741.5",
+        "45735.5"
+      ]
+    },
+    {
+      "file": "grants-ay21-22-q4.xls",
+      "column": "iasg_disbursements",
+      "fractional_count": 30,
+      "rounding_delta": 2.7100000000018554,
+      "examples": [
+        "12249.58",
+        "3062.4",
+        "6124.79",
+        "4593.36"
+      ]
+    },
+    {
+      "file": "grants-ay22-23-q4.xls",
+      "column": "pell_disbursements",
+      "fractional_count": 2374,
+      "rounding_delta": 17.70999999220112,
+      "examples": [
+        "712739.77",
+        "6036599.44",
+        "1118114.61",
+        "9060539.09"
+      ]
+    },
+    {
+      "file": "grants-ay22-23-q4.xls",
+      "column": "teach_disbursements",
+      "fractional_count": 50,
+      "rounding_delta": -0.729999999998654,
+      "examples": [
+        "15561.5",
+        "18104.46",
+        "1689446.5",
+        "41536.9"
+      ]
+    },
+    {
+      "file": "grants-ay22-23-q4.xls",
+      "column": "iasg_disbursements",
+      "fractional_count": 29,
+      "rounding_delta": -0.05999999999312422,
+      "examples": [
+        "6501.99",
+        "6501.99",
+        "6501.99",
+        "6501.99"
+      ]
+    },
+    {
+      "file": "grants-ay23-24-q4.xls",
+      "column": "pell_disbursements",
+      "fractional_count": 2348,
+      "rounding_delta": 11.570000064684791,
+      "examples": [
+        "22409888.26",
+        "4995285.06",
+        "14236789.62",
+        "5913415.5"
+      ]
+    },
+    {
+      "file": "grants-ay23-24-q4.xls",
+      "column": "teach_disbursements",
+      "fractional_count": 42,
+      "rounding_delta": 0.2599999999438296,
+      "examples": [
+        "1655845.5",
+        "393977.02",
+        "364847.5",
+        "9572.5"
+      ]
+    },
+    {
+      "file": "grants-ay23-24-q4.xls",
+      "column": "iasg_disbursements",
+      "fractional_count": 29,
+      "rounding_delta": -9.859999999992397,
+      "examples": [
+        "6973.49",
+        "3486.49",
+        "6973.49",
+        "6973.49"
+      ]
+    },
+    {
+      "file": "grants-ay24-25-q4.xls",
+      "column": "pell_disbursements",
+      "fractional_count": 2342,
+      "rounding_delta": 26.899999928043144,
+      "examples": [
+        "27337048.15",
+        "6344852.29",
+        "18377402.37",
+        "6281688.23"
+      ]
+    },
+    {
+      "file": "grants-ay24-25-q4.xls",
+      "column": "teach_disbursements",
+      "fractional_count": 46,
+      "rounding_delta": -2.23999999994885,
+      "examples": [
+        "44169.5",
+        "4417.27",
+        "659470.5",
+        "7186.5"
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "file": "CBDashboard0102.xls",
+      "dropped": 2,
+      "rows": [
+        {
+          "opeid8": "00000000",
+          "school": "UNIVERSITY OF FORT LAUDERDALE"
+        },
+        {
+          "opeid8": "00000000",
+          "school": "BAIS MEDRASH TORAS CHESED"
+        }
+      ]
+    },
+    {
+      "file": "CBDashboard0203.xls",
+      "dropped": 2,
+      "rows": [
+        {
+          "opeid8": "00000000",
+          "school": "BAIS MEDRASH TORAS CHESED"
+        },
+        {
+          "opeid8": "00000000",
+          "school": "MESIVTA KESSER TORAH"
+        }
+      ]
+    },
+    {
+      "file": "CBDashboard0304.xls",
+      "dropped": 4,
+      "rows": [
+        {
+          "opeid8": "00000000",
+          "school": "BAIS MEDRASH TORAS CHESED"
+        },
+        {
+          "opeid8": "00000000",
+          "school": "MESIVTA KESSER TORAH"
+        },
+        {
+          "opeid8": "00000000",
+          "school": "Mercaz Hatorah of Belle Harbor"
+        },
+        {
+          "opeid8": "00000000",
+          "school": "UTA Masivta"
+        }
+      ]
+    },
+    {
+      "file": "CBDashboard0405.xls",
+      "dropped": 6,
+      "rows": [
+        {
+          "opeid8": "00000000",
+          "school": "BAIS MEDRASH TORAS CHESED"
+        },
+        {
+          "opeid8": "00000000",
+          "school": "MESIVTA KESSER TORAH"
+        },
+        {
+          "opeid8": "00000000",
+          "school": "YESHIVA BE'AR YITZCHOK"
+        },
+        {
+          "opeid8": "00000000",
+          "school": "Yeshiva Toras Chaim"
+        },
+        {
+          "opeid8": "00000000",
+          "school": "Mercaz Hatorah of Belle Harbor"
+        },
+        {
+          "opeid8": "00000000",
+          "school": "Yeshiva Machzikei Hadath"
+        }
+      ]
+    },
+    {
+      "file": "CBDashboard0506.xls",
+      "dropped": 7,
+      "rows": [
+        {
+          "opeid8": "00000000",
+          "school": "MedVance Institute"
+        },
+        {
+          "opeid8": "00000000",
+          "school": "BAIS MEDRASH TORAS CHESED"
+        },
+        {
+          "opeid8": "00000000",
+          "school": "MESIVTA KESSER TORAH"
+        },
+        {
+          "opeid8": "00000000",
+          "school": "YESHIVA BE'AR YITZCHOK"
+        },
+        {
+          "opeid8": "00000000",
+          "school": "Yeshiva Toras Chaim"
+        },
+        {
+          "opeid8": "00000000",
+          "school": "Yeshiva Machzikei Hadath"
+        },
+        {
+          "opeid8": "00000000",
+          "school": "Yeshiva Zichron Aryeh"
+        }
+      ]
+    },
+    {
+      "file": "ay19-20-campus-based.xls",
+      "dropped": 1,
+      "rows": [
+        {
+          "opeid8": "*Since new loans are no longer being made up the Federal Perkins Loan Program, the recipient and disbursement columns for the Perkins Program have been removed from this report.  ",
+          "school": ""
+        }
+      ]
+    },
+    {
+      "file": "ay20-21-campus-based.xls",
+      "dropped": 1,
+      "rows": [
+        {
+          "opeid8": "*Since new loans are no longer being made up the Federal Perkins Loan Program, the recipient and disbursement columns for the Perkins Program have been removed from this report.  ",
+          "school": ""
+        }
+      ]
+    },
+    {
+      "file": "ay21-22-campus-based.xls",
+      "dropped": 1,
+      "rows": [
+        {
+          "opeid8": "*Since new loans are no longer being made up the Federal Perkins Loan Program, the recipient and disbursement columns for the Perkins Program have been removed from this report.  ",
+          "school": ""
+        }
+      ]
+    },
+    {
+      "file": "ay22-23-campus-based.xls",
+      "dropped": 1,
+      "rows": [
+        {
+          "opeid8": "*Since new loans are no longer being made up the Federal Perkins Loan Program, the recipient and disbursement columns for the Perkins Program have been removed from this report.  ",
+          "school": ""
+        }
+      ]
+    },
+    {
+      "file": "AY1999-00Pell.xls",
+      "dropped": 10,
+      "rows": [
+        {
+          "opeid8": "",
+          "school": "FOOTHILLS TECHNICAL INSTITUTE"
+        },
+        {
+          "opeid8": "",
+          "school": "QUAPAW TECHNICAL INSTITUTE"
+        },
+        {
+          "opeid8": "",
+          "school": "LOUISIANA TECHNICAL COLLEGE - SOWELA CAMPUS"
+        },
+        {
+          "opeid8": "",
+          "school": "NEI COLLEGE OF TECHNOLOGY"
+        },
+        {
+          "opeid8": "",
+          "school": "HERZING COLLEGE"
+        },
+        {
+          "opeid8": "",
+          "school": "UNIVERSITY OF PITTSBURGH - BRADFORD"
+        },
+        {
+          "opeid8": "",
+          "school": "UNIVERSITY OF PITTSBURGH - GREENSBURG"
+        },
+        {
+          "opeid8": "",
+          "school": "UNIVERSITY OF PITTSBURGH AT JOHNSTOWN"
+        },
+        {
+          "opeid8": "",
+          "school": "UNIVERSITY OF PITTSBURGH AT TITUSVILLE"
+        },
+        {
+          "opeid8": "",
+          "school": ""
+        }
+      ]
+    },
+    {
+      "file": "AY2000-01Pell.xls",
+      "dropped": 10,
+      "rows": [
+        {
+          "opeid8": "",
+          "school": "FOOTHILLS TECHNICAL INSTITUTE"
+        },
+        {
+          "opeid8": "",
+          "school": "QUAPAW TECHNICAL INSTITUTE"
+        },
+        {
+          "opeid8": "",
+          "school": "LOUISIANA TECHNICAL COLLEGE - SOWELA CAMPUS"
+        },
+        {
+          "opeid8": "",
+          "school": "NEI COLLEGE OF TECHNOLOGY"
+        },
+        {
+          "opeid8": "",
+          "school": "HERZING COLLEGE"
+        },
+        {
+          "opeid8": "",
+          "school": "UNIVERSITY OF PITTSBURGH - BRADFORD"
+        },
+        {
+          "opeid8": "",
+          "school": "UNIVERSITY OF PITTSBURGH - GREENSBURG"
+        },
+        {
+          "opeid8": "",
+          "school": "UNIVERSITY OF PITTSBURGH AT JOHNSTOWN"
+        },
+        {
+          "opeid8": "",
+          "school": "UNIVERSITY OF PITTSBURGH AT TITUSVILLE"
+        },
+        {
+          "opeid8": "",
+          "school": ""
+        }
+      ]
+    },
+    {
+      "file": "AY2001-02Pell.xls",
+      "dropped": 10,
+      "rows": [
+        {
+          "opeid8": "",
+          "school": "FOOTHILLS TECHNICAL INSTITUTE"
+        },
+        {
+          "opeid8": "",
+          "school": "QUAPAW TECHNICAL INSTITUTE"
+        },
+        {
+          "opeid8": "",
+          "school": "LOUISIANA TECHNICAL COLLEGE - SOWELA CAMPUS"
+        },
+        {
+          "opeid8": "",
+          "school": "NEI COLLEGE OF TECHNOLOGY"
+        },
+        {
+          "opeid8": "",
+          "school": "HERZING COLLEGE"
+        },
+        {
+          "opeid8": "",
+          "school": "UNIVERSITY OF PITTSBURGH - BRADFORD"
+        },
+        {
+          "opeid8": "",
+          "school": "UNIVERSITY OF PITTSBURGH - GREENSBURG"
+        },
+        {
+          "opeid8": "",
+          "school": "UNIVERSITY OF PITTSBURGH AT JOHNSTOWN"
+        },
+        {
+          "opeid8": "",
+          "school": "UNIVERSITY OF PITTSBURGH AT TITUSVILLE"
+        },
+        {
+          "opeid8": "",
+          "school": ""
+        }
+      ]
+    },
+    {
+      "file": "AY2002-03Pell.xls",
+      "dropped": 10,
+      "rows": [
+        {
+          "opeid8": "",
+          "school": "FOOTHILLS TECHNICAL INSTITUTE"
+        },
+        {
+          "opeid8": "",
+          "school": "QUAPAW TECHNICAL INSTITUTE"
+        },
+        {
+          "opeid8": "",
+          "school": "SOUTHWEST KANSAS TECHNICAL SCHOOL"
+        },
+        {
+          "opeid8": "",
+          "school": "LOUISIANA TECHNICAL COLLEGE - SOWELA CAMPUS"
+        },
+        {
+          "opeid8": "",
+          "school": "NEI COLLEGE OF TECHNOLOGY"
+        },
+        {
+          "opeid8": "",
+          "school": "UNIVERSITY OF PITTSBURGH - BRADFORD"
+        },
+        {
+          "opeid8": "",
+          "school": "UNIVERSITY OF PITTSBURGH - GREENSBURG"
+        },
+        {
+          "opeid8": "",
+          "school": "UNIVERSITY OF PITTSBURGH AT JOHNSTOWN"
+        },
+        {
+          "opeid8": "",
+          "school": "UNIVERSITY OF PITTSBURGH AT TITUSVILLE"
+        },
+        {
+          "opeid8": "",
+          "school": ""
+        }
+      ]
+    },
+    {
+      "file": "AY2003-04Pell.xls",
+      "dropped": 8,
+      "rows": [
+        {
+          "opeid8": "",
+          "school": "SOUTHWEST KANSAS TECHNICAL SCHOOL"
+        },
+        {
+          "opeid8": "",
+          "school": "LOUISIANA TECHNICAL COLLEGE - SOWELA CAMPUS"
+        },
+        {
+          "opeid8": "",
+          "school": "NEI COLLEGE OF TECHNOLOGY"
+        },
+        {
+          "opeid8": "",
+          "school": "UNIVERSITY OF PITTSBURGH - BRADFORD"
+        },
+        {
+          "opeid8": "",
+          "school": "UNIVERSITY OF PITTSBURGH - GREENSBURG"
+        },
+        {
+          "opeid8": "",
+          "school": "UNIVERSITY OF PITTSBURGH AT JOHNSTOWN"
+        },
+        {
+          "opeid8": "",
+          "school": "UNIVERSITY OF PITTSBURGH AT TITUSVILLE"
+        },
+        {
+          "opeid8": "",
+          "school": ""
+        }
+      ]
+    },
+    {
+      "file": "AY2004-05Pell.xls",
+      "dropped": 6,
+      "rows": [
+        {
+          "opeid8": "",
+          "school": "SOUTHWEST KANSAS TECHNICAL SCHOOL"
+        },
+        {
+          "opeid8": "",
+          "school": "UNIVERSITY OF PITTSBURGH - BRADFORD"
+        },
+        {
+          "opeid8": "",
+          "school": "UNIVERSITY OF PITTSBURGH - GREENSBURG"
+        },
+        {
+          "opeid8": "",
+          "school": "UNIVERSITY OF PITTSBURGH AT JOHNSTOWN"
+        },
+        {
+          "opeid8": "",
+          "school": "UNIVERSITY OF PITTSBURGH AT TITUSVILLE"
+        },
+        {
+          "opeid8": "",
+          "school": ""
+        }
+      ]
+    },
+    {
+      "file": "AY2005-06Pell.xls",
+      "dropped": 2,
+      "rows": [
+        {
+          "opeid8": "",
+          "school": "SOUTHWEST KANSAS TECHNICAL SCHOOL"
+        },
+        {
+          "opeid8": "",
+          "school": ""
+        }
+      ]
+    },
+    {
+      "file": "Q40607AY.xls",
+      "dropped": 1,
+      "rows": [
+        {
+          "opeid8": "",
+          "school": ""
+        }
+      ]
+    },
+    {
+      "file": "Q40708AY.xls",
+      "dropped": 1,
+      "rows": [
+        {
+          "opeid8": "",
+          "school": ""
+        }
+      ]
+    },
+    {
+      "file": "Q40809AY.xls",
+      "dropped": 1,
+      "rows": [
+        {
+          "opeid8": "",
+          "school": ""
+        }
+      ]
+    },
+    {
+      "file": "Q40910AY.xls",
+      "dropped": 18,
+      "rows": [
+        {
+          "opeid8": "        ",
+          "school": "LOUISIANA TECHNICAL COLLEGE - ALEXANDRIA CAMPUS                       "
+        },
+        {
+          "opeid8": "        ",
+          "school": "LOUISIANA TECHNICAL COLLEGE - DELTA-OUACHITA CAMPUS                   "
+        },
+        {
+          "opeid8": "        ",
+          "school": "LOUISIANA TECHNICAL COLLEGE - LAFAYETTE CAMPUS                        "
+        },
+        {
+          "opeid8": "        ",
+          "school": "LOUISIANA TECHNICAL COLLEGE - NORTHWEST LA CAMPUS                     "
+        },
+        {
+          "opeid8": "        ",
+          "school": "LOUISIANA TECHNICAL COLLEGE - SULLIVAN CAMPUS                         "
+        },
+        {
+          "opeid8": "        ",
+          "school": "LOUISIANA TECHNICAL COLLEGE - YOUNG MEMORIAL CAMPUS                   "
+        },
+        {
+          "opeid8": "        ",
+          "school": "BUTERA SCHOOL OF ART                                                  "
+        },
+        {
+          "opeid8": "        ",
+          "school": "UNIVERSITY OF PUERTO RICO - CENTRAL ADMINISTRATION - RIO PIEDRAS      "
+        },
+        {
+          "opeid8": "        ",
+          "school": "UNIVERSITY OF PUERTO RICO - CENTRAL ADMINISTRATION - MEDICAL SCIENCES "
+        },
+        {
+          "opeid8": "        ",
+          "school": "UNIVERSITY OF PUERTO RICO - CENTRAL ADMINISTRATION - CAYEY            "
+        },
+        {
+          "opeid8": "        ",
+          "school": "UNIVERSITY OF PUERTO RICO - CENTRAL ADMINISTRATION - HUMACAO          "
+        },
+        {
+          "opeid8": "        ",
+          "school": "UNIVERSITY OF PUERTO RICO - CENTRAL ADMINISTRATION - AGUADILLA        "
+        },
+        {
+          "opeid8": "        ",
+          "school": "UNIVERSITY OF PUERTO RICO - CENTRAL ADMINISTRATION - ARECIBO          "
+        },
+        {
+          "opeid8": "        ",
+          "school": "UNIVERSITY OF PUERTO RICO - CENTRAL ADMINISTRATION - BAYAMON          "
+        },
+        {
+          "opeid8": "        ",
+          "school": "UNIVERSITY OF PUERTO RICO - CENTRAL ADMINISTRATION - CAROLINA         "
+        },
+        {
+          "opeid8": "        ",
+          "school": "UNIVERSITY OF PUERTO RICO - CENTRAL ADMINISTRATION - PONCE            "
+        },
+        {
+          "opeid8": "        ",
+          "school": "UNIVERSITY OF PUERTO RICO - CENTRAL ADMINISTRATION - LA MONTA\u00feA       "
+        },
+        {
+          "opeid8": "",
+          "school": ""
+        }
+      ]
+    },
+    {
+      "file": "Q41011AY.xls",
+      "dropped": 1,
+      "rows": [
+        {
+          "opeid8": "",
+          "school": ""
+        }
+      ]
+    }
+  ]
+}

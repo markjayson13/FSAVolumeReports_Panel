@@ -28,6 +28,12 @@ from openpyxl import Workbook
 from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.utils import get_column_letter
 
+from fsa_observations import (
+    normalize_full_opeid, parse_measure, audit_source_observations,
+    write_family_audits, complete_source_statuses, is_count_measure,
+    source_row_classes,
+)
+
 
 DEFAULT_FSA_ROOT = Path("/Users/markjaysonfarol13/Projects/FSAVolumeReports_Paneling")
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -122,6 +128,15 @@ EXPECTED_SELECTED_SCOPE = {
         "q4_years": tuple(range(2006, 2010)),
     },
 }
+
+# A frozen release is explicit and versioned. New reports require reviewed schema
+# and policy metadata, rather than silently changing an existing research release.
+_scope_path = Path(os.environ.get("FSA_SCOPE_CONFIG", str(REPO_ROOT / "Metadata" / "release_scope.json")))
+if _scope_path.exists():
+    _scope_payload = json.loads(_scope_path.read_text())
+    EXPECTED_SELECTED_SCOPE = _scope_payload["families"]
+    if set(EXPECTED_SELECTED_SCOPE) != set(COMPONENT_FAMILIES):
+        raise ValueError("Release scope must explicitly list all four report families")
 
 US_STATE_CODES_WITH_DC = (
     "AL",
@@ -368,19 +383,7 @@ def infer_quarter(text: object) -> int | None:
 
 
 def standardize_opeid8(raw: object) -> str | None:
-    digits = re.sub(r"\D", "", safe_text(raw))
-    if not digits:
-        return None
-    if set(digits) == {"0"}:
-        return None
-    if len(digits) >= 8:
-        standardized = digits[:8]
-        return None if set(standardized) == {"0"} else standardized
-    if len(digits) == 7:
-        standardized = digits.zfill(8)
-        return None if set(standardized) == {"0"} else standardized
-    standardized = f"{digits.zfill(6)}00"
-    return None if set(standardized) == {"0"} else standardized
+    return normalize_full_opeid(raw)
 
 
 def derive_opeid6(opeid8: object) -> str | None:
@@ -505,52 +508,18 @@ def parse_title_iv_json(payload: object, base_url: str = TITLE_IV_PAGE_URL) -> l
 
 
 def annotate_panel_selection(entries: Iterable[dict]) -> list[dict]:
-    annotated: list[dict] = []
+    annotated = []
     for row in entries:
         entry = dict(row)
-        family = entry["family"]
-        start_year = int(entry["award_year_start"])
+        scope = EXPECTED_SELECTED_SCOPE[entry["family"]]
+        year = int(entry["award_year_start"])
         quarter = int(entry["quarter"]) if str(entry["quarter"]).strip() else None
-        selected = False
-        reason = ""
-        if family == "campus_based":
-            if quarter is not None:
-                selected = False
-                reason = "quarterly_not_expected_for_campus_based"
-            elif start_year <= 2023:
-                selected = True
-                reason = "annual_campus_based_selected"
-            else:
-                selected = False
-                reason = "award_year_not_complete"
-        elif family == "ffel":
-            if quarter is None and start_year <= 2005:
-                selected = True
-                reason = "annual_summary_selected"
-            elif quarter == 4 and 2006 <= start_year <= 2009:
-                selected = True
-                reason = "q4_cumulative_selected"
-            elif quarter in {1, 2, 3}:
-                selected = False
-                reason = "non_q4_quarter_excluded"
-            else:
-                selected = False
-                reason = "award_year_not_complete"
-        else:
-            if quarter is None and start_year <= 2005:
-                selected = True
-                reason = "annual_summary_selected"
-            elif quarter == 4 and start_year <= 2024:
-                selected = True
-                reason = "q4_cumulative_selected"
-            elif quarter in {1, 2, 3}:
-                selected = False
-                reason = "non_q4_quarter_excluded"
-            else:
-                selected = False
-                reason = "award_year_not_complete"
-        entry["selected_for_panel"] = selected
-        entry["selection_reason"] = reason
+        annual = quarter is None and year in scope["annual_years"]
+        q4 = quarter == 4 and year in scope["q4_years"]
+        entry["selected_for_panel"] = annual or q4
+        entry["selection_reason"] = ("annual_summary_selected" if annual else "q4_cumulative_selected" if q4
+                                     else "non_q4_quarter_excluded" if quarter in {1, 2, 3}
+                                     else "outside_versioned_release_scope")
         annotated.append(entry)
     return annotated
 
@@ -796,7 +765,7 @@ def download_title_iv_reports(
     root: str | Path | None = None,
     *,
     page_html: str | Path | None = None,
-    skip_existing: bool = True,
+    skip_existing: bool = False,
     timeout: int = 120,
     strict_source_checks: bool = True,
     verify_only: bool = False,
@@ -810,12 +779,15 @@ def download_title_iv_reports(
     )
     if verify_only:
         return entries
+    if layout.raw_title_iv_reports.is_symlink():
+        raise SystemExit("Refusing to download through a raw-data symlink. Use --skip-download for a frozen research build or a separate writable raw root.")
     write_rows(release_inventory_path(layout), entries, INVENTORY_FIELDS)
 
     session = requests.Session()
     session.headers.update({"User-Agent": USER_AGENT})
     failures: list[dict] = []
     manifest_map: dict[tuple[str, int], list[dict]] = {}
+    previous_manifests = {(row["family"], row["filename"]): row for row in manifest_rows(layout)}
     for entry in entries:
         family = entry["family"]
         start_year = int(entry["award_year_start"])
@@ -824,10 +796,26 @@ def download_title_iv_reports(
         download_dir.mkdir(parents=True, exist_ok=True)
         destination = download_dir / entry["filename"]
         status = "existing"
+        previous = previous_manifests.get((family, entry["filename"]), {})
+        fetched_at = ""
         try:
             if not (skip_existing and destination.exists()):
-                download_file(session, entry["url"], destination, timeout)
+                staging = destination.with_name(destination.stem + ".download" + destination.suffix)
+                download_file(session, entry["url"], staging, timeout)
+                parsed = parse_selected_sheet(staging, family, entry["period_type"])
+                if parsed.frame.empty:
+                    staging.unlink(missing_ok=True)
+                    raise ValueError(f"Downloaded file is not a usable volume report: {parsed.warnings}")
+                if destination.exists():
+                    _, old_hash = compute_file_metadata(destination)
+                    _, new_hash = compute_file_metadata(staging)
+                    if old_hash != new_hash:
+                        archive = year_dir / "revisions" / old_hash / destination.name
+                        archive.parent.mkdir(parents=True, exist_ok=True)
+                        shutil.copy2(destination, archive)
+                staging.replace(destination)
                 status = "downloaded"
+                fetched_at = datetime.now(timezone.utc).isoformat()
         except Exception as exc:  # noqa: BLE001
             status = "failed"
             failures.append(
@@ -845,7 +833,10 @@ def download_title_iv_reports(
             "download_status": status,
             "filesize_bytes": size_bytes,
             "sha256": sha256,
-            "downloaded_at": datetime.now(timezone.utc).isoformat(),
+            "downloaded_at": previous.get("downloaded_at", "") or fetched_at,
+            "last_downloaded_at": fetched_at or previous.get("last_downloaded_at", ""),
+            "verified_at": fetched_at,
+            "vintage_status": "retrieved_this_run" if fetched_at else "cached_not_refreshed",
         }
         manifest_map.setdefault((family, start_year), []).append(manifest_row)
     manifest_fields = [
@@ -855,6 +846,9 @@ def download_title_iv_reports(
         "filesize_bytes",
         "sha256",
         "downloaded_at",
+        "last_downloaded_at",
+        "verified_at",
+        "vintage_status",
     ]
     for (family, start_year), rows in manifest_map.items():
         write_rows(component_year_dir(layout, family, start_year) / "manifest.csv", rows, manifest_fields)
@@ -1071,7 +1065,10 @@ def parse_selected_sheet(
     flattened_headers = flattened_headers_from_rows(group_row, header_row)
     frame = raw.iloc[header_row_index + 1 :].copy()
     frame.columns = flattened_headers
-    frame = frame.replace({"": pd.NA}).dropna(how="all").reset_index(drop=True)
+    frame = frame.replace({"": pd.NA}).dropna(how="all")
+    excel_rows = [int(index) + 1 for index in frame.index]
+    frame = frame.reset_index(drop=True)
+    frame.attrs["excel_rows"] = excel_rows
     return WorkbookParseResult(
         workbook_path=workbook_path,
         selected_sheet=selected_sheet,
@@ -1339,19 +1336,15 @@ def format_string_series(series: pd.Series, formatter: str | None = None) -> pd.
     return cleaned
 
 
-def format_zip_series(series: pd.Series) -> pd.Series:
-    def _format(value: object) -> object:
-        if pd.isna(value):
-            return pd.NA
-        digits = re.sub(r"\D", "", str(value))
-        if not digits:
-            return pd.NA
-        if len(digits) >= 9:
-            digits = digits[:9]
-            return f"{digits[:5]}-{digits[5:]}"
-        return digits[:5].zfill(5)
-
-    return series.apply(_format).astype("string")
+def format_zip_series(
+    series: pd.Series, *, states: pd.Series | None = None, school_types: pd.Series | None = None,
+) -> pd.Series:
+    """Normalize US postal identifiers with source context; preserve foreign codes."""
+    values = []
+    for index, value in series.items():
+        values.append(format_zip_value(value, state=states.loc[index] if states is not None else None,
+                                       school_type=school_types.loc[index] if school_types is not None else None))
+    return pd.Series(values, index=series.index, dtype="string")
 
 
 def combine_duplicate_series(existing: pd.Series, incoming: pd.Series, *, label: str) -> pd.Series:
@@ -1403,12 +1396,17 @@ def prepare_component_panel_frame(
     entry: dict,
     parse_result: WorkbookParseResult,
     dictionary_map: dict[tuple[str, str], str],
+    *, mapped_frame: pd.DataFrame | None = None, resolved_ids: pd.Series | None = None,
+    resolution_ids: pd.Series | None = None,
 ) -> tuple[pd.DataFrame, list[dict]]:
     mapped, unmapped_actionable = apply_component_mapping(family, parse_result.frame, dictionary_map)
+    if mapped_frame is not None:
+        mapped = mapped_frame
     if mapped.empty:
         return pd.DataFrame(), unmapped_actionable
-    opeid_series = mapped.get("opeid8", pd.Series(dtype="string")).apply(standardize_opeid8).astype("string")
-    valid_mask = opeid_series.notna()
+    opeid_series = (mapped.get("opeid8", pd.Series(dtype="string")).apply(standardize_opeid8).astype("string")
+                   if resolved_ids is None else resolved_ids)
+    valid_mask = source_row_classes(mapped, resolved_ids).eq("accepted_institution")
     out = pd.DataFrame()
     out["opeid8"] = opeid_series[valid_mask].reset_index(drop=True)
     if out.empty:
@@ -1419,6 +1417,14 @@ def prepare_component_panel_frame(
     out["award_year_end"] = pd.Series([int(entry["award_year_end"])] * len(out), dtype="Int64")
 
     prefix = component_prefix(family)
+    out[f"{prefix}raw_opeid"] = mapped["opeid8"][valid_mask].reset_index(drop=True).astype("string")
+    out[f"{prefix}source_identity_resolution"] = (pd.Series(pd.NA, index=out.index, dtype="string")
+        if resolution_ids is None else resolution_ids[valid_mask].reset_index(drop=True))
+    out[f"{prefix}source_record_present"] = True
+    out[f"{prefix}source_filename"] = entry.get("filename", Path(parse_result.workbook_path).name)
+    out[f"{prefix}source_sheet"] = parse_result.selected_sheet
+    rows = parse_result.frame.attrs.get("excel_rows", list(range(len(mapped))))
+    out[f"{prefix}source_excel_row"] = pd.Series(rows, index=mapped.index)[valid_mask].reset_index(drop=True).astype("Int64")
     for descriptor in ("school", "state", "zip_code", "school_type"):
         series = mapped.get(descriptor)
         if series is None:
@@ -1429,14 +1435,23 @@ def prepare_component_panel_frame(
         elif descriptor == "school_type":
             out[f"{prefix}{descriptor}"] = format_string_series(series, formatter="title")
         elif descriptor == "zip_code":
-            out[f"{prefix}{descriptor}"] = format_zip_series(series)
+            out[f"{prefix}raw_zip_code"] = series.astype("string")
+            raw_states = mapped.get("state", pd.Series(pd.NA, index=mapped.index))[valid_mask].reset_index(drop=True)
+            raw_types = mapped.get("school_type", pd.Series(pd.NA, index=mapped.index))[valid_mask].reset_index(drop=True)
+            out[f"{prefix}{descriptor}"] = format_zip_series(series, states=raw_states, school_types=raw_types)
         else:
             out[f"{prefix}{descriptor}"] = format_string_series(series)
 
     measure_columns = [col for col in mapped.columns if col not in {"opeid8", "school", "state", "zip_code", "school_type"}]
+    measure_values = {}
     for measure in measure_columns:
         series = mapped[measure][valid_mask].reset_index(drop=True)
-        out[f"{prefix}{measure}"] = format_integer_series(series)
+        parsed = parse_measure(series, measure)
+        column = f"{prefix}{measure}"
+        measure_values[column] = parsed["value"]
+        for metadata in ("status", "raw_token", "lower_bound", "upper_bound"):
+            measure_values[f"{column}__{metadata}"] = parsed[metadata]
+    out = pd.concat([out, pd.DataFrame(measure_values)], axis=1)
     out = out.sort_values(["opeid8", "award_year"]).reset_index(drop=True)
     return out, unmapped_actionable
 
@@ -1463,10 +1478,29 @@ def build_component_panel(root: str | Path | None, family: str) -> Path:
     summary_rows: list[dict] = []
     branch_rows: list[dict] = []
     unmapped_rows: list[dict] = []
+    observation_audits: list[dict[str, pd.DataFrame]] = []
+    availability: dict[str, set[str]] = {}
+    schema_rows: list[dict] = []
     for entry in entries:
         workbook_path = Path(entry["local_path"])
         parse_result = parse_selected_sheet(workbook_path, family, entry["period_type"])
-        panel_frame, unmapped = prepare_component_panel_frame(family, entry, parse_result, dictionary_map)
+        if parse_result.frame.empty:
+            raise SystemExit(f"Selected source could not be parsed: {workbook_path}; {parse_result.warnings}")
+        mapped, _ = apply_component_mapping(family, parse_result.frame, dictionary_map)
+        source_rows = parse_result.frame.attrs.get("excel_rows", list(range(len(mapped))))
+        from fsa_identity_resolutions import resolve_source_identities
+        resolved_ids, resolution_ids = resolve_source_identities(mapped, entry, source_rows, parse_result.selected_sheet)
+        observation_audits.append(audit_source_observations(mapped, entry, source_rows,
+                                  resolved_ids=resolved_ids, resolution_ids=resolution_ids))
+        for measure in mapped:
+            if measure not in {"opeid8", "school", "state", "zip_code", "school_type"}:
+                column = component_prefix(family) + measure
+                availability.setdefault(column, set()).add(entry["award_year"])
+                schema_rows.append({"family": family, "award_year": entry["award_year"], "column": column,
+                                    "filename": entry["filename"], "sheet": parse_result.selected_sheet,
+                                    "unit": "count" if is_count_measure(measure) else "nominal_usd"})
+        panel_frame, unmapped = prepare_component_panel_frame(family, entry, parse_result, dictionary_map,
+            mapped_frame=mapped, resolved_ids=resolved_ids, resolution_ids=resolution_ids)
         unmapped_rows.extend(
             [
                 {
@@ -1511,6 +1545,9 @@ def build_component_panel(root: str | Path | None, family: str) -> Path:
     if stitched.empty:
         raise SystemExit(f"No stitched rows produced for {family}.")
     assert_unique_panel_keys(stitched, f"{family} stitched panel")
+    stitched = complete_source_statuses(stitched, component_prefix(family), availability)
+    write_family_audits(layout.root, family, observation_audits)
+    pd.DataFrame(schema_rows).to_csv(layout.checks / "observation_qc" / f"{family}_schema_availability.csv", index=False)
     if family == "grants":
         filename = panel_file_name("panel_grant_volume", entries)
     elif family == "campus_based":
@@ -1562,10 +1599,31 @@ def coalesce_duplicate_metadata_columns(frame: pd.DataFrame, column_name: str) -
 
 
 def outer_merge_panels(left: pd.DataFrame, right: pd.DataFrame) -> pd.DataFrame:
-    merged = left.merge(right, on=["opeid8", "award_year"], how="outer")
+    merged = left.merge(right, on=["opeid8", "award_year"], how="outer", validate="one_to_one")
     for column in ("opeid6", "award_year_start", "award_year_end"):
         merged = coalesce_duplicate_metadata_columns(merged, column)
     return merged
+
+
+def fill_panel_source_statuses(panel: pd.DataFrame, layout: DataRootLayout) -> pd.DataFrame:
+    selected = load_selected_panel_entries(layout)
+    for family in COMPONENT_FAMILIES:
+        prefix = component_prefix(family)
+        schema_path = layout.checks / "observation_qc" / f"{family}_schema_availability.csv"
+        if not schema_path.exists():
+            continue
+        schema = pd.read_csv(schema_path, dtype=str)
+        availability = {column: set(group.award_year) for column, group in schema.groupby("column")}
+        availability = {c: y for c, y in availability.items() if c in panel.columns}
+        if not availability:
+            continue
+        panel = complete_source_statuses(panel, prefix, availability)
+        report_years = {row["award_year"] for row in selected if row["family"] == family}
+        panel[prefix + "source_report_present"] = panel.award_year.isin(report_years)
+        for column in availability:
+            mask = ~panel[prefix + "source_report_present"] & panel[column + "__status"].eq("unavailable_in_schema")
+            panel.loc[mask, column + "__status"] = "report_not_available"
+    return panel
 
 
 def merge_loan_panels(root: str | Path | None = None) -> Path:
@@ -1573,6 +1631,7 @@ def merge_loan_panels(root: str | Path | None = None) -> Path:
     direct = pd.read_parquet(locate_component_panel(layout, "direct_loans"))
     ffel = pd.read_parquet(locate_component_panel(layout, "ffel"))
     merged = outer_merge_panels(direct, ffel)
+    merged = fill_panel_source_statuses(merged, layout)
     merged, harmonization_summary = harmonize_loan_panel(merged)
     merged, consolidation_summary = consolidate_loan_programs(merged)
     assert_unique_panel_keys(merged, "merged loan panel")
@@ -1585,119 +1644,13 @@ def merge_loan_panels(root: str | Path | None = None) -> Path:
 
 
 def harmonize_loan_panel(frame: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
-    panel = frame.copy()
-    summary_rows: list[dict] = []
-    drop_columns: list[str] = []
-
-    for generic_base, split_bases in LOAN_HARMONIZATION_SPECS.items():
-        for metric in LOAN_METRIC_SUFFIXES:
-            generic_col = f"{generic_base}_{metric}"
-            split_cols = [f"{split_base}_{metric}" for split_base in split_bases if f"{split_base}_{metric}" in panel.columns]
-            if generic_col not in panel.columns and not split_cols:
-                continue
-
-            generic = panel[generic_col] if generic_col in panel.columns else pd.Series([pd.NA] * len(panel), index=panel.index)
-            split_frame = panel[split_cols] if split_cols else pd.DataFrame(index=panel.index)
-            split_sum = split_frame.sum(axis=1, min_count=1) if split_cols else pd.Series([pd.NA] * len(panel), index=panel.index)
-            overlap_mask = generic.notna() & split_sum.notna()
-            exact_match_mask = pd.Series(False, index=panel.index)
-            if overlap_mask.any():
-                exact_match_mask.loc[overlap_mask] = (
-                    generic.loc[overlap_mask].astype("Float64") == split_sum.loc[overlap_mask].astype("Float64")
-                ).fillna(False).to_numpy()
-            use_split_mask = generic.isna() & split_sum.notna()
-            harmonized = generic.combine_first(split_sum)
-            panel[generic_col] = format_integer_series(harmonized)
-
-            summary_rows.append(
-                {
-                    "generic_column": generic_col,
-                    "split_columns": "|".join(split_cols),
-                    "nonnull_generic_before": int(generic.notna().sum()),
-                    "nonnull_split_any": int(split_frame.notna().any(axis=1).sum()) if split_cols else 0,
-                    "rows_using_generic": int(generic.notna().sum()),
-                    "rows_using_split_sum": int(use_split_mask.sum()),
-                    "rows_generic_and_split_overlap": int(overlap_mask.sum()),
-                    "rows_overlap_exact_match": int(exact_match_mask.sum()),
-                }
-            )
-            drop_columns.extend(split_cols)
-
-    drop_columns = sorted({column for column in drop_columns if column in panel.columns})
-    if drop_columns:
-        panel = panel.drop(columns=drop_columns)
-    summary = pd.DataFrame(summary_rows).sort_values("generic_column").reset_index(drop=True) if summary_rows else pd.DataFrame(
-        columns=[
-            "generic_column",
-            "split_columns",
-            "nonnull_generic_before",
-            "nonnull_split_any",
-            "rows_using_generic",
-            "rows_using_split_sum",
-            "rows_generic_and_split_overlap",
-            "rows_overlap_exact_match",
-        ]
-    )
-    return panel, summary
+    from fsa_loan_harmonization import harmonize_loan_panel as harmonize
+    return harmonize(frame)
 
 
 def consolidate_loan_programs(frame: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
-    panel = frame.copy()
-    summary_rows: list[dict] = []
-
-    descriptor_specs = {
-        "loan__school": ("loan_direct__school", "loan_ffel__school", None),
-        "loan__state": ("loan_direct__state", "loan_ffel__state", "state"),
-        "loan__zip_code": ("loan_direct__zip_code", "loan_ffel__zip_code", "zip_code"),
-        "loan__school_type": ("loan_direct__school_type", "loan_ffel__school_type", "school_type"),
-    }
-    for output_col, (direct_col, ffel_col, formatter) in descriptor_specs.items():
-        panel[output_col] = coalesce_columns(panel, [direct_col, ffel_col], formatter=formatter)
-        summary_rows.append(
-            {
-                "output_column": output_col,
-                "direct_nonnull": int(panel[direct_col].notna().sum()) if direct_col in panel.columns else 0,
-                "ffel_nonnull": int(panel[ffel_col].notna().sum()) if ffel_col in panel.columns else 0,
-                "rows_with_both_sources": int((panel.get(direct_col, pd.Series(index=panel.index)).notna() & panel.get(ffel_col, pd.Series(index=panel.index)).notna()).sum()),
-                "rows_output_nonnull": int(panel[output_col].notna().sum()),
-            }
-        )
-
-    for base in LOAN_CONSOLIDATION_BASES:
-        for metric in LOAN_METRIC_SUFFIXES:
-            direct_col = f"loan_direct__{base}_{metric}"
-            ffel_col = f"loan_ffel__{base}_{metric}"
-            if direct_col not in panel.columns and ffel_col not in panel.columns:
-                continue
-            pieces = []
-            if direct_col in panel.columns:
-                pieces.append(panel[direct_col])
-            if ffel_col in panel.columns:
-                pieces.append(panel[ffel_col])
-            total = pd.concat(pieces, axis=1).sum(axis=1, min_count=1)
-            output_col = f"loan__{base}_{metric}"
-            panel[output_col] = format_integer_series(total)
-            summary_rows.append(
-                {
-                    "output_column": output_col,
-                    "direct_nonnull": int(panel[direct_col].notna().sum()) if direct_col in panel.columns else 0,
-                    "ffel_nonnull": int(panel[ffel_col].notna().sum()) if ffel_col in panel.columns else 0,
-                    "rows_with_both_sources": int((panel.get(direct_col, pd.Series(index=panel.index)).notna() & panel.get(ffel_col, pd.Series(index=panel.index)).notna()).sum()),
-                    "rows_output_nonnull": int(panel[output_col].notna().sum()),
-                }
-            )
-
-    drop_columns = sorted(
-        column
-        for column in panel.columns
-        if column.startswith("loan_direct__") or column.startswith("loan_ffel__")
-    )
-    if drop_columns:
-        panel = panel.drop(columns=drop_columns)
-    summary = pd.DataFrame(summary_rows).sort_values("output_column").reset_index(drop=True) if summary_rows else pd.DataFrame(
-        columns=["output_column", "direct_nonnull", "ffel_nonnull", "rows_with_both_sources", "rows_output_nonnull"]
-    )
-    return panel, summary
+    from fsa_loan_harmonization import consolidate_loan_programs as consolidate
+    return consolidate(frame)
 
 
 def coalesce_columns(frame: pd.DataFrame, columns: Sequence[str], *, formatter: str | None = None) -> pd.Series:
@@ -1719,13 +1672,12 @@ def coalesce_columns(frame: pd.DataFrame, columns: Sequence[str], *, formatter: 
 
 
 FINAL_DESCRIPTOR_COLUMNS = {
-    "school": ["grant__school", "campus__school", "loan__school"],
-    "state": ["grant__state", "campus__state", "loan__state"],
-    "zip_code": ["grant__zip_code", "campus__zip_code", "loan__zip_code"],
-    "school_type": ["grant__school_type", "campus__school_type", "loan__school_type"],
+    descriptor: [f"grant__{descriptor}", f"campus__{descriptor}", f"loan__{descriptor}",
+                 f"loan_direct__{descriptor}", f"loan_ffel__{descriptor}"]
+    for descriptor in ("school", "state", "zip_code", "school_type")
 }
 
-FINAL_DESCRIPTOR_SOURCE_ALIASES = ["grant_value", "campus_value", "loan_value"]
+FINAL_DESCRIPTOR_SOURCE_ALIASES = ["grant_value", "campus_value", "loan_value", "loan_direct_value", "loan_ffel_value"]
 
 
 def unique_preserving_order(values: Sequence[str]) -> list[str]:
@@ -1745,35 +1697,69 @@ def basic_clean_text(value: object) -> str | None:
     return text or None
 
 
-def format_zip_value(value: object) -> str | None:
+def format_zip_value(value: object, *, state: object = None, school_type: object = None) -> str | None:
+    """Restore numeric US ZIP+4 width only with domestic jurisdiction evidence.
+
+    Foreign and unknown-context postal strings are preserved. The original
+    token is also stored in each component's raw_zip_code column and row ledger.
+    """
     text = basic_clean_text(value)
     if text is None:
         return None
-    digits = re.sub(r"\D", "", text)
-    if not digits:
-        return None
-    if len(digits) >= 9:
-        digits = digits[:9]
-        return f"{digits[:5]}-{digits[5:]}"
-    return digits[:5].zfill(5)
+    text = text.upper()
+    if re.fullmatch(r"\d+\.0+", text):
+        text = text.split(".")[0]
+    domestic_codes = set(US_STATE_CODES_WITH_DC) | {"PR", "VI", "GU", "AS", "MP", "FM", "MH", "PW", "AA", "AE", "AP"}
+    domestic = (basic_clean_text(state) or "").upper() in domestic_codes
+    foreign = "FOREIGN" in (basic_clean_text(school_type) or "").upper()
+    if domestic and not foreign:
+        if re.fullmatch(r"\d{1,5}", text):
+            return text.zfill(5)
+        if re.fullmatch(r"\d{7,9}", text):
+            digits = text.zfill(9)
+            return f"{digits[:5]}-{digits[5:]}"
+        if re.fullmatch(r"\d{5}[ -]\d{4}", text):
+            return text[:5] + "-" + text[-4:]
+    # Unsupported lengths and alphanumeric foreign postcodes are evidence, not
+    # an invitation to discard characters or invent a US geographic identifier.
+    return text
 
 
 def zip_base5(value: object) -> str | None:
     formatted = format_zip_value(value)
     if formatted is None:
         return None
-    digits = re.sub(r"\D", "", formatted)
-    return digits[:5] if digits else None
+    if re.fullmatch(r"\d{5}-\d{4}", formatted):
+        return formatted[:5]
+    return formatted
 
 
-def school_compare_key(value: object) -> str | None:
+def _school_unicode_text(value: object) -> str | None:
+    """Undo a valid UTF-8-as-Latin-1 decoding roundtrip, without guessing lost text."""
     text = basic_clean_text(value)
+    if text and any(marker in text for marker in ("Ã", "Â")):
+        try:
+            decoded = text.encode("latin1").decode("utf8")
+            if decoded.encode("utf8").decode("latin1") == text:
+                return decoded
+        except (UnicodeEncodeError, UnicodeDecodeError):
+            pass
+    return text
+
+
+def school_compare_key(value: object, *, punctuation_as_space: bool = False) -> str | None:
+    import unicodedata
+    text = _school_unicode_text(value)
     if text is None:
         return None
-    normalized = text.upper().replace("&", " AND ")
+    normalized = "".join(c for c in unicodedata.normalize("NFKD", text) if not unicodedata.combining(c)).upper()
+    normalized = re.sub(r"\(\s*THE\s*\)\s*$", "", normalized)
+    separator = " " if punctuation_as_space else ""
+    normalized = normalized.replace("'", separator).replace("’", separator).replace(".", separator).replace("&", " AND ")
     normalized = re.sub(r"^THE\s+", "", normalized)
     normalized = re.sub(r"[^A-Z0-9]+", " ", normalized)
     normalized = re.sub(r"\s+", " ", normalized).strip()
+    normalized = re.sub(r"\s+THE$", "", normalized)
     return normalized or None
 
 
@@ -1786,7 +1772,7 @@ def school_display_score(value: str) -> tuple[int, int, int, int]:
 
 
 def choose_best_school_display(values: Sequence[str]) -> str | None:
-    cleaned = [basic_clean_text(value) for value in values]
+    cleaned = [_school_unicode_text(value) for value in values]
     cleaned = [value for value in cleaned if value is not None]
     if not cleaned:
         return None
@@ -1807,6 +1793,8 @@ def canonical_school_type(value: object) -> tuple[str | None, str | None]:
         return "other", "Other"
     if "PUBLIC" in normalized:
         return ("foreign_public", "Foreign Public") if foreign else ("public", "Public")
+    if "NOT FOR PROFIT" in normalized or "NONPROFIT" in normalized or "NON PROFIT" in normalized:
+        return ("foreign_private", "Foreign Private") if foreign else ("private_nonprofit", "Private/Non-Profit")
     if "PROPRIETARY" in normalized or "FOR PROFIT" in normalized:
         return ("foreign_for_profit", "Foreign For-Profit") if foreign else ("private_for_profit", "Private/For-Profit")
     if "PRIVATE" in normalized or "NONPROFIT" in normalized or "NON PROFIT" in normalized:
@@ -1820,6 +1808,11 @@ def resolve_descriptor_values(label: str, ordered_values: Sequence[object]) -> d
     if label == "school":
         raw_values = unique_preserving_order([value for value in (basic_clean_text(v) for v in ordered_values) if value])
         normalized_values = unique_preserving_order([value for value in (school_compare_key(v) for v in raw_values) if value])
+        spaced_keys = unique_preserving_order([value for value in (school_compare_key(v, punctuation_as_space=True) for v in raw_values) if value])
+        if len(spaced_keys) == 1:
+            # Preserve safe punctuation/spacing equivalence without repeating
+            # the older ASCII-only loss of accented or corrupted characters.
+            normalized_values = spaced_keys
         if not raw_values:
             return {"clean_value": pd.NA, "raw_values": [], "normalized_values": [], "resolution_status": "missing", "needs_manual_review": False}
         nonempty_count = len([v for v in ordered_values if basic_clean_text(v)])
@@ -1847,8 +1840,7 @@ def resolve_descriptor_values(label: str, ordered_values: Sequence[object]) -> d
         }
 
     if label == "state":
-        raw_values = unique_preserving_order([value for value in (basic_clean_text(v) for v in ordered_values) if value])
-        raw_values = [value.upper() for value in raw_values]
+        raw_values = unique_preserving_order([value.upper() for value in (basic_clean_text(v) for v in ordered_values) if value])
         if not raw_values:
             return {"clean_value": pd.NA, "raw_values": [], "normalized_values": [], "resolution_status": "missing", "needs_manual_review": False}
         nonempty_count = len([v for v in ordered_values if basic_clean_text(v)])
@@ -1938,6 +1930,8 @@ def resolve_descriptor_values(label: str, ordered_values: Sequence[object]) -> d
 
 def audit_descriptor_columns(frame: pd.DataFrame, descriptor: str, columns: Sequence[str]) -> tuple[pd.Series, pd.DataFrame, pd.DataFrame, list[dict]]:
     present_columns = [column for column in columns if column in frame.columns]
+    if any(f"{prefix}{descriptor}" in present_columns for prefix in ("loan_direct__", "loan_ffel__")):
+        present_columns = [c for c in present_columns if c != f"loan__{descriptor}"]
     clean_values: list[object] = []
     detail_rows: list[dict] = []
     manual_rows: list[dict] = []
@@ -1965,7 +1959,8 @@ def audit_descriptor_columns(frame: pd.DataFrame, descriptor: str, columns: Sequ
             "raw_values": " | ".join(result["raw_values"]),
             "normalized_values": " | ".join(result["normalized_values"]),
         }
-        for alias, value in zip(FINAL_DESCRIPTOR_SOURCE_ALIASES, source_values):
+        for column, value in zip(present_columns, source_values):
+            alias = column.split("__", 1)[0] + "_value"
             detail_row[alias] = basic_clean_text(value) or ""
         detail_rows.append(detail_row)
         if result["needs_manual_review"]:
@@ -1988,7 +1983,8 @@ def audit_descriptor_columns(frame: pd.DataFrame, descriptor: str, columns: Sequ
 
 def descriptor_conflicts(frame: pd.DataFrame, raw_descriptor_columns: Sequence[str], label: str) -> pd.DataFrame:
     rows: list[dict] = []
-    for _, row in frame.iterrows():
+    selected_columns = ["opeid8", "award_year", *[c for c in raw_descriptor_columns if c in frame]]
+    for _, row in frame[selected_columns].iterrows():
         values = []
         for column in raw_descriptor_columns:
             if column not in frame.columns:
@@ -2015,6 +2011,12 @@ def merge_final_panels(root: str | Path | None = None) -> tuple[Path, Path]:
     campus = pd.read_parquet(locate_component_panel(layout, "campus_based"))
     loans = pd.read_parquet(locate_component_panel(layout, "loans"))
     raw = outer_merge_panels(outer_merge_panels(grant, campus), loans)
+    raw = fill_panel_source_statuses(raw, layout)
+    for column in raw.columns:
+        if column.endswith("__status"):
+            raw[column] = raw[column].fillna("absent_source_record")
+    if "loan__program_scope" in raw:
+        raw["loan__program_scope"] = raw["loan__program_scope"].fillna("no_loan_source_record")
     assert_unique_panel_keys(raw, "final raw panel")
     span_entries = (
         load_selected_panel_entries(layout, family="grants")
@@ -2032,11 +2034,19 @@ def merge_final_panels(root: str | Path | None = None) -> tuple[Path, Path]:
     for descriptor, columns in FINAL_DESCRIPTOR_COLUMNS.items():
         resolved, detail, manual, summary_rows = audit_descriptor_columns(clean, descriptor, columns)
         clean[descriptor] = resolved
+        clean[f"{descriptor}__review_required"] = False
+        if not manual.empty:
+            flagged = pd.MultiIndex.from_frame(manual[["opeid8", "award_year"]])
+            clean[f"{descriptor}__review_required"] = pd.MultiIndex.from_frame(clean[["opeid8", "award_year"]]).isin(flagged)
         if not detail.empty:
             resolution_detail_frames.append(detail)
         if not manual.empty:
             manual_review_frames.append(manual)
         resolution_summary_rows.extend(summary_rows)
+    from fsa_research_outputs import apply_descriptor_overrides
+    clean, applied = apply_descriptor_overrides(clean, REPO_ROOT / "Metadata" / "descriptor_overrides.csv")
+    clean["descriptor_review_required"] = clean[[f"{d}__review_required" for d in FINAL_DESCRIPTOR_COLUMNS]].any(axis=1)
+    applied.to_csv(layout.checks / "panel_qc" / "descriptor_overrides_applied.csv", index=False)
     assert_unique_panel_keys(clean, "final clean panel")
     clean_path = layout.panels / "final" / panel_file_name("fsa_volume_reports_clean", span_entries)
     clean.to_parquet(clean_path, index=False)
@@ -2093,46 +2103,15 @@ def build_panel_dictionary(
     if input_path:
         panel_path = Path(input_path)
     else:
-        matches = sorted((layout.panels / "final").glob("fsa_volume_reports_clean_*.parquet"))
+        matches = sorted(path for path in (layout.panels / "final").glob("fsa_volume_reports_clean_*.parquet")
+                         if not path.name.startswith("fsa_volume_reports_clean_us_states_only_"))
         if not matches:
             raise SystemExit("No final clean panel found for panel dictionary build.")
         panel_path = matches[-1]
     dictionary = pd.read_parquet(layout.dictionary / "fsa_volume_dictionary.parquet")
     panel = pd.read_parquet(panel_path)
-    rows = []
-    for column in panel.columns:
-        if column in {"opeid8", "opeid6", "award_year", "award_year_start", "award_year_end", "school", "state", "zip_code", "school_type"}:
-            rows.append(
-                {
-                    "panel_column": column,
-                    "component_family": "synthetic" if column in {"school", "state", "zip_code", "school_type"} else "key",
-                    "canonical_column": column,
-                    "mapping_status": "synthetic_coalesced" if column in {"school", "state", "zip_code", "school_type"} else "panel_key",
-                    "source_filename": "",
-                    "sheet_name": "",
-                    "first_year": int(panel["award_year_start"].min()) if "award_year_start" in panel.columns else pd.NA,
-                    "last_year": int(panel["award_year_end"].max()) if "award_year_end" in panel.columns else pd.NA,
-                }
-            )
-            continue
-    # Build rows deterministically without relying on fragile vector matching.
-    mapped_rows = []
-    for _, row in dictionary.iterrows():
-        canonical = safe_text(row["canonical_column"])
-        if not canonical:
-            continue
-        for family in COMPONENT_FAMILIES:
-            prefix = component_prefix(family)
-            panel_column = f"{prefix}{canonical}"
-            if panel_column in panel.columns:
-                mapped_rows.append(
-                    {
-                        "panel_column": panel_column,
-                        **row.to_dict(),
-                    }
-                )
-    rows.extend(mapped_rows)
-    out = pd.DataFrame(rows).drop_duplicates().sort_values(["panel_column", "component_family"]).reset_index(drop=True)
+    from fsa_research_outputs import build_research_dictionary
+    out = build_research_dictionary(panel, dictionary, layout.root)
     csv_path = Path(output_csv) if output_csv else layout.dictionary / "fsa_volume_panel_dictionary.csv"
     parquet_path = Path(output_parquet) if output_parquet else layout.dictionary / "fsa_volume_panel_dictionary.parquet"
     out.to_csv(csv_path, index=False)
@@ -2236,25 +2215,19 @@ def build_analysis_ready_final_panel(
     if input_parquet:
         panel_path = Path(input_parquet)
     else:
-        us_only_matches = sorted(
-            path
-            for path in (layout.panels / "final").glob("fsa_volume_reports_clean_us_states_only_*.parquet")
-            if "_us_states_only_us_states_only_" not in path.name
-        )
         clean_matches = sorted(
             path
             for path in (layout.panels / "final").glob("fsa_volume_reports_clean_*.parquet")
             if not path.name.startswith("fsa_volume_reports_clean_us_states_only_")
         )
-        if us_only_matches:
-            panel_path = us_only_matches[-1]
-        elif clean_matches:
+        if clean_matches:
             panel_path = clean_matches[-1]
         else:
             raise SystemExit("No final clean panel found for analysis-ready final panel build.")
 
     panel = pd.read_parquet(panel_path)
-    descriptor_source_columns = [column for columns in FINAL_DESCRIPTOR_COLUMNS.values() for column in columns if column in panel.columns]
+    # Research master preserves lineage and source descriptors; geography is an explicit view.
+    descriptor_source_columns: list[str] = []
     preferred_columns = [
         "opeid8",
         "opeid6",
@@ -2319,6 +2292,9 @@ def locate_analysis_ready_final_panel(layout: DataRootLayout) -> Path | None:
         for path in (layout.panels / "final").glob("fsa_volume_reports_panel_*.parquet")
         if "_us_states_only_us_states_only_" not in path.name
     )
+    unrestricted = [p for p in canonical_matches if "us_states_only" not in p.name]
+    if unrestricted:
+        return unrestricted[-1]
     if canonical_matches:
         return canonical_matches[-1]
     matches = sorted((layout.panels / "final").glob("fsa_volume_reports_panel_*.parquet"))
@@ -2663,7 +2639,7 @@ def source_qaqc(root: str | Path | None = None) -> pd.DataFrame:
             on=["family", "filename"],
             how="left",
         )
-        missing_sheet = profiled["selected_sheet"].eq("")
+        missing_sheet = profiled["selected_sheet"].isna() | profiled["selected_sheet"].eq("")
         results.append(
             {
                 "check": "selected_sheet_found_for_selected_files",
@@ -2882,6 +2858,9 @@ def acceptance_audit(root: str | Path | None = None) -> pd.DataFrame:
                 }
             )
 
+    if analysis_panel_path is not None:
+        from fsa_research_outputs import research_acceptance
+        results.extend(research_acceptance(layout.root, analysis_panel_path).to_dict("records"))
     acceptance = pd.DataFrame(results)
     out_csv = layout.checks / "acceptance_qc" / "acceptance_summary.csv"
     acceptance.to_csv(out_csv, index=False)

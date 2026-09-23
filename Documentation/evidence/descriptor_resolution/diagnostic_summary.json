@@ -1,0 +1,24 @@
+{
+  "before_flagged_keys": 15125,
+  "after_flagged_keys": 10276,
+  "before_review_entries": 16382,
+  "after_review_entries": 11277,
+  "resolved_entries": 5111,
+  "newly_exposed_entries": 6,
+  "numeric_zip_plus4_source_cells_restored": 7560,
+  "resolved_by_descriptor": {
+    "school": 386,
+    "zip_code": 4725
+  },
+  "remaining_HD_history_supported": {
+    "school": 3100,
+    "school_type": 256,
+    "state": 56,
+    "zip_code": 1792
+  },
+  "source_input_sha256": {
+    "ResearchBuild/2026-09-22/Checks/panel_qc/final_descriptor_manual_review.csv": "6c92cd61ef9cf5f672b9badfa405fc08c0b1f74f8340249a4e04380aca8cd056",
+    "ResearchBuild/2026-09-22/Panels/ipeds/fsa_ipeds_bridge.parquet": "9a39c36bb5f389aaff6373b5000ac5d562fbb726aeea4961c3cfd4cfa2b8373c"
+  },
+  "note": "Diagnostics recompute descriptor resolution from raw accepted-source ledgers. HD histories support possible vintage differences, not automatic identity/scope certification."
+}

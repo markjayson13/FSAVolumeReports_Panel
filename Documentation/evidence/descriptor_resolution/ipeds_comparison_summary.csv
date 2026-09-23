@@ -1,0 +1,16 @@
+descriptor,resolved_by_deterministic_fix,anchor_HD_comparison,rows
+school,False,HD_matches_no_source,2149
+school,False,HD_matches_some_sources,5879
+school,False,no_unique_eligible_HD_unitid,150
+school,True,HD_matches_all_sources,302
+school,True,HD_matches_no_source,84
+school_type,False,HD_matches_some_sources,540
+school_type,False,no_unique_eligible_HD_unitid,15
+state,False,HD_matches_some_sources,117
+state,False,no_unique_eligible_HD_unitid,2
+zip_code,False,HD_matches_no_source,144
+zip_code,False,HD_matches_some_sources,2238
+zip_code,False,no_unique_eligible_HD_unitid,37
+zip_code,True,HD_matches_all_sources,4216
+zip_code,True,HD_matches_no_source,401
+zip_code,True,no_unique_eligible_HD_unitid,108

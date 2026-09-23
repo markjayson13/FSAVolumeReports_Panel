@@ -1,0 +1,10 @@
+panel,rows,columns,equal_saved_data
+panel_campus_based_volume_2001_2024.parquet,89038,18,True
+fsa_volume_reports_clean_1999_2025.parquet,200057,55,True
+fsa_volume_reports_clean_us_states_only_1999_2025.parquet,186353,55,True
+fsa_volume_reports_panel_us_states_only_1999_2025.parquet,186353,43,True
+fsa_volume_reports_raw_1999_2025.parquet,200057,51,True
+panel_grant_volume_1999_2025.parquet,136222,19,True
+panel_direct_loan_volume_1999_2025.parquet,95645,54,True
+panel_ffel_loan_volume_1999_2010.parquet,49415,34,True
+panel_loan_volume_1999_2025.parquet,137396,24,True

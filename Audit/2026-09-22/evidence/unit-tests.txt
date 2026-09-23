@@ -1,0 +1,31 @@
+test_build_analysis_ready_final_panel_drops_source_descriptor_duplicates (test_analysis_ready_panel.AnalysisReadyPanelTests.test_build_analysis_ready_final_panel_drops_source_descriptor_duplicates) ... /Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.l1dcachesize'. Detail: [errno 1] Operation not permitted
+/Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.l2cachesize'. Detail: [errno 1] Operation not permitted
+/Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.l3cachesize'. Detail: [errno 1] Operation not permitted
+/Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.optional.neon'. Detail: [errno 1] Operation not permitted
+ok
+test_build_manual_review_workbook_outputs_sorted_descriptor_tabs (test_descriptor_resolution.DescriptorResolutionTests.test_build_manual_review_workbook_outputs_sorted_descriptor_tabs) ... ok
+test_school_cosmetic_difference_resolves_without_manual_review (test_descriptor_resolution.DescriptorResolutionTests.test_school_cosmetic_difference_resolves_without_manual_review) ... ok
+test_school_substantive_difference_requires_manual_review (test_descriptor_resolution.DescriptorResolutionTests.test_school_substantive_difference_requires_manual_review) ... ok
+test_school_type_private_variants_canonicalize (test_descriptor_resolution.DescriptorResolutionTests.test_school_type_private_variants_canonicalize) ... ok
+test_state_conflict_requires_manual_review (test_descriptor_resolution.DescriptorResolutionTests.test_state_conflict_requires_manual_review) ... ok
+test_zip_conflict_collapses_to_base5_when_equivalent (test_descriptor_resolution.DescriptorResolutionTests.test_zip_conflict_collapses_to_base5_when_equivalent) ... ok
+test_parse_title_iv_entries_discovers_expected_families (test_download_parser.DownloadParserTests.test_parse_title_iv_entries_discovers_expected_families) ... ok
+test_parse_title_iv_json_discovers_expected_links (test_download_parser.DownloadParserTests.test_parse_title_iv_json_discovers_expected_links) ... ok
+test_preflight_validation_accepts_full_expected_selected_scope (test_download_parser.DownloadParserTests.test_preflight_validation_accepts_full_expected_selected_scope) ... ok
+test_preflight_validation_flags_incomplete_fixture_scope (test_download_parser.DownloadParserTests.test_preflight_validation_flags_incomplete_fixture_scope) ... ok
+test_selection_rules_only_keep_complete_panel_files (test_download_parser.DownloadParserTests.test_selection_rules_only_keep_complete_panel_files) ... ok
+test_filter_clean_panel_to_us_states_keeps_states_and_dc_only (test_final_filters.FinalFilterTests.test_filter_clean_panel_to_us_states_keeps_states_and_dc_only) ... ok
+test_consolidate_loan_programs_sums_direct_and_ffel_into_single_loan_block (test_loan_harmonization.LoanHarmonizationTests.test_consolidate_loan_programs_sums_direct_and_ffel_into_single_loan_block) ... ok
+test_harmonize_loan_panel_prefers_generic_total_and_drops_split_columns (test_loan_harmonization.LoanHarmonizationTests.test_harmonize_loan_panel_prefers_generic_total_and_drops_split_columns) ... ok
+test_offline_pipeline_end_to_end (test_pipeline_integration.PipelineIntegrationTests.test_offline_pipeline_end_to_end) ... ok
+test_run_all_dry_run_lists_stage_order (test_run_all.RunAllTests.test_run_all_dry_run_lists_stage_order) ... ok
+test_campus_old_layout_maps_to_expected_canonical_columns (test_workbook_parsing.WorkbookParsingTests.test_campus_old_layout_maps_to_expected_canonical_columns) ... ok
+test_grant_header_mapping_and_opeid_standardization_preserve_branch_id (test_workbook_parsing.WorkbookParsingTests.test_grant_header_mapping_and_opeid_standardization_preserve_branch_id) ... ok
+test_parse_selected_sheet_falls_back_to_html_table_disguised_as_xls (test_workbook_parsing.WorkbookParsingTests.test_parse_selected_sheet_falls_back_to_html_table_disguised_as_xls) ... ok
+test_parse_selected_sheet_prefers_summary_for_quarterly_workbooks (test_workbook_parsing.WorkbookParsingTests.test_parse_selected_sheet_prefers_summary_for_quarterly_workbooks) ... ok
+test_parse_selected_sheet_returns_warning_for_plain_text_placeholder (test_workbook_parsing.WorkbookParsingTests.test_parse_selected_sheet_returns_warning_for_plain_text_placeholder) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 7.853s
+
+OK

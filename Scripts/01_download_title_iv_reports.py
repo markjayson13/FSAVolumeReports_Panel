@@ -13,7 +13,8 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--root", default=None, help="External FSA_ROOT")
     ap.add_argument("--page-html", default=None, help="Optional local HTML fixture")
-    ap.add_argument("--skip-existing", action=argparse.BooleanOptionalAction, default=True)
+    ap.add_argument("--skip-existing", action=argparse.BooleanOptionalAction, default=False,
+                    help="Reuse a frozen local vintage without checking upstream revisions")
     ap.add_argument("--strict-source-checks", action=argparse.BooleanOptionalAction, default=True)
     ap.add_argument("--verify-only", action=argparse.BooleanOptionalAction, default=False)
     ap.add_argument("--timeout", type=int, default=120)

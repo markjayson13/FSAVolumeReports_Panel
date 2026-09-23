@@ -13,12 +13,12 @@ utils = load_script_module("fsa_build_utils_analysis_panel", "Scripts/fsa_build_
 
 
 class AnalysisReadyPanelTests(unittest.TestCase):
-    def test_build_analysis_ready_final_panel_drops_source_descriptor_duplicates(self) -> None:
+    def test_build_analysis_ready_final_panel_preserves_source_descriptors(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             final_dir = root / "Panels" / "final"
             final_dir.mkdir(parents=True, exist_ok=True)
-            panel_path = final_dir / "fsa_volume_reports_clean_us_states_only_1999_2025.parquet"
+            panel_path = final_dir / "fsa_volume_reports_clean_1999_2025.parquet"
             frame = pd.DataFrame(
                 [
                     {
@@ -62,9 +62,9 @@ class AnalysisReadyPanelTests(unittest.TestCase):
             self.assertIn("grant__pell_recipients", analysis_panel.columns)
             self.assertIn("campus__fws_recipients", analysis_panel.columns)
             self.assertIn("loan__subsidized_recipients", analysis_panel.columns)
-            self.assertNotIn("grant__school", analysis_panel.columns)
-            self.assertNotIn("campus__school", analysis_panel.columns)
-            self.assertNotIn("loan__school", analysis_panel.columns)
+            self.assertIn("grant__school", analysis_panel.columns)
+            self.assertIn("campus__school", analysis_panel.columns)
+            self.assertIn("loan__school", analysis_panel.columns)
 
 
 if __name__ == "__main__":

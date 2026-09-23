@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import tempfile
+import json
 import unittest
 from pathlib import Path
 
@@ -95,26 +96,19 @@ class PipelineIntegrationTests(unittest.TestCase):
             """
             html_path = tmp_path / "title_iv_page.html"
             html_path.write_text(html, encoding="utf-8")
+            scope_path = tmp_path / "fixture_scope.json"
+            scope_path.write_text(json.dumps({"families": {
+                "grants": {"annual_years": [2005], "q4_years": [2006]},
+                "campus_based": {"annual_years": [2001, 2002], "q4_years": []},
+                "direct_loans": {"annual_years": [1999, 2000], "q4_years": []},
+                "ffel": {"annual_years": [1999, 2000], "q4_years": []}}}))
 
-            stages = [
-                ("Scripts/01_download_title_iv_reports.py", "--root", root, "--page-html", html_path, "--no-strict-source-checks"),
-                ("Scripts/02_profile_workbooks.py", "--root", root),
-                ("Scripts/03_build_dictionary.py", "--root", root),
-                ("Scripts/04_panelize_grants.py", "--root", root),
-                ("Scripts/05_panelize_campus_based.py", "--root", root),
-                ("Scripts/06_panelize_loans.py", "--root", root),
-                ("Scripts/07_merge_fsa_panels.py", "--root", root),
-                ("Scripts/08_build_panel_dictionary.py", "--root", root),
-                ("Scripts/09_build_manual_review_workbook.py", "--root", root),
-                ("Scripts/10_filter_clean_panel_to_us_states.py", "--root", root),
-                ("Scripts/11_build_analysis_ready_final_panel.py", "--root", root),
-                ("Scripts/QA_QC/00_source_qaqc.py", "--root", root),
-                ("Scripts/QA_QC/01_panel_qaqc.py", "--root", root),
-                ("Scripts/QA_QC/02_acceptance_audit.py", "--root", root),
-            ]
-            for stage in stages:
-                result = run_script(stage[0], *stage[1:], timeout=120)
-                self.assertEqual(result.returncode, 0, msg=f"{stage[0]} failed:\n{result.stdout}")
+            result = run_script("Scripts/00_run_all.py", "--root", root, "--page-html", html_path,
+                                "--scope-config", scope_path, "--no-strict-source-checks", timeout=180)
+            self.assertEqual(result.returncode, 0, msg=result.stdout)
+            release = json.loads((root / "build/research_release_manifest.json").read_text())
+            self.assertTrue(release["acceptance_passed"])
+            self.assertEqual(len(release["inputs"]), 8)
 
             grant_panel_path = next((root / "Panels" / "grants").glob("panel_grant_volume_*.parquet"))
             grant_panel = pd.read_parquet(grant_panel_path)
@@ -126,8 +120,8 @@ class PipelineIntegrationTests(unittest.TestCase):
             self.assertEqual(int(final_clean.duplicated(["opeid8", "award_year"]).sum()), 0)
             self.assertIn("school", final_clean.columns)
             self.assertIn("grant__pell_recipients", final_clean.columns)
-            self.assertIn("loan__subsidized_recipients", final_clean.columns)
-            self.assertNotIn("loan_direct__subsidized_recipients", final_clean.columns)
+            self.assertIn("loan__subsidized_recipient_count_sum", final_clean.columns)
+            self.assertIn("loan_direct__subsidized_recipients", final_clean.columns)
 
             acceptance = pd.read_csv(root / "Checks" / "acceptance_qc" / "acceptance_summary.csv")
             self.assertTrue(bool(acceptance["passed"].all()))
@@ -139,10 +133,10 @@ class PipelineIntegrationTests(unittest.TestCase):
             analysis_panel = pd.read_parquet(analysis_panel_path)
             self.assertEqual(int(analysis_panel.duplicated(["opeid8", "award_year"]).sum()), 0)
             self.assertIn("school", analysis_panel.columns)
-            self.assertNotIn("grant__school", analysis_panel.columns)
-            self.assertIn("loan__subsidized_recipients", analysis_panel.columns)
-            self.assertNotIn("loan__school", analysis_panel.columns)
-            self.assertNotIn("loan_direct__parent_plus_recipients", analysis_panel.columns)
+            self.assertIn("grant__school", analysis_panel.columns)
+            self.assertIn("loan__subsidized_recipient_count_sum", analysis_panel.columns)
+            self.assertIn("loan__school", analysis_panel.columns)
+            self.assertIn("loan_direct__plus_recipients", analysis_panel.columns)
 
 
 if __name__ == "__main__":

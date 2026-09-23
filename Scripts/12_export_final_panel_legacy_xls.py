@@ -21,6 +21,7 @@ from openpyxl import Workbook
 from fsa_build_utils import data_layout, locate_analysis_ready_final_panel
 
 XLS_MAX_ROWS = 65_536
+XLS_MAX_COLUMNS = 256
 DATA_ROWS_PER_SHEET = XLS_MAX_ROWS - 1
 
 
@@ -42,6 +43,8 @@ def export_legacy_xls(
     max_rows_per_sheet: int = DATA_ROWS_PER_SHEET,
 ) -> tuple[Path, int, int, int]:
     frame = pd.read_parquet(input_parquet)
+    if len(frame.columns) > XLS_MAX_COLUMNS:
+        raise ValueError("The research master exceeds legacy XLS's 256-column limit. Use canonical Parquet or an explicitly selected research extract; no columns will be silently truncated.")
     output_xls.parent.mkdir(parents=True, exist_ok=True)
 
     with tempfile.TemporaryDirectory(prefix="fsa-legacy-xls-") as tmpdir_name:
