@@ -6,6 +6,18 @@ The repaired pipeline restores full eight-digit OPEIDs from numeric Excel cells,
 
 Start with [research use and reproducibility](Documentation/research_use.md), [IPEDS linkage and reporting units](Documentation/ipeds_linkage.md), [policy and schema changes](Documentation/policy_and_reporting_changes.md), and [loan definitions](Documentation/loan_harmonization.md). The initial [gap audit](Audit/2026-09-22/report.md) is retained as historical evidence; it describes the pre-repair pipeline.
 
+## Reproduce everything with one command
+
+On macOS, Linux, or Windows WSL with Bash and curl:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/markjayson13/FSAVolumeReports_Panel/fsa-research-v2-2026-09-22/Scripts/bootstrap_reproduction.sh | bash
+```
+
+The command creates `FSA-reproduction/` in your current directory. It downloads and checks the versioned release assets, installs an isolated Python 3.13.0 environment with pinned dependencies, rebuilds the panels from frozen local FSA/IPEDS files, and compares every cell in the three principal panels with the published reference. It also retrieves the labeled Stata, CSV, Excel and Parquet exports, codebooks, original code and validation records. It does not change shell profiles or overwrite existing work. Installation/downloads require internet access; the rebuild itself uses frozen local inputs.
+
+For data without a rebuild, download the appropriate format asset from the [versioned release](https://github.com/markjayson13/FSAVolumeReports_Panel/releases/tag/fsa-research-v2-2026-09-22). GitHub's automatic source-code ZIP does not contain the dataset assets. See [replication instructions](Documentation/reproduce_release.md) for output paths, custom destinations, exact environment requirements and interpretation of the comparison checks.
+
 ## Versioned scope
 
 `Metadata/release_scope.json` pins the reviewed release:
@@ -57,6 +69,18 @@ Large inputs and generated panels live under the selected root and are excluded 
 - `build/research_release_manifest.json`: exact inputs, code/metadata, output hashes, environment and explicit exclusions.
 
 Source-specific panels and cross-sections remain available. The states-plus-DC view is optional for sample design; it never replaces the unrestricted master. Parquet is canonical; full-width exports to legacy XLS are rejected because of its 256-column limit.
+
+## Labeled Stata, CSV, Excel and Parquet exports
+
+An accepted UNITID release can be exported without changing its frozen source files:
+
+```sh
+python3 Scripts/15_export_research_formats.py \
+  --root ResearchBuild/2026-09-22-v2 \
+  --output-dir ResearchBuild/2026-09-22-v2/Exports/unitid
+```
+
+Use a new empty output directory. The package retains every row and variable, supplies Stata variable/value labels, a full codebook and original-name map, typed CSV import helpers, and annual Excel workbooks with codebook sheets. OPEIDs remain text. Portable Parquet embeds variable and dataset metadata. Every requested format is read back and checked before the export manifest is marked complete. See [portable exports and metadata](Documentation/portable_exports.md) for missingness, Excel precision, software requirements and research limits. Generated export files remain local under `ResearchBuild/`; export scripts and documentation are versioned.
 
 Read the status columns. Missing, suppressed, absent-source and structurally unavailable values are not globally zero-filled. Unresolved source IDs remain in quarantine; unresolved matches remain nullable. Descriptor overrides require evidence and reviewer metadata. The annual institution panel preserves source-specific OPEIDs and blocks ambiguous family records. The conservative IPEDS sensitivity view screens reporting-unit ambiguity and temporal instability; it is not a representative national sample or certification of all institutional boundaries.
 
