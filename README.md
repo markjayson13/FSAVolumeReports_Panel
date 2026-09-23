@@ -18,6 +18,8 @@ The command creates `FSA-reproduction/` in your current directory. It downloads 
 
 The [versioned release](https://github.com/markjayson13/FSAVolumeReports_Panel/releases/tag/fsa-research-v2-2026-09-22) stores Stata as one ZIP and the other four archives as numbered 16 MiB pieces. The command verifies and joins those pieces automatically, preserving the original archive bytes. For manual downloads or data without a rebuild, see the [replication instructions](Documentation/reproduce_release.md). GitHub's automatic source-code ZIP does not contain the dataset assets.
 
+The public command was verified from a fresh directory on macOS arm64: all 313 acceptance checks passed and the three rebuilt panels matched the reference scientific values and dtypes. See the [public reproduction evidence](Analysis/reproducibility_2026-09-22/README.md). Keep at least 10 GB free. Linux and Windows WSL were not exercised in that end-to-end test.
+
 ## Versioned scope
 
 `Metadata/release_scope.json` pins the reviewed release:

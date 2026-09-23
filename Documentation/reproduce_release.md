@@ -28,6 +28,8 @@ The bootstrap refuses a nonempty destination, including an interrupted run's dir
 
 The bootstrap and assets are pinned to the release tag, rather than a changing `main` branch. The frozen pipeline remains the original validated snapshot; the portable runner only relocates runtime file paths. The [reviewable bootstrap source](../Scripts/bootstrap_reproduction.sh) records the pinned uv installer and download-manifest hash. Archived source copies preserve their original provenance; use the command at the public release tag for the current multipart download procedure. Native Windows PowerShell/CMD is not supported by this Bash command; use WSL.
 
+The public command was tested end to end in a fresh directory on **macOS arm64**. All 18 locked dependencies matched, all 313 acceptance checks passed, and all three reference-panel comparisons passed with the path-only normalization specified below. See the [recorded public-run evidence](../Analysis/reproducibility_2026-09-22/README.md). Linux and Windows WSL were not exercised in this verification.
+
 ## Manual reproduction
 
 For a manual download, obtain every numbered piece of each desired archive listed in `download_manifest.json`. A `.partNNNN` file is a slice, not an independently extractable ZIP. Join pieces in numerical order, for example:
