@@ -31,6 +31,7 @@ def pipeline_fingerprints() -> dict[str, str]:
 def data_fingerprints(root: Path) -> dict[str, str]:
     paths = [p for folder in ("Panels", "Dictionary", "Checks") for p in (root / folder).rglob("*")
              if p.is_file() and p.suffix in {".parquet", ".csv", ".json", ".xlsx"}
+             and "ipeds" not in p.relative_to(root).parts
              and p.name not in {"qa_fingerprints.json", "release_input_hashes.csv"}]
     return {str(p.relative_to(root)): sha256(p) for p in sorted(paths) if p.exists()}
 
@@ -95,37 +96,3 @@ def require_current_qa(root: Path) -> None:
         raise ValueError("Transformation and QA evidence belong to a different run")
     if completed["code_and_metadata"] != pipeline_fingerprints() or completed["data"] != transformation_fingerprints(root):
         raise ValueError("Transformed artifacts changed before QA; rerun transformations")
-
-
-def require_current_linkage(root: Path, master: Path) -> dict | None:
-    """Reject a stale bridge, changed directory input, or changed linkage artifact."""
-    import pandas as pd
-    path = root / "Panels/ipeds/ipeds_linkage_manifest.json"
-    if not path.exists():
-        return None
-    manifest = json.loads(path.read_text())
-    if manifest.get("source_panel_sha256") != sha256(master):
-        raise ValueError("IPEDS linkage belongs to a different master; rerun stage 13")
-    if manifest.get("linkage_code_sha256") != sha256(REPO / "Scripts/fsa_ipeds_linkage.py"):
-        raise ValueError("IPEDS linkage code changed; rerun stage 13")
-    if manifest.get("all_original_cells_preserved") is not True:
-        raise ValueError("IPEDS linkage has not certified preservation of original FSA cells")
-    for artifact in manifest["artifacts"].values():
-        if sha256(Path(artifact["path"])) != artifact["sha256"]:
-            raise ValueError("IPEDS artifact changed since linkage build; rerun stage 13")
-    source_manifest = pd.read_csv(path.parent / "ipeds_source_manifest.csv", dtype=str).fillna("")
-    verified = 0
-    for source in source_manifest.to_dict("records"):
-        if source.get("sha256"):
-            if not source.get("path") or sha256(Path(source["path"])) != source["sha256"]:
-                raise ValueError("IPEDS directory input changed since linkage build; rerun stage 13")
-            verified += 1
-    if not verified:
-        raise ValueError("No hashed IPEDS source files in linkage provenance")
-    if manifest.get("crosswalk_requested"):
-        crosswalk = pd.read_csv(path.parent / "ipeds_crosswalk_source_manifest.csv", dtype=str).fillna("")
-        for source in crosswalk.to_dict("records"):
-            if source.get("status") == "loaded" and (not source.get("source_path") or
-                    sha256(Path(source["source_path"])) != source.get("sha256")):
-                raise ValueError("Official crosswalk input changed since linkage build; rerun stage 13")
-    return manifest

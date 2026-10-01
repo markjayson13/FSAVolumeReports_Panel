@@ -1,3 +1,5 @@
+> Repository boundary: this ledger is preserved as source-identity evidence. Only approved full-OPEID recoveries execute here. UNITID-only inclusion is implemented in [IPEDS-FSA_Panel](https://github.com/markjayson13/IPEDS-FSA_Panel); unresolved OPEIDs remain quarantined in the FSA master.
+
 # Missing source identity review
 
 The first release retained 87 institution-like source rows without valid full OPEIDs: 66 grant rows with blank IDs and 21 Campus-Based rows with the invalid placeholder `00000000`. This review examines every one. The [resolution ledger](../Metadata/source_identity_resolutions.csv) records the original workbook hash, URL, selected sheet and Excel row, expected raw descriptors, independent evidence, decision and unresolved reason. A source-row recovery is distinct from an IPEDS UNITID assignment or a claim that program reporting boundaries coincide.

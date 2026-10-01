@@ -24,8 +24,6 @@ from pathlib import Path, PurePosixPath
 
 COMPARISONS = {
     "Panels/final/fsa_volume_reports_panel_1999_2025.parquet": ["opeid8", "award_year"],
-    "Panels/ipeds/fsa_ipeds_bridge.parquet": ["opeid8", "award_year"],
-    "Panels/ipeds/unitid_research/fsa_unitid_award_year_panel.parquet": ["unitid", "award_year"],
 }
 
 
@@ -76,7 +74,7 @@ def verify_bundle(bundle: Path) -> tuple[dict, dict[str, dict]]:
         records[relative] = item
     required = {"original_release_manifest.json", "selected_panel_files.csv",
                 "source/Scripts/00_run_all.py", "source/requirements.txt",
-                "environment-requirements.txt", "inputs/ipeds_crosswalks/download_manifest.json"}
+                "environment-requirements.txt"}
     if required - records.keys():
         raise ValueError(f"Missing required manifest entries: {sorted(required - records.keys())}")
     # Extra source/input files can change glob-based source selection. Require
@@ -88,6 +86,8 @@ def verify_bundle(bundle: Path) -> tuple[dict, dict[str, dict]]:
                 if relative not in records:
                     raise ValueError(f"Unmanifested bundle file: {relative}")
     original = json.loads((bundle / "original_release_manifest.json").read_text())
+    if original.get("repository_scope") != "fsa_reporting_unit_panel":
+        raise ValueError("This runner accepts FSA-only bundles; use the historical release runner for mixed legacy bundles")
     for item in original["code_and_metadata"]:
         record = records.get("source/" + item["path"])
         if record is None or record["sha256"] != item["sha256"]:
@@ -181,7 +181,7 @@ def stage_inputs(bundle: Path, output: Path, fields: list[str], rows: list[dict]
 
 
 def compare_reference(output: Path, reference: Path, original: dict) -> dict:
-    """Check every canonical panel cell; normalize only two provenance paths."""
+    """Check every FSA master cell, including original provenance text."""
     import pandas as pd
 
     expected_hashes = {r["path"]: r["sha256"] for r in original["artifacts"]}
@@ -196,21 +196,13 @@ def compare_reference(output: Path, reference: Path, original: dict) -> dict:
         left = left.sort_values(keys).reset_index(drop=True)
         right = right.sort_values(keys).reset_index(drop=True)
         pd.testing.assert_series_equal(left.dtypes, right.dtypes)
-        normalized = []
-        for column in left.columns:
-            if column in right and (column in {"ipeds_source_path", "cw_source_path"}
-                                    or column.endswith(("__ipeds_source_path", "__cw_source_path"))):
-                normalized.append(column)
-                for frame in (left, right):
-                    frame[column] = frame[column].map(
-                        lambda x: Path(x).name if isinstance(x, str) and x else x)
         pd.testing.assert_frame_equal(left, right, check_exact=True, check_dtype=True)
         results.append({"path": relative, "rows": len(left), "columns": len(left.columns),
                         "keys": keys, "all_cells_equal": True,
-                        "normalized_path_columns": normalized,
+                        "normalized_path_columns": [],
                         "reference_sha256": sha256(old_path), "rebuilt_sha256": sha256(new_path),
                         "byte_identical": sha256(old_path) == sha256(new_path)})
-    return {"passed": True, "comparison": "all cells, exact dtypes and values; only HD/CW path directories normalized",
+    return {"passed": True, "comparison": "all FSA master cells, exact dtypes and values; no path normalization",
             "artifacts": results}
 
 
@@ -242,8 +234,7 @@ def main() -> None:
     build = output / "build"
     build.mkdir(parents=True, exist_ok=True)
     command = [sys.executable, str(bundle / "source/Scripts/00_run_all.py"), "--root", str(output),
-               "--skip-download", "--ipeds-dir", str(bundle / "inputs/ipeds_hd"),
-               "--ipeds-crosswalk-dir", str(bundle / "inputs/ipeds_crosswalks"), "--run-qaqc"]
+               "--skip-download", "--run-qaqc"]
     report = {"started_utc": datetime.now(timezone.utc).isoformat(), "command": command,
               "bundle_manifest_sha256": sha256(bundle / "input_manifest.json"),
               "original_release_manifest_sha256": sha256(bundle / "original_release_manifest.json"),

@@ -26,7 +26,7 @@ class ReleaseTransportTests(unittest.TestCase):
             (self.assets / name).write_bytes(data)
             records.append({"name": name, "bytes": len(data), "sha256": hashlib.sha256(data).hexdigest()})
         (self.assets / "distribution_manifest.json").write_text(json.dumps({
-            "release_tag": "fsa-research-v2-2026-09-22", "assets": records,
+            "release_tag": "fsa-research-v3-fsa-only", "assets": records,
         }))
 
     def test_parts_reassemble_exactly_and_repeat_does_not_change_sources(self):
@@ -43,7 +43,7 @@ class ReleaseTransportTests(unittest.TestCase):
         self.assertEqual({p.name: p.read_bytes() for p in self.assets.iterdir()}, original)
 
     def test_changed_source_rejected_before_output_is_created(self):
-        (self.assets / MODULE.WHOLE_ARCHIVE).write_bytes(b"changed")
+        (self.assets / sorted(MODULE.ARCHIVES)[0]).write_bytes(b"changed")
         with self.assertRaisesRegex(ValueError, "differs"):
             MODULE.package_transport(self.assets, self.output, 11)
         self.assertFalse(self.output.exists())

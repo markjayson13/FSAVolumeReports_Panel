@@ -1,0 +1,3249 @@
+{
+  "stale": "/Users/markjaysonfarol13/Projects/Research/Higher Ed research/Data/FSA/FSAVolumeReports_Paneling",
+  "current": "/Users/markjaysonfarol13/Projects/Research/Higher Ed research/Data/FSA/FSAVolumeReports_Panel-main",
+  "old_workbooks": 216,
+  "selected_source_comparison": {
+    "root": "/Users/markjaysonfarol13/Projects/Research/Higher Ed research/Data/FSA/FSAVolumeReports_Panel-main/ResearchBuild/public-reproduction-test/rebuilt/Raw_Title_IV_Reports",
+    "selected_workbooks": 86,
+    "exact_matches": 86,
+    "unmatched": []
+  },
+  "current_raw_links": [
+    {
+      "path": "/Users/markjaysonfarol13/Projects/Research/Higher Ed research/Data/FSA/FSAVolumeReports_Panel-main/ResearchBuild/2026-09-22/Raw_Title_IV_Reports",
+      "target": "/Users/markjaysonfarol13/Projects/FSAVolumeReports_Paneling/Raw_Title_IV_Reports",
+      "valid": false,
+      "new_target": "../Raw_Title_IV_Reports",
+      "valid_after": true
+    },
+    {
+      "path": "/Users/markjaysonfarol13/Projects/Research/Higher Ed research/Data/FSA/FSAVolumeReports_Panel-main/ResearchBuild/2026-09-22-v2/Raw_Title_IV_Reports",
+      "target": "/Users/markjaysonfarol13/Projects/FSAVolumeReports_Paneling/Raw_Title_IV_Reports",
+      "valid": false,
+      "new_target": "../Raw_Title_IV_Reports",
+      "valid_after": true
+    }
+  ],
+  "raw_decision": "Preserve all raw source files by moving into current ResearchBuild/Raw_Title_IV_Reports, repoint broken source links.",
+  "inventory": [
+    {
+      "path": ".DS_Store",
+      "bytes": 14340,
+      "mtime_ns": 1790723974691088333,
+      "sha256": "eabaf238b684c05b6a9d53476d12167a851edc66730dc0183992087240f5104c",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/.DS_Store",
+      "bytes": 14340,
+      "mtime_ns": 1781123639118889656,
+      "sha256": "c3b03a74d19b69b2c1876beb0786064cf1dc4e9f7a9da9c713abc4a413f0eebf",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/acceptance_qc/acceptance_summary.csv",
+      "bytes": 4717,
+      "mtime_ns": 1773473671940359149,
+      "sha256": "efd5721aa4aa9aa1a346686b696825a7a64d830f2d50a3a212db2bad047610e9",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/acceptance_qc/acceptance_summary.md",
+      "bytes": 4993,
+      "mtime_ns": 1773473671940819778,
+      "sha256": "38fa29c1c7e0a9bd3df8be261f9a8f8ac10b36418c7d774414b4541fb111f9dc",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/dictionary_qc/dictionary_qaqc_summary.csv",
+      "bytes": 102,
+      "mtime_ns": 1773447266582059270,
+      "sha256": "8b3b219b64b3fba0b242790410dfe7738205d17f907f4a66d3cbcf4a2232a63e",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/dictionary_qc/unmapped_actionable_headers.csv",
+      "bytes": 131,
+      "mtime_ns": 1773447266581567265,
+      "sha256": "99050e7760d74678aa778192994b8939af70f79a4cbf0b0af485ffbd5892400e",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/download_qc/download_failures.csv",
+      "bytes": 40,
+      "mtime_ns": 1773447199277352590,
+      "sha256": "99bbcb526dde4a1713be0b3a956a4a658f2ab6f7c1e4774949629177aa2da2fe",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/download_qc/preflight_inventory_summary.csv",
+      "bytes": 1543,
+      "mtime_ns": 1773447198752409054,
+      "sha256": "7e8abf9c972be2fb1fa5f8c5d8939efef997b40475a2285b1dadc77f7146f423",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/download_qc/preflight_release_inventory.csv",
+      "bytes": 45929,
+      "mtime_ns": 1773447198748563397,
+      "sha256": "ce0369611a68387e82cbc3a044d7adbe45571c25566a36365809b6e84fdfdf94",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/download_qc/preflight_selected_panel_files.csv",
+      "bytes": 18088,
+      "mtime_ns": 1773447198749032068,
+      "sha256": "41f5a4a26c622f4afdd563c40361c57fd17498fff1fbcb02adbace529dd9ee03",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/download_qc/preflight_validation.csv",
+      "bytes": 2990,
+      "mtime_ns": 1773447198754004401,
+      "sha256": "dd8ee7983b639ddd00c1429a580de86ead131e6e6d7999b776513b48bb62807f",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/download_qc/release_inventory.csv",
+      "bytes": 45929,
+      "mtime_ns": 1773447198755371662,
+      "sha256": "ce0369611a68387e82cbc3a044d7adbe45571c25566a36365809b6e84fdfdf94",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/download_qc/selected_panel_files.csv",
+      "bytes": 39988,
+      "mtime_ns": 1773447199362486799,
+      "sha256": "739495a5c9bd4fc6494aba3dde4c14f2b81c9d66c71f097c64cdce3b29e89af7",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/final_filters/fsa_volume_reports_clean_us_states_only_1999_2025_dropped_state_counts.csv",
+      "bytes": 95,
+      "mtime_ns": 1773473669652566367,
+      "sha256": "4c7c8c4ffa538a9b9efc8eadc7c5cc5b32e494bf702d9a557f3e77c3ee9dd67c",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/final_filters/fsa_volume_reports_clean_us_states_only_1999_2025_summary.csv",
+      "bytes": 595,
+      "mtime_ns": 1773473669653315665,
+      "sha256": "03658e66bb249da60e4d50ae869c6b91a9f056420625a9195282e11fad75b530",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/final_panels/fsa_volume_reports_panel_us_states_only_1999_2025_summary.csv",
+      "bytes": 712,
+      "mtime_ns": 1773473670224779034,
+      "sha256": "1d5f6d0891438539d78be6c2de0be5c946facfb372caa419222038a7fd531d03",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/panel_qc/campus_based_branch_opeid_summary.csv",
+      "bytes": 755,
+      "mtime_ns": 1773447276074183362,
+      "sha256": "e34aef01dbef5d773fc91b6cd8cdf407dd74f092fe3407b272db74991cf9b468",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/panel_qc/campus_based_unmapped_actionable_headers.csv",
+      "bytes": 493,
+      "mtime_ns": 1773446876114521486,
+      "sha256": "eafb0e3435cc0976be0167d8fefe302c3266f806ef89860688aef60c50c7d10e",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/panel_qc/campus_based_year_summary.csv",
+      "bytes": 832,
+      "mtime_ns": 1773447276074053736,
+      "sha256": "bc0c7df98e51c1df8e753d1068bdac3e74fa682adb83a05022046d28a96855c9",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/panel_qc/direct_loans_branch_opeid_summary.csv",
+      "bytes": 848,
+      "mtime_ns": 1773473637421909024,
+      "sha256": "ee376a728a12486199d8c8540790730a834ac72e9e4df41e85f66cbe9fdcadca",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/panel_qc/direct_loans_year_summary.csv",
+      "bytes": 934,
+      "mtime_ns": 1773473637421751689,
+      "sha256": "78ebb24057963779487bf55294639e1d9185876a4b7cf8623d3812e451a1e116",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/panel_qc/ffel_branch_opeid_summary.csv",
+      "bytes": 295,
+      "mtime_ns": 1773473640287403848,
+      "sha256": "06bd9e1a481f67f472179f109702825cb0dacab0b25c4082762e95c3c138ac99",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/panel_qc/ffel_year_summary.csv",
+      "bytes": 336,
+      "mtime_ns": 1773473640287299722,
+      "sha256": "4421b502c7586fe9f99d56e8ca2e6ec31db36737de080d66d821bc5c62e4d3da",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/panel_qc/final_descriptor_conflicts.csv",
+      "bytes": 8940281,
+      "mtime_ns": 1773473662015373242,
+      "sha256": "4f8697ff4893626078e8dac027b283b1d3727ae476b7ecd702bd6a1840304287",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/panel_qc/final_descriptor_manual_review.csv",
+      "bytes": 2653139,
+      "mtime_ns": 1773473662327462700,
+      "sha256": "ac813ba8344364714be90c2120debc293d8a8620592b714f77466ca748741f1f",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/panel_qc/final_descriptor_resolution_detail.csv",
+      "bytes": 24433514,
+      "mtime_ns": 1773473662293213968,
+      "sha256": "6caa44a0e8922c2be652efe5c176d3dabe00dab1efb487d4bba5958321495b80",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/panel_qc/final_descriptor_resolution_summary.csv",
+      "bytes": 671,
+      "mtime_ns": 1773473662329318549,
+      "sha256": "7730e92372f8591304e6feeda7375e6935cdf595435dd7f2aa0a809ab9c682b0",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/panel_qc/grants_branch_opeid_summary.csv",
+      "bytes": 703,
+      "mtime_ns": 1773447272944569521,
+      "sha256": "28fdc38f1152f1c211735fc365be99d57fe74c03c6f16a655ec1030b16c43202",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/panel_qc/grants_year_summary.csv",
+      "bytes": 789,
+      "mtime_ns": 1773447272944421478,
+      "sha256": "5c30997137ab01f9f41637dba05741c9d145014478cee83fa48868185973dab6",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/panel_qc/loan_consolidation_summary.csv",
+      "bytes": 1077,
+      "mtime_ns": 1773473642574262497,
+      "sha256": "835ad3bb575877e2650a806b75b5ac2bad3ab4ca55b154c5f585877ae487a810",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/panel_qc/loan_harmonization_summary.csv",
+      "bytes": 3348,
+      "mtime_ns": 1773473642573979620,
+      "sha256": "340c88d5f38e8d1d0b22293f5ac24e3e510b729ddb63a92c714a3ae82efb6c98",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/panel_qc/manual_review_package/all_manual_review.csv",
+      "bytes": 4236639,
+      "mtime_ns": 1773473664753215795,
+      "sha256": "68229c3eb8bbe25bccd07dcdc6c79d67bef04fb92f64e1dc8a9b70c26a043267",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/panel_qc/manual_review_package/final_descriptor_manual_review_workbook.xlsx",
+      "bytes": 2320136,
+      "mtime_ns": 1773473668017533772,
+      "sha256": "ab1f0fdefe0d785288fa3ef10ee085a28c3e7219436197b889be652a61862446",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/panel_qc/manual_review_package/priority_likely_renames.csv",
+      "bytes": 1336588,
+      "mtime_ns": 1773473664884804558,
+      "sha256": "dbef38edb1019ecd8440e07f09afa9a422fa9eaff7d5fd56c33d7dc6e1158350",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/panel_qc/manual_review_package/priority_manual_review.csv",
+      "bytes": 1359659,
+      "mtime_ns": 1773473664856017535,
+      "sha256": "7534813a932bafef4a0474606a5c9fa2a5c00fa77c77c45f336147558d9aa298",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/panel_qc/manual_review_package/priority_manual_review_workbook.xlsx",
+      "bytes": 588050,
+      "mtime_ns": 1773473668739326886,
+      "sha256": "6b98720a62f8f26497a1f6bc73a05cf66c9c22ad629d6eb18651c3522fe0e127",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/panel_qc/manual_review_package/priority_state_conflicts.csv",
+      "bytes": 23378,
+      "mtime_ns": 1773473664862354128,
+      "sha256": "7961175b53a76b99126b5e4794193d292a61fd8324aa81b85bb90b39104f9f60",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/panel_qc/manual_review_package/school_manual_review.csv",
+      "bytes": 2752122,
+      "mtime_ns": 1773473664795087964,
+      "sha256": "fd9e085478fccace183e6ac30a21fff2b4d6fe5e17e84ef368137dfebe8f7150",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/panel_qc/manual_review_package/school_type_manual_review.csv",
+      "bytes": 153787,
+      "mtime_ns": 1773473664827469973,
+      "sha256": "21d29b54a75fe3f44655594465b78697a6da2e5fee8769bff0780076ee24b2d2",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/panel_qc/manual_review_package/state_manual_review.csv",
+      "bytes": 21063,
+      "mtime_ns": 1773473664829229237,
+      "sha256": "e08453bb94e031aec5bebd3ac3dd44f23ff081af0ce1492bc6d9abda22296a98",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/panel_qc/manual_review_package/zip_code_manual_review.csv",
+      "bytes": 1310543,
+      "mtime_ns": 1773473664823112105,
+      "sha256": "d9d45553b785b84c79e75705eb5a0f3841cee1f55afad61c9256fa457587eb67",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/panel_qc/panel_coverage_matrix.csv",
+      "bytes": 12941,
+      "mtime_ns": 1773473671358275862,
+      "sha256": "707252e136b68008eff4c0110c65fce04fc7eca8573047b983bbe796b4847d8a",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/panel_qc/panel_qaqc_summary.csv",
+      "bytes": 1334,
+      "mtime_ns": 1773473671212192026,
+      "sha256": "d9ad3cde58c0ced05940bece6c8456f2a388bda417f6fcbc5e6de8ee943ec503",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/source_qc/source_qaqc_summary.csv",
+      "bytes": 406,
+      "mtime_ns": 1773473670615947583,
+      "sha256": "4d513f04e15225a3e3094b780ce01f680783eaf21f188aaca5bd820416839f8a",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Checks/source_qc/workbook_profiles.csv",
+      "bytes": 234422,
+      "mtime_ns": 1773447250287738099,
+      "sha256": "14ebaea1558d198025196ba6be7441001a19ee653e92e225dd71fe37d8774a63",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/.DS_Store",
+      "bytes": 6148,
+      "mtime_ns": 1781123639134465337,
+      "sha256": "6e759a3453bb2a39c638625438625c06be884e3ca394dca16f9c5b7bb2406588",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/campus_based/panel_campus_based_2001.parquet",
+      "bytes": 269030,
+      "mtime_ns": 1773447273489379138,
+      "sha256": "2c231425a13a1d471561c827eb31482b7cdc1057f519dbd96f42302adca53777",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/campus_based/panel_campus_based_2002.parquet",
+      "bytes": 287158,
+      "mtime_ns": 1773447273606613323,
+      "sha256": "8bb1fd991703fd7b139b448eac4d75bb22ada85a44cbe1e471a9c54a9e85527d",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/campus_based/panel_campus_based_2003.parquet",
+      "bytes": 286513,
+      "mtime_ns": 1773447273732799040,
+      "sha256": "2291bd5546c8040263b030cb11e2504d1566edd34d13e81cd26cd49ff2121c8b",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/campus_based/panel_campus_based_2004.parquet",
+      "bytes": 287241,
+      "mtime_ns": 1773447273869078424,
+      "sha256": "f60773c99d6a1c6ff349669417bd1d03ad9cae9edd6ea36dde5e4a4f01a9473a",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/campus_based/panel_campus_based_2005.parquet",
+      "bytes": 288438,
+      "mtime_ns": 1773447273999229341,
+      "sha256": "7cfd9a5fe4c94c3b1702c4e897eec80038cf296110039ffd311f87a76df22ab2",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/campus_based/panel_campus_based_2006.parquet",
+      "bytes": 282854,
+      "mtime_ns": 1773447274132314448,
+      "sha256": "6b24fa380f533e4d1e90164b44a7c2d908323b30865f4f48b91f56f4c4d72396",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/campus_based/panel_campus_based_2007.parquet",
+      "bytes": 283854,
+      "mtime_ns": 1773447274260460348,
+      "sha256": "e537f1f4f8751152ec8df5e6286e0267090f8dc07c9b5e98e4f3ed0a2f14d1b6",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/campus_based/panel_campus_based_2008.parquet",
+      "bytes": 282245,
+      "mtime_ns": 1773447274392290571,
+      "sha256": "05fe88d47ffadbff979cc0de88f23fd2a7e79703d40f1ab5ad786962d1312bec",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/campus_based/panel_campus_based_2009.parquet",
+      "bytes": 283730,
+      "mtime_ns": 1773447274523168660,
+      "sha256": "788322938ee7d23357105df84e6cce1ecfcd9e72047afb8c93519e9e78e8e168",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/campus_based/panel_campus_based_2010.parquet",
+      "bytes": 289674,
+      "mtime_ns": 1773447274647714614,
+      "sha256": "48bab256470f39c61d50158a527361f739ed19b8a8ed0e64c1fd12d97c60817a",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/campus_based/panel_campus_based_2011.parquet",
+      "bytes": 288309,
+      "mtime_ns": 1773447274769026373,
+      "sha256": "d226b3982324153b8e6f3f9810d532b73581c88727265de21b0c4cdedfa2ea2c",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/campus_based/panel_campus_based_2012.parquet",
+      "bytes": 285615,
+      "mtime_ns": 1773447274886771062,
+      "sha256": "3d7ecb3ffd8cdfc8eb495e4ec601958fc2cb08f09e4b9ea32bb248ce2dc13ce1",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/campus_based/panel_campus_based_2013.parquet",
+      "bytes": 281994,
+      "mtime_ns": 1773447275002354649,
+      "sha256": "c8bcd714b177c2cd0230444c4d3adf4bbfd314346914926d1cf37d8679008c00",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/campus_based/panel_campus_based_2014.parquet",
+      "bytes": 283531,
+      "mtime_ns": 1773447275121468306,
+      "sha256": "6a76888b24ecb0292c3a4c5a56fe67108d609ecf35bc413d3c79dc6cc41d0a8d",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/campus_based/panel_campus_based_2015.parquet",
+      "bytes": 277326,
+      "mtime_ns": 1773447275239467414,
+      "sha256": "52c62a034adf99e7c193cb5bbaa45910492fe3f03dae11c1aa8f6f1dbcad430f",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/campus_based/panel_campus_based_2016.parquet",
+      "bytes": 273242,
+      "mtime_ns": 1773447275347405229,
+      "sha256": "658b1c3a77ea062e1eaa06a823c567bce2956c2afce7162bd56e4464b77c75e3",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/campus_based/panel_campus_based_2017.parquet",
+      "bytes": 229408,
+      "mtime_ns": 1773447275441233760,
+      "sha256": "c0a7d90d0a8e26b777de3acd8df7cb5d9212beb22b3225b614342b53d2c723b2",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/campus_based/panel_campus_based_2018.parquet",
+      "bytes": 250319,
+      "mtime_ns": 1773447275578684613,
+      "sha256": "3933fa8d73bfbd8532a2c520678e35e739b5c0d1e884bfc85f330f6000388057",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/campus_based/panel_campus_based_2019.parquet",
+      "bytes": 241221,
+      "mtime_ns": 1773447275677717770,
+      "sha256": "75fb4520edc7c79e4e2ddb8dbe1f4fad80a882884cffd7c897d4198374bb14b7",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/campus_based/panel_campus_based_2020.parquet",
+      "bytes": 241437,
+      "mtime_ns": 1773447275769532410,
+      "sha256": "44d970999910604221883934ef380d4cd5adfc4171c8c33b70dac4c9677835a7",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/campus_based/panel_campus_based_2021.parquet",
+      "bytes": 239032,
+      "mtime_ns": 1773447275857673227,
+      "sha256": "0e135949d26425f4fb16a732854f06eba23a4790ce3966aa936eee3133a48585",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/campus_based/panel_campus_based_2022.parquet",
+      "bytes": 237281,
+      "mtime_ns": 1773447275945280664,
+      "sha256": "6e07b43793e350ad1c07612342fa2c2d735a20b4402c481453dca4600205bc65",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/campus_based/panel_campus_based_2023.parquet",
+      "bytes": 213839,
+      "mtime_ns": 1773447276029788326,
+      "sha256": "2dc0182c47e9433778d5c88a28cb6cffed87d2e85aff8f99dcbfd3d05c829cc7",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/grants/panel_grants_1999.parquet",
+      "bytes": 200537,
+      "mtime_ns": 1773447267356262005,
+      "sha256": "eed682839326907715a482e7b3f46fcfd0efa9f60f849609bfcd459c0bd927d8",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/grants/panel_grants_2000.parquet",
+      "bytes": 200250,
+      "mtime_ns": 1773447267439403531,
+      "sha256": "d2455349bc5936f4afef176fb220119e20e26815397990c7154eea5defa2c592",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/grants/panel_grants_2001.parquet",
+      "bytes": 199984,
+      "mtime_ns": 1773447267519722449,
+      "sha256": "110b9917190a59966baf833fbd20e79dc33471871e2845bfa3ea33f19dc3ab58",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/grants/panel_grants_2002.parquet",
+      "bytes": 199149,
+      "mtime_ns": 1773447267599646698,
+      "sha256": "0b49e35aa8e1ceb4a3ce5499b325cbaa97e06b5d9e3c03e9b39a1a7f19621176",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/grants/panel_grants_2003.parquet",
+      "bytes": 200740,
+      "mtime_ns": 1773447267722800473,
+      "sha256": "0f1f3b6ff8dc7713f780e249044fbf044d6beeae991a0e03259a48186a62279d",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/grants/panel_grants_2004.parquet",
+      "bytes": 200878,
+      "mtime_ns": 1773447267813486895,
+      "sha256": "458c6d44db5f6fc0d7a72b3c6769cce65520eaddf893682222d40df57c1e2284",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/grants/panel_grants_2005.parquet",
+      "bytes": 202345,
+      "mtime_ns": 1773447267903761730,
+      "sha256": "4c7aaa088e794ed6cc055120a9f3810cd930423fd049309e17ea5d2cc99d5752",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/grants/panel_grants_2006.parquet",
+      "bytes": 299808,
+      "mtime_ns": 1773447268136377415,
+      "sha256": "1361510d9a7b26abeab5cc7f4f1bebfce4a7044b1f880bbd2c77ca7d831203ea",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/grants/panel_grants_2007.parquet",
+      "bytes": 302392,
+      "mtime_ns": 1773447268513098134,
+      "sha256": "d95eb8d48ec4814d6fd03adb55e66c7974e29f677c11410e74cec4e868bd364a",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/grants/panel_grants_2008.parquet",
+      "bytes": 311074,
+      "mtime_ns": 1773447268764509186,
+      "sha256": "a4333a07f0ea9f8e52cfcede20eb9bf0bc835e2c4da54d947230215679a8a6b2",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/grants/panel_grants_2009.parquet",
+      "bytes": 319326,
+      "mtime_ns": 1773447269233150003,
+      "sha256": "de042ce1d1a47c3295a82e5362772fb78b52878cf22f5e0529483e7ea86d6dc8",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/grants/panel_grants_2010.parquet",
+      "bytes": 324887,
+      "mtime_ns": 1773447269716167065,
+      "sha256": "516ede31960039daa9a825b57a3ba15fb88a1111891122bb495cea41bf9a1771",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/grants/panel_grants_2011.parquet",
+      "bytes": 280469,
+      "mtime_ns": 1773447270120938767,
+      "sha256": "0259ee21c877830c13633d81d15b910d3a73c1629a36adb970b01f597630feb3",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/grants/panel_grants_2012.parquet",
+      "bytes": 280388,
+      "mtime_ns": 1773447270469582628,
+      "sha256": "9c25f62be11374247ddef344c1016fccb458ee4a93c3a7bc4c9bd60fa99d7add",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/grants/panel_grants_2013.parquet",
+      "bytes": 281278,
+      "mtime_ns": 1773447270815071295,
+      "sha256": "2b6e681ba66f90db1ba7227f533e59fa515ff5425778dade26439d4659c68b75",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/grants/panel_grants_2014.parquet",
+      "bytes": 282786,
+      "mtime_ns": 1773447271200252793,
+      "sha256": "cfc8f82c2d12aee5fabaa3117b3e5031ca26dcd29fa02442c003a1b8aad946ed",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/grants/panel_grants_2015.parquet",
+      "bytes": 279807,
+      "mtime_ns": 1773447271378872405,
+      "sha256": "e54fda2b8f7228b898db83f2c3dd4c1769562622e78c2bc958862909eee53675",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/grants/panel_grants_2016.parquet",
+      "bytes": 281397,
+      "mtime_ns": 1773447271556769427,
+      "sha256": "b0fe18c087c271372bb6d56a37f2ac4b6c657409d43117ebde595649c2384cdd",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/grants/panel_grants_2017.parquet",
+      "bytes": 269426,
+      "mtime_ns": 1773447271724393573,
+      "sha256": "4aa85f9041d43542bf8224573d00664fa811626122b1af2a2155bf3a4efa6393",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/grants/panel_grants_2018.parquet",
+      "bytes": 265150,
+      "mtime_ns": 1773447271923461813,
+      "sha256": "146c39f9c5316a179d7b4e5fb1935028006002920845472773cbea8caa2bcde6",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/grants/panel_grants_2019.parquet",
+      "bytes": 261056,
+      "mtime_ns": 1773447272087484762,
+      "sha256": "e1308a53e183088e53f36e15ecd590e5bc9670ed316b5c442fc0a2cb72d8dbc1",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/grants/panel_grants_2020.parquet",
+      "bytes": 257106,
+      "mtime_ns": 1773447272248498560,
+      "sha256": "b77108190cc61a778d8a926b7202c61be9e7f62d89c8771e00f8147fe5c136f3",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/grants/panel_grants_2021.parquet",
+      "bytes": 251994,
+      "mtime_ns": 1773447272407954262,
+      "sha256": "39873546a1146379ff84f2f0144124f4366b2c79151ae6d573fe8950a662a3ab",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/grants/panel_grants_2022.parquet",
+      "bytes": 250422,
+      "mtime_ns": 1773447272564733984,
+      "sha256": "3986307c5661d414691cb705fe4f55f60fd2a50ec51ea6d9efd49e50e46fe800",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/grants/panel_grants_2023.parquet",
+      "bytes": 248417,
+      "mtime_ns": 1773447272719809025,
+      "sha256": "50d82baef015af8ba66f4756894c9f4f93ba7ded321a0eb9e7c005dcc63d978d",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/grants/panel_grants_2024.parquet",
+      "bytes": 243368,
+      "mtime_ns": 1773447272887725173,
+      "sha256": "e8dd9cf6dc42680484a00a0f0dafecf53d27a6cd04f4ae18c4ddaaf80578bcfc",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_direct/panel_direct_loans_1999.parquet",
+      "bytes": 145586,
+      "mtime_ns": 1773473629607527104,
+      "sha256": "12b6ca8911a822878e71bba6fe4f3ba7c5cfa1d0e52a39c30ddd993dff7428d0",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_direct/panel_direct_loans_2000.parquet",
+      "bytes": 141589,
+      "mtime_ns": 1773473629665599569,
+      "sha256": "aadb7df2a5a8a2270cc28bce003805198f3556b8214d984dde1f73ddb328f5f3",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_direct/panel_direct_loans_2001.parquet",
+      "bytes": 137835,
+      "mtime_ns": 1773473629724466790,
+      "sha256": "1e5c1cb509274fcca74d09d92b58e8b2d7cfde507423e192519f566b9f24b6d3",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_direct/panel_direct_loans_2002.parquet",
+      "bytes": 135157,
+      "mtime_ns": 1773473629783196094,
+      "sha256": "b8a46b2eaecf137eb29c6f32260f84c15d4e8358c6e8196e285471db55c0dd50",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_direct/panel_direct_loans_2003.parquet",
+      "bytes": 132932,
+      "mtime_ns": 1773473629838633580,
+      "sha256": "9b9db75bc43a6f00647f2161994fe4737539e8d8acc4de24623168cb71c0fb3b",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_direct/panel_direct_loans_2004.parquet",
+      "bytes": 132449,
+      "mtime_ns": 1773473629895035490,
+      "sha256": "c609e9d21cc04dc96efde9d1dff661f166a0ff1943e9d3ad90c3b04af1c80a6c",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_direct/panel_direct_loans_2005.parquet",
+      "bytes": 137251,
+      "mtime_ns": 1773473629962020485,
+      "sha256": "4f5038b16371fe96e7c6466aa3296661fce6d1ef9b5c3e8728d35f1cb576553e",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_direct/panel_direct_loans_2006.parquet",
+      "bytes": 140472,
+      "mtime_ns": 1773473630051825579,
+      "sha256": "25b7924b6a08f99f49679c96e565ecf3cbb6beca4f87acca9e6aeeca5ae0fe98",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_direct/panel_direct_loans_2007.parquet",
+      "bytes": 162870,
+      "mtime_ns": 1773473630160937203,
+      "sha256": "29881182dddd8e012c63f5f8eac8397f9b59052bd69dc68f4824afa0879bb1dc",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_direct/panel_direct_loans_2008.parquet",
+      "bytes": 246089,
+      "mtime_ns": 1773473630344183587,
+      "sha256": "16b286848bc2a342360a97e5ce3346008d8ce2d1902faf90fbbbb6185f3749ef",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_direct/panel_direct_loans_2009.parquet",
+      "bytes": 449670,
+      "mtime_ns": 1773473630635242918,
+      "sha256": "11b37b7f30aae59864b17712098d0d85a2f08f4b373c17cfad692f39dc56f7c4",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_direct/panel_direct_loans_2010.parquet",
+      "bytes": 779590,
+      "mtime_ns": 1773473631163665693,
+      "sha256": "87a61c63c54fa15afd51d20df1f1ca849d27509ba928df795b0f5ebc948218c9",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_direct/panel_direct_loans_2011.parquet",
+      "bytes": 777504,
+      "mtime_ns": 1773473631722425459,
+      "sha256": "a634667d680d78b52e7e1a794507cbb010328979daebe1f2470318096a957238",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_direct/panel_direct_loans_2012.parquet",
+      "bytes": 699332,
+      "mtime_ns": 1773473632179831705,
+      "sha256": "95c2fb0853790901fb050c13e514587f64aaba889cedd2e954d2d56b0518860e",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_direct/panel_direct_loans_2013.parquet",
+      "bytes": 683100,
+      "mtime_ns": 1773473632635800441,
+      "sha256": "dedc0efd3fac1794e1076c55a3af6546f4f1365177af248cde1226df271503b7",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_direct/panel_direct_loans_2014.parquet",
+      "bytes": 681939,
+      "mtime_ns": 1773473633128933806,
+      "sha256": "2d8a61458bb7475e4eb389d923fec63a7526f603365222734065f2ac67ee259f",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_direct/panel_direct_loans_2015.parquet",
+      "bytes": 678649,
+      "mtime_ns": 1773473633542680162,
+      "sha256": "fe613f9a0781e184d605139cc1d8edb0e30cf0967e92f87c3e7ac08bbd42db14",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_direct/panel_direct_loans_2016.parquet",
+      "bytes": 673642,
+      "mtime_ns": 1773473633960267049,
+      "sha256": "21b91f2e7674cd40231b78e978da8d91faa5d0495b8933d47dca04404805cd18",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_direct/panel_direct_loans_2017.parquet",
+      "bytes": 638677,
+      "mtime_ns": 1773473634376664133,
+      "sha256": "770883104e58ec2090fdb787538f4d5b49cf705d05e4cb0020719b642b59ac40",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_direct/panel_direct_loans_2018.parquet",
+      "bytes": 629768,
+      "mtime_ns": 1773473634823451128,
+      "sha256": "1bd52ddb808e2a821dd4d0e9a2cdc77c5037f5f9a1f647ebea6a897d1a381555",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_direct/panel_direct_loans_2019.parquet",
+      "bytes": 617307,
+      "mtime_ns": 1773473635322034080,
+      "sha256": "b4898f1b91fc4c7a566073d2b493c49c84d90a8143778b2cd0ab54a63946f5fa",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_direct/panel_direct_loans_2020.parquet",
+      "bytes": 607649,
+      "mtime_ns": 1773473635717077202,
+      "sha256": "e6290e4cc49e56d90c60d203be16fc18b8c1b8e967959e81ff115d15c8ae39c8",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_direct/panel_direct_loans_2021.parquet",
+      "bytes": 602608,
+      "mtime_ns": 1773473636118454125,
+      "sha256": "ecfcab6c9384d58c18ebda622dacfe1e752d5cb9f53b32cb95b2ce25c56e09a3",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_direct/panel_direct_loans_2022.parquet",
+      "bytes": 597458,
+      "mtime_ns": 1773473636510445557,
+      "sha256": "82ce91563239bec2bbf0f25c67a84402dde65ea4988807a02d159600f1486591",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_direct/panel_direct_loans_2023.parquet",
+      "bytes": 590115,
+      "mtime_ns": 1773473636916597768,
+      "sha256": "a15ffc032e6d5b6fbf171a368b55fb1b8544b3619f071e2dbdc951687ae4d7d3",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_direct/panel_direct_loans_2024.parquet",
+      "bytes": 580999,
+      "mtime_ns": 1773473637299378542,
+      "sha256": "10ce19704e6632a2fb36b1acf6df0de28b90247b81328c7ebd1a027f7bd1830f",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_ffel/panel_ffel_1999.parquet",
+      "bytes": 425543,
+      "mtime_ns": 1773473637706477219,
+      "sha256": "60673e893162b9e74e5e7409c390262fa39660d6c42e486f289f03755ecddbac",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_ffel/panel_ffel_2000.parquet",
+      "bytes": 429913,
+      "mtime_ns": 1773473638043588210,
+      "sha256": "0cf97a6403c23a8c84935e93f61c5213694289c83e93a854383240f54e615b08",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_ffel/panel_ffel_2001.parquet",
+      "bytes": 436794,
+      "mtime_ns": 1773473638216577554,
+      "sha256": "edcad9413badfbf5f583abf0483f610a0b8242a9db6fb8c156769d9f84033e62",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_ffel/panel_ffel_2002.parquet",
+      "bytes": 444903,
+      "mtime_ns": 1773473638387824051,
+      "sha256": "11911b972eb9db1a9833d9e05942101b9663fa78dbb1111c3bce4d1f0733c294",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_ffel/panel_ffel_2003.parquet",
+      "bytes": 456850,
+      "mtime_ns": 1773473638558842879,
+      "sha256": "d639cc857fa9a0ea665eb75aa855bccb639afa4bb9b531d5834b49adb66bb12e",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_ffel/panel_ffel_2004.parquet",
+      "bytes": 464040,
+      "mtime_ns": 1773473638738157439,
+      "sha256": "a630543ee7271eb2d8d721f2f8de5ed27b636ebbc4adb704f1a06486ec1e496f",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_ffel/panel_ffel_2005.parquet",
+      "bytes": 486676,
+      "mtime_ns": 1773473638946947070,
+      "sha256": "35cc0325a8d5b75447f7a2f1ecb86665c582e760d6fdf8bce321bf434cfe1dfa",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_ffel/panel_ffel_2006.parquet",
+      "bytes": 513961,
+      "mtime_ns": 1773473639274048482,
+      "sha256": "01218972f1ed03080d75eeb0aed317624e619e49e01ab2f7b9c20c3030b8cce3",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_ffel/panel_ffel_2007.parquet",
+      "bytes": 533518,
+      "mtime_ns": 1773473639610142090,
+      "sha256": "58cacaae78ffaa906b16f36d7ad7a5e4060d81fd33e072b722eacbbbaf209b80",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_ffel/panel_ffel_2008.parquet",
+      "bytes": 510535,
+      "mtime_ns": 1773473639958704382,
+      "sha256": "86c4288b215f8f0d839d38458e9e7cfcbbb35a2f110681c67195e617c725d1df",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Cross_sections/loans_ffel/panel_ffel_2009.parquet",
+      "bytes": 471409,
+      "mtime_ns": 1773473640244700673,
+      "sha256": "7917f722600404fefd1a641d0ca69f9173591b8317910f53fa4705c63cf31c71",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Dictionary/fsa_volume_dictionary.csv",
+      "bytes": 74173,
+      "mtime_ns": 1773447266581126095,
+      "sha256": "2d896c4cbdb6ad91048e45a39e6870c9782d143300f5801f43e5b09537d49f9a",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Dictionary/fsa_volume_dictionary.parquet",
+      "bytes": 13937,
+      "mtime_ns": 1773447266578700200,
+      "sha256": "74f01040f4f7e2bcef0d2a97a3ef3cb7091656095b63393c27442995a3a6d7ca",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Dictionary/fsa_volume_panel_dictionary.csv",
+      "bytes": 110740,
+      "mtime_ns": 1773473662989779463,
+      "sha256": "683e6fa1baf28c8efe259f0c1bb8c534e31b3493af0f6235069ec530d3e9386e",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Dictionary/fsa_volume_panel_dictionary.parquet",
+      "bytes": 12948,
+      "mtime_ns": 1773473662991031598,
+      "sha256": "43709c05f189df7654283f7e0a7fe33072a19f13386a65c54a58a9862a7674a7",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Panels/.DS_Store",
+      "bytes": 10244,
+      "mtime_ns": 1781123639118144358,
+      "sha256": "9365669791e48ba6fedc01e46f1bb37a0853a820c6539cdab2566f9f839779b8",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Panels/campus_based/panel_campus_based_volume_2001_2024.parquet",
+      "bytes": 3300465,
+      "mtime_ns": 1773447276072913477,
+      "sha256": "b52bcf41575dfb2cc16c40ff237c705184cd0ab2bd9e4fe52ed123ca665ccbd4",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Panels/final/.DS_Store",
+      "bytes": 8196,
+      "mtime_ns": 1773476471596818375,
+      "sha256": "f0f68aaffd441eb73a97afb05d27031bb819b567ccabbc4ae621eed37892e500",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Panels/final/fsa_volume_reports_clean_1999_2025.parquet",
+      "bytes": 14086359,
+      "mtime_ns": 1773473650637638660,
+      "sha256": "58b3477206f22f96b382a1406c7eae9420d02c3367caaf363318ee229350bafd",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Panels/final/fsa_volume_reports_clean_us_states_only_1999_2025.parquet",
+      "bytes": 13362436,
+      "mtime_ns": 1773473669646982156,
+      "sha256": "23b0908b1d885a52d6f6274cc610dfbefeff21cb674c46cbc5cf11f02171ad21",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Panels/final/fsa_volume_reports_panel_us_states_only_1999_2025.parquet",
+      "bytes": 12051165,
+      "mtime_ns": 1773473670218152855,
+      "sha256": "89132ccc08859dc0a7d3c0bebddaabc9ad1407571d858bf1517137bd6554f030",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Panels/final/fsa_volume_reports_panel_us_states_only_1999_2025.xls",
+      "bytes": 48643072,
+      "mtime_ns": 1773475416000000000,
+      "sha256": "71fc31f96ebd2dd8e397ba187bb715f5ebb15142acb3535bc533b214b6263046",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Panels/final/fsa_volume_reports_panel_us_states_only_1999_2025.xlsx",
+      "bytes": 24972205,
+      "mtime_ns": 1773473728889824172,
+      "sha256": "654e34511b2d6416174e59a5ff95078321e6fec265b9ae0c8a52498222042339",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Panels/final/fsa_volume_reports_raw_1999_2025.parquet",
+      "bytes": 13322026,
+      "mtime_ns": 1773473643527158087,
+      "sha256": "a922401f2d9d40377621919759660033273172cdaafa045a796e87e908c62452",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Panels/grants/panel_grant_volume_1999_2025.parquet",
+      "bytes": 2796263,
+      "mtime_ns": 1773447272942115417,
+      "sha256": "b87305a07c879b2930931e3a92afc489b0cdbd763eb0f03e93fc0306fd89a05e",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Panels/loans/panel_direct_loan_volume_1999_2025.parquet",
+      "bytes": 7798364,
+      "mtime_ns": 1773473637418716873,
+      "sha256": "18957db2d847cf41d351f6f391b08399eb60777023517f75ed152685df498a83",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Panels/loans/panel_ffel_loan_volume_1999_2010.parquet",
+      "bytes": 3372663,
+      "mtime_ns": 1773473640285552125,
+      "sha256": "73307bd627ff86a13cbcf9e8a88d9f3debeaba87ab29d49c86ae66b345a87e02",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Panels/loans/panel_loan_volume_1999_2025.parquet",
+      "bytes": 8189149,
+      "mtime_ns": 1773473642569604751,
+      "sha256": "fcf4a1ce2d94aa020e1761666a8653e5c86d57155367385bf38f9c0c3d78aee9",
+      "action": "delete_superseded_output"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/.DS_Store",
+      "bytes": 10244,
+      "mtime_ns": 1781123639117838146,
+      "sha256": "60e5562360441afa73bf7665768a808549bdcdef790be73909fceef3b2a66d9f",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/.DS_Store",
+      "bytes": 8196,
+      "mtime_ns": 1773446495112317697,
+      "sha256": "5d001aaa45353a1dabefef4ab8b677de583c5d33671eec114380eacdc3529899",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2001/.DS_Store",
+      "bytes": 6148,
+      "mtime_ns": 1773446495114153171,
+      "sha256": "21874af9dc015de5b45a27538909382454fb11c43f682985012964400e379255",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2001/downloads/CBDashboard0102.xls",
+      "bytes": 968192,
+      "mtime_ns": 1773445831355337217,
+      "sha256": "314876f003f6c5bb42fc5cfefd3783fbb2713f0ae069f8f45114e56f1f11cc86",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2001/manifest.csv",
+      "bytes": 650,
+      "mtime_ns": 1773447199271905711,
+      "sha256": "caf830308b863feca6a66d7a81a3734548839505fc44972d75e1292908e0e469",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2002/downloads/CBDashboard0203.xls",
+      "bytes": 911872,
+      "mtime_ns": 1773445832121759533,
+      "sha256": "75b6440352062d875589116d5d66b8d0a89a173b04a3bcab02c343f36a4d6fe6",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2002/manifest.csv",
+      "bytes": 650,
+      "mtime_ns": 1773447199271988170,
+      "sha256": "fb4a035980caea7a2c5982f44645154647fc876a0ec4a4aa05aaba63905d9b56",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2003/downloads/CBDashboard0304.xls",
+      "bytes": 918016,
+      "mtime_ns": 1773445832943128724,
+      "sha256": "8338d404f1308387d2f24ab77bd6e2e4509dd2574d4e1a4c421ab83c276947b1",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2003/manifest.csv",
+      "bytes": 650,
+      "mtime_ns": 1773447199272068796,
+      "sha256": "f3583815e219695ce3036574548defcfc7e248f06fecb56c1c364b359f719dde",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2004/downloads/CBDashboard0405.xls",
+      "bytes": 920064,
+      "mtime_ns": 1773445833649581893,
+      "sha256": "96d1d4b904662e9bbc1ca9d638ba56fe09177656f6ea370ae022465553f034eb",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2004/manifest.csv",
+      "bytes": 650,
+      "mtime_ns": 1773447199272217005,
+      "sha256": "84833516ef37d01fcc8857562230d09b52b97415ecdeca39052a987398a7ddde",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2005/downloads/CBDashboard0506.xls",
+      "bytes": 909824,
+      "mtime_ns": 1773445834609526965,
+      "sha256": "796c09c9b105c0adf3fd19a86cfeb400324abb11cdedaf4d9cbd7080db346814",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2005/manifest.csv",
+      "bytes": 650,
+      "mtime_ns": 1773447199272286589,
+      "sha256": "528d6b6cfcbdf7745ae10da6e0ac36a2238bc82458958b83dd02648e7f25c671",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2006/downloads/CBDashboard0607.xls",
+      "bytes": 815104,
+      "mtime_ns": 1773445835307039384,
+      "sha256": "f580da2f5d46e920e9684e335c69aa6b8fbd7b063c9800ee31eb505a09613c62",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2006/manifest.csv",
+      "bytes": 650,
+      "mtime_ns": 1773447199272361798,
+      "sha256": "8e1d76e3ed48a117dc50551795335deba4336182404c8dd06d113154e62e53c1",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2007/downloads/CBDashboard0708.xls",
+      "bytes": 1228800,
+      "mtime_ns": 1773445836134884521,
+      "sha256": "9d370d8877bcb0f9630d1f45d7527570bc9540ea50753c8e8997147ae57e87d0",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2007/manifest.csv",
+      "bytes": 651,
+      "mtime_ns": 1773447199272428174,
+      "sha256": "65be1d6bdfbed2cef9f8d13a3f78a48d640c9707afd784098dc130ede5a9169e",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2008/downloads/CBDashboard0809.xls",
+      "bytes": 969216,
+      "mtime_ns": 1773445837088930398,
+      "sha256": "fc750b9edcc1e351ba51b43744a5f9d46338b938878143303a8b007991c27de6",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2008/manifest.csv",
+      "bytes": 650,
+      "mtime_ns": 1773447199272513591,
+      "sha256": "9d31f399e22704edc7da73d3df21b0436f457749727ac1dff63126b57149f1e9",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2009/downloads/CBDashboard0910.xls",
+      "bytes": 1050112,
+      "mtime_ns": 1773445837826172457,
+      "sha256": "7a30e8308d81496488d439437444dd90a3e39a65a5241362fea08dcb2a332c61",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2009/manifest.csv",
+      "bytes": 651,
+      "mtime_ns": 1773447199272599342,
+      "sha256": "d31519e9fdb2237672f62dd0ba1fc32f22a1357b0371f3992839a4b0ba4af351",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2010/downloads/2010-2011CBData.xls",
+      "bytes": 960512,
+      "mtime_ns": 1773445838593786905,
+      "sha256": "2816f64106ea40a3b635a3a0253b0776648fa9af81d17e41e755597fabe9160d",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2010/manifest.csv",
+      "bytes": 650,
+      "mtime_ns": 1773447199272701384,
+      "sha256": "cad04d0958571babc97f9c1f6967c851c8d78118ca2390433b910b6a42365553",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2011/downloads/2011-2012CBData.xls",
+      "bytes": 903680,
+      "mtime_ns": 1773445839354967822,
+      "sha256": "92f94d755e8554e55c70099c32ed08311525c225fc3828642e83bfcaa63fb0fa",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2011/manifest.csv",
+      "bytes": 650,
+      "mtime_ns": 1773447199272777760,
+      "sha256": "5ffdce10fa99199fcb09edd808d90c9a53d96432e039b7e70cf57f1e81685af0",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2012/downloads/2012-13CampusBasedFunding.xls",
+      "bytes": 858112,
+      "mtime_ns": 1773445839991130213,
+      "sha256": "7055a1ca96e83c36808eb89b6174c2228c5da0450806aeeae9a7678b8a0c88de",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2012/manifest.csv",
+      "bytes": 680,
+      "mtime_ns": 1773447199272870511,
+      "sha256": "0671a87691b43375ed4829ae9ab18b2f1c686a312d487c50b2ece58100de4ea5",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2013/downloads/2013-14CampusBased.xls",
+      "bytes": 805376,
+      "mtime_ns": 1773445840847721147,
+      "sha256": "dae92c13904d1011f6970c6dd387c8f5d7e954c920ac26ba9f0ca2466c53ef0f",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2013/manifest.csv",
+      "bytes": 659,
+      "mtime_ns": 1773447199272940928,
+      "sha256": "c79ef51e55934aa9f4a31a7b4b401edb84fd9248c165efbe4b47f371944f63b8",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2014/downloads/2014-15CampusBased.xls",
+      "bytes": 836608,
+      "mtime_ns": 1773445841519196158,
+      "sha256": "3003bb108a5b484a0db06b7ef509595a87d6b9ce3dc7f73090756bf7e95c34f5",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2014/manifest.csv",
+      "bytes": 659,
+      "mtime_ns": 1773447199273018929,
+      "sha256": "655e07044c1da9135f6b41cd2d0401e933ee84b5120fba7e9df638c014be1b14",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2015/downloads/2015-16CampusBased.xls",
+      "bytes": 785920,
+      "mtime_ns": 1773445842152640536,
+      "sha256": "322a79e82e44382831fe99bef5484af317333ca508d2b8dd6199f1e2f4a4d15a",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2015/manifest.csv",
+      "bytes": 684,
+      "mtime_ns": 1773447199273087304,
+      "sha256": "9cb849c4caa7c44a153d2b4fae2775004152cf821fd420fc8ee6e4149cb52206",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2016/downloads/2016-17CampusBased.xls",
+      "bytes": 804352,
+      "mtime_ns": 1773445842903871366,
+      "sha256": "9f2ebffe0cb5512671071c4b1bc8772ea246e74f8b0a990245123cec2d7f8f30",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2016/manifest.csv",
+      "bytes": 684,
+      "mtime_ns": 1773447199273170388,
+      "sha256": "251c49167a772af4d29c5ac45e510dfc8e1ce39b76ea55cc20d3f7b152a620ec",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2017/downloads/ay17-18-campus-based.xls",
+      "bytes": 707072,
+      "mtime_ns": 1773445843181480795,
+      "sha256": "eb44124f5e59f07c9bf701b5a06a1600a902b041fcc698ba46526630874f06b4",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2017/manifest.csv",
+      "bytes": 665,
+      "mtime_ns": 1773447199273338348,
+      "sha256": "473010fd585ef5bbee2892776093aac63985b6e5dbc91c9bdc7052f8925e8f77",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2018/downloads/ay18-19-campus-based.xls",
+      "bytes": 804864,
+      "mtime_ns": 1773445843867459954,
+      "sha256": "52240a846cf560b24653a12a843e4708aeb240e9c0d5be2f3d10e2acabbd9619",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2018/manifest.csv",
+      "bytes": 689,
+      "mtime_ns": 1773447199273418849,
+      "sha256": "a9123b079d80f8c63c5970b48e5a6e7a1de945910d2bcc4649c2112b6c447751",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2019/downloads/ay19-20-campus-based.xls",
+      "bytes": 699392,
+      "mtime_ns": 1773445844644656069,
+      "sha256": "a92fb2a2825ba6f09aaeabe78840f6a1c065d5134750277410554d1f5c7ef372",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2019/manifest.csv",
+      "bytes": 689,
+      "mtime_ns": 1773447199273486349,
+      "sha256": "abc4a1febf3f76f752e2b9475e9b322046fff6b635b62f70b581fba2268fa9ce",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2020/downloads/ay20-21-campus-based.xls",
+      "bytes": 742912,
+      "mtime_ns": 1773445845282590927,
+      "sha256": "ac02b21720c413aea4256efaf28f9bdd5202989793bd411565ebf63f71784174",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2020/manifest.csv",
+      "bytes": 689,
+      "mtime_ns": 1773447199273568808,
+      "sha256": "5838a3832b502a09307e4a5a5bacbe18f07ee7fcba85e3d850bcdc26441548e9",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2021/downloads/ay21-22-campus-based.xls",
+      "bytes": 731136,
+      "mtime_ns": 1773445845928052152,
+      "sha256": "ca749d7212dfc95a0cb1dfb70cc8adde22cb199f9d869aa4b6a7a537baf0c7d1",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2021/manifest.csv",
+      "bytes": 689,
+      "mtime_ns": 1773447199273644517,
+      "sha256": "0827f0d61933a6289a6950d50de23e150ccfce87b1b36bb159a367cc5fc50674",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2022/downloads/ay22-23-campus-based.xls",
+      "bytes": 728576,
+      "mtime_ns": 1773445846301628766,
+      "sha256": "de812c83b409f9df8e254f39eb668e952dd198d103bcfd318ed38f7d97f462c6",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2022/manifest.csv",
+      "bytes": 689,
+      "mtime_ns": 1773447199273706768,
+      "sha256": "f39ca26ed13b4e1fbf64f3539a41fcf0deb9294e698398648f21b59ee51ac31b",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2023/downloads/ay23-24-campus-based.xls",
+      "bytes": 693760,
+      "mtime_ns": 1773445848735336201,
+      "sha256": "1d7a921fd29e306f0945a5dd61b9cb64bdc3671db6d16364d92cb530e923ba72",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Campus_Based_Volume/2023/manifest.csv",
+      "bytes": 689,
+      "mtime_ns": 1773447199273788185,
+      "sha256": "c74eaace78cbd5f1b74e279d9bf56ad274d0e97a0d144cc804b3811cff51a6b4",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/1999/downloads/AY1999-00Pell.xls",
+      "bytes": 719872,
+      "mtime_ns": 1773445658617455495,
+      "sha256": "2ef610addfec02c0446d719f3ea6a034dd5cf3cdc77d990c767f7430840075b7",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/1999/manifest.csv",
+      "bytes": 619,
+      "mtime_ns": 1773447199268898936,
+      "sha256": "f056d972bf97d0c20b587ca69dcfbc19de8cc51f3e493a04b196a27aaf722e2f",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2000/downloads/AY2000-01Pell.xls",
+      "bytes": 718848,
+      "mtime_ns": 1773445658746998916,
+      "sha256": "992f55a4be031c35e40ab06826ef37e94b61ed6535e8a1177c22cda6f23aa95d",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2000/manifest.csv",
+      "bytes": 619,
+      "mtime_ns": 1773447199269021354,
+      "sha256": "5efb25c6ba5241da2334ed990c283bffb96e64f893582dec3a9aec131e2d511c",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2001/downloads/AY2001-02Pell.xls",
+      "bytes": 716288,
+      "mtime_ns": 1773445658977893132,
+      "sha256": "8090a9bde7c33319f4eef90a75d26a5e6ffe4768218c4e5eb0954d2222b259d1",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2001/manifest.csv",
+      "bytes": 619,
+      "mtime_ns": 1773447199269341690,
+      "sha256": "48a4ae50dab931afb6bd9155d8abf42c1d2c020080dc3ce4a71833a54ad11a89",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2002/downloads/AY2002-03Pell.xls",
+      "bytes": 713728,
+      "mtime_ns": 1773445659262842761,
+      "sha256": "25a15d91f18a10725d1f79f019071c045827f8ae018346ca6ab17ba689ed72e6",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2002/manifest.csv",
+      "bytes": 619,
+      "mtime_ns": 1773447199269448982,
+      "sha256": "57d5b656e46b2f2226e255ce115dcc4e2d4e5622f1c41d43c29a1d406cc92b62",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2003/downloads/AY2003-04Pell.xls",
+      "bytes": 717312,
+      "mtime_ns": 1773445659442583911,
+      "sha256": "7c771bba4ebff62fab8431a956ca0335bdd280e0dde68c2bb76ad84857bbd761",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2003/manifest.csv",
+      "bytes": 619,
+      "mtime_ns": 1773447199269527150,
+      "sha256": "21239c87c68575ea47d0ceea2b06ad0d6e696680c8a30a4b9d12859894cbf507",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2004/downloads/AY2004-05Pell.xls",
+      "bytes": 717824,
+      "mtime_ns": 1773445660005470302,
+      "sha256": "e54f21da822728f04ce0c22977ddf9b2fa7400e540d6686edf035a9947cfbba4",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2004/manifest.csv",
+      "bytes": 619,
+      "mtime_ns": 1773447199269625859,
+      "sha256": "68c4f5d18347e473e1505f611250a3c0111d59cf18bed5a6763b51ef972a6052",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2005/downloads/AY2005-06Pell.xls",
+      "bytes": 722944,
+      "mtime_ns": 1773445660785626556,
+      "sha256": "08d8a02e455934e8b5d88bce051aedbf7fa152423d933b3df8601ceffb093e36",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2005/manifest.csv",
+      "bytes": 619,
+      "mtime_ns": 1773447199269767152,
+      "sha256": "1107523b905b9f3e2c21719452b7a73af3976161cc25b85f6fce5679b2011dc6",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2006/downloads/Q10607AY.xls",
+      "bytes": 2887168,
+      "mtime_ns": 1773445662931708475,
+      "sha256": "44db6e7429bcd0277fe31ac7e2a02f3476f604f7c249dfd9817255c2b841656f",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2006/downloads/Q20607AY.xls",
+      "bytes": 2616832,
+      "mtime_ns": 1773445665079515028,
+      "sha256": "0f415bc68053bb534eb4a35f8781ca4dfa6b2d4ed89cd4ad9877ff209e756703",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2006/downloads/Q30607AY.xls",
+      "bytes": 2284544,
+      "mtime_ns": 1773445666931176026,
+      "sha256": "0b28a4b8731773f4cc4e6b25591b7300609b62f528ea641161e855392f59ae0a",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2006/downloads/Q40607AY.xls",
+      "bytes": 2481664,
+      "mtime_ns": 1773445669003366902,
+      "sha256": "763a8b9372688165bad08a464d722a9a2fc7532d00be4c10bff7876ca439632b",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2006/manifest.csv",
+      "bytes": 1838,
+      "mtime_ns": 1773447199269895028,
+      "sha256": "f4afdbb69c08a90f43981a5cfa416e97e290680fcc015089e205d9aa80d6b981",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2007/downloads/Q10708AY.xls",
+      "bytes": 3347968,
+      "mtime_ns": 1773445671824875057,
+      "sha256": "0de28cbca9755c9fdfcccae982046c24a229c06cb4c998dd72e1b218f2a4c9ec",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2007/downloads/Q20708AY.xls",
+      "bytes": 3543552,
+      "mtime_ns": 1773445674714335730,
+      "sha256": "9a606cadaf6a56475823566bd88a6bb7fc6e21ff250ef2277cf09571696e47df",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2007/downloads/Q30708AY.xls",
+      "bytes": 4171264,
+      "mtime_ns": 1773445678152703523,
+      "sha256": "04842be24691c3c3b0afd307b2bb200dbc5b76d413d36a0247afb7ef5a839ecf",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2007/downloads/Q40708AY.xls",
+      "bytes": 4439552,
+      "mtime_ns": 1773445681789092757,
+      "sha256": "d1f3308a784cfa71ae7c3ecdfd26e0edb2f7dcf87e4f4655b4447b44234dcbad",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2007/manifest.csv",
+      "bytes": 1838,
+      "mtime_ns": 1773447199269998195,
+      "sha256": "127b6f29b7e09dc3cb9c5e7734923b9db4639cde81ba3d795878f235623f9acf",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2008/downloads/Q10809AY.xls",
+      "bytes": 2144768,
+      "mtime_ns": 1773445683762197348,
+      "sha256": "399e683975e5cb8ffa4a6509b3d9489a20e2b8950816ba538086cd0c1a8cc8fc",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2008/downloads/Q20809AY.xls",
+      "bytes": 2258944,
+      "mtime_ns": 1773445685517462284,
+      "sha256": "4bf439418c3b2820851d1425defd4a62e440bdfac69fb10801d04f4657bb2065",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2008/downloads/Q30809AY.xls",
+      "bytes": 2315264,
+      "mtime_ns": 1773445687282312888,
+      "sha256": "b9d2fda4d04324ba3e8f7a52574075ded49748df7607d3a30e432b2e11f1c8dc",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2008/downloads/Q40809AY.xls",
+      "bytes": 2309120,
+      "mtime_ns": 1773445689714679608,
+      "sha256": "add9d82284bc92fff7ed5d55c9307185888e8d67549f71fe04ad9467d51257cc",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2008/manifest.csv",
+      "bytes": 1838,
+      "mtime_ns": 1773447199270087113,
+      "sha256": "216f4d5cfd219ff1ec06e463dbd36ebadab552f6e535d9c2b2d080f6d151c053",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2009/downloads/Q10910AY.xls",
+      "bytes": 4715008,
+      "mtime_ns": 1773445693227237196,
+      "sha256": "36d035608b478dbf2ec7b305336cce1bc50f60a6fa9e8f21787e82a988e91133",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2009/downloads/Q20910AY.xls",
+      "bytes": 4912640,
+      "mtime_ns": 1773445697124682992,
+      "sha256": "fae80d8fd43a1259c2d588d9aaf5016ce3f3e2d42f5dea050cd8931c4bb91d97",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2009/downloads/Q30910AY.xls",
+      "bytes": 5256704,
+      "mtime_ns": 1773445701385893774,
+      "sha256": "bf96568abf71859105a79ad7cfa500ee60d712c98c328dddc8e1ac57a8c587e3",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2009/downloads/Q40910AY.xls",
+      "bytes": 5293568,
+      "mtime_ns": 1773445705726516624,
+      "sha256": "10e1e46d9e789ab7c4b5494ab2f367389ffbde019577ae156b9b01053fd20142",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2009/manifest.csv",
+      "bytes": 1838,
+      "mtime_ns": 1773447199270297031,
+      "sha256": "2ac3c1d02e06b3fb8f01f728a623fb570f26b3d3eb594c90db26fe2ecc2fee03",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2010/downloads/Q11011AY.xls",
+      "bytes": 1762816,
+      "mtime_ns": 1773445708476426706,
+      "sha256": "663cc1ef2570e2b53e75b776b6d138d6f4e4ee521ff1ec7db36e2032f0d3ed4f",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2010/downloads/Q21011AY.xls",
+      "bytes": 2037248,
+      "mtime_ns": 1773445709638148526,
+      "sha256": "e5c415b5c53570035b2ca7de084c46a4dbc030ba2e7b096450a99c9886ab72d1",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2010/downloads/Q31011AY.xls",
+      "bytes": 2067456,
+      "mtime_ns": 1773445710722527371,
+      "sha256": "03f7a3c189cee88593c74cff635dd4f4912345714d3c041017d8fb7d21dc556f",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2010/downloads/Q41011AY.xls",
+      "bytes": 4227584,
+      "mtime_ns": 1773445714201518932,
+      "sha256": "c0800cfe46b930d51df4faad8d93ece79b541c0275f6bc4f1c7eb22f0c5384ee",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2010/manifest.csv",
+      "bytes": 1838,
+      "mtime_ns": 1773447199270425366,
+      "sha256": "f31e4d2a69d3cb6f965b4f910d1b4d63ecf6e6cfddd738a459f4c72f3e60778d",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2011/downloads/Q11112AY.xls",
+      "bytes": 3838976,
+      "mtime_ns": 1773445717314685830,
+      "sha256": "9df9520da985e8e87c7f8903520c13037b57fd8f15504dc0ac9a5e803da0a9d6",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2011/downloads/Q21112AY.xls",
+      "bytes": 3925504,
+      "mtime_ns": 1773445720380746972,
+      "sha256": "66863cab53f5f25ec039ed9c995892464850d98e827cfbff173ff26fba49c2b8",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2011/downloads/Q31112AY.xls",
+      "bytes": 3952640,
+      "mtime_ns": 1773445723588010256,
+      "sha256": "f43a81aa4e0f5af33a5236fd63a776608ff1f98ec986869ed898ea31f4188f38",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2011/downloads/Q41112AY.xls",
+      "bytes": 3958784,
+      "mtime_ns": 1773445726805038084,
+      "sha256": "0e1a622297bce109cdc2c737ff19b146b0747dcca4281f5982130489796f8ea4",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2011/manifest.csv",
+      "bytes": 1838,
+      "mtime_ns": 1773447199270513991,
+      "sha256": "fda5734cb6008e865af174ad09f406c6190a0ad0bb589613f70b3e2b58e8a2a6",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2012/downloads/Q11213AY.xls",
+      "bytes": 4171264,
+      "mtime_ns": 1773445730289222585,
+      "sha256": "21d8325698990ff9adcbab3265c552d626c8c3d1d41dc7a88ac6ee19dd2046e7",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2012/downloads/Q21213AY.xls",
+      "bytes": 4261376,
+      "mtime_ns": 1773445733702436679,
+      "sha256": "e130153276edcc746b9f3f4078f947650deff77e6239e2d16e772ec9d0eb3bf9",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2012/downloads/Q31213AY.xls",
+      "bytes": 4290560,
+      "mtime_ns": 1773445737184937172,
+      "sha256": "70fa8f4ee6cfcacc16d0e9756c92a2660d3f3b4d53288eb613207f502b47c5f5",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2012/downloads/Q41213AY.xls",
+      "bytes": 4301312,
+      "mtime_ns": 1773445740937383142,
+      "sha256": "9205437d179e0285605a50947ede541a18ccf1736edc1d44ebab1e86335c02c3",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2012/manifest.csv",
+      "bytes": 1838,
+      "mtime_ns": 1773447199270601325,
+      "sha256": "08815fe381f8fdd52a53b60445ae39485723446ca61d99b47297b3d6ca0bbb44",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2013/downloads/Q11314AY.xls",
+      "bytes": 3961856,
+      "mtime_ns": 1773445744189367504,
+      "sha256": "b2d7b577d9da0966a34bf4b6eee0ac17f6baa080f2935b08a33a3ee6e6700286",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2013/downloads/Q21314AY.xls",
+      "bytes": 4015616,
+      "mtime_ns": 1773445747419159849,
+      "sha256": "00b9f8fb5939b033af439ab1832d4c9b762ca2353e28f80f331f639f94ebc707",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2013/downloads/Q31314AY.xls",
+      "bytes": 4061184,
+      "mtime_ns": 1773445750762067415,
+      "sha256": "9291e2e76d59546778d5439b01b48e7131ef2d83cfc629211247ba95ce673dcd",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2013/downloads/Q41314AY.xls",
+      "bytes": 4033536,
+      "mtime_ns": 1773445754106662740,
+      "sha256": "646b140f9a9b7709c1ea534a1abcf75b376a0bd6c4f9a8fd30a824b1a85a247a",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2013/manifest.csv",
+      "bytes": 1913,
+      "mtime_ns": 1773447199270701493,
+      "sha256": "83736f32a3ae2f36b783c3df634652c6fa1c067cb1b76a3f8a6ecb50e3b4dacb",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2014/downloads/Q11415AY.xls",
+      "bytes": 72,
+      "mtime_ns": 1773445754222363891,
+      "sha256": "fcb13ec52e98c7c89ce7fe5644c712eb05c8156949818feda9760932e5f26b21",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2014/downloads/Q21415AY.xls",
+      "bytes": 4055040,
+      "mtime_ns": 1773445757536313452,
+      "sha256": "26167e8ba41a1cc1c994ec968f0c2db214ea1fc5254ae67a67da88070bb2f9ed",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2014/downloads/Q31415AY.xls",
+      "bytes": 4101632,
+      "mtime_ns": 1773445760665101004,
+      "sha256": "824717dc9b0695cfa7046538d192c5c4932bae9029001e5269ff0b10a9132f08",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2014/downloads/Q41415AY.xls",
+      "bytes": 4070400,
+      "mtime_ns": 1773445764382356981,
+      "sha256": "1790899f33be1cea0ec5afc9e8c48f05d541049ef353997b45001dea8be941c2",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2014/manifest.csv",
+      "bytes": 1908,
+      "mtime_ns": 1773447199270805744,
+      "sha256": "467033c172a3327d1d8bc1c392ecb19d5ee9a634c80499f857e6eaaac504e10c",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2015/downloads/Q11516AY.xls",
+      "bytes": 1737728,
+      "mtime_ns": 1773445765528075063,
+      "sha256": "dbf1be21823d88c32db488c78bff5e145ea1019534e98a4f1de146a185f71b64",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2015/downloads/Q21516AY.xls",
+      "bytes": 1812480,
+      "mtime_ns": 1773445766982158254,
+      "sha256": "59ad51cb396ad32e3ce5bca10377b826808eb6fff80744a390425cc457e477fc",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2015/downloads/Q31516AY.xls",
+      "bytes": 1841152,
+      "mtime_ns": 1773445768725902595,
+      "sha256": "82ba25a4cf9adc592acffbd99c47c59c66bf735c7db7476302cf9efe7919a138",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2015/downloads/Q41516AY.xls",
+      "bytes": 1816576,
+      "mtime_ns": 1773445770109052214,
+      "sha256": "b6d83f500784611d10ca299613f8d5a858061c9f824da8a1de0bc37236e8c3cb",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2015/manifest.csv",
+      "bytes": 1938,
+      "mtime_ns": 1773447199270924703,
+      "sha256": "95e867ead9b21acfa4545f85afa1875a22b271b24f1905e433dbd894b968697e",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2016/downloads/Q11617AY.xls",
+      "bytes": 1708544,
+      "mtime_ns": 1773445771520701171,
+      "sha256": "697518557ad22b4478f9c343192038974f37897b92477cb14d74a5424d4524d1",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2016/downloads/Q21617AY.xls",
+      "bytes": 1776128,
+      "mtime_ns": 1773445773125027170,
+      "sha256": "a1cee5840e83425d53eef4cc37ee62a23c696797a159b3903d38560369686746",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2016/downloads/Q31617AY.xls",
+      "bytes": 1804288,
+      "mtime_ns": 1773445774692703169,
+      "sha256": "bfe1d500637ef8c96cbc93274d228e7868bb72fb465edfb7c3edc8548cbb35bf",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2016/downloads/Q41617AY.xls",
+      "bytes": 1786368,
+      "mtime_ns": 1773445776009268653,
+      "sha256": "be6e9308aed6c929ab9beb17fffa44346bf09144a062d3a6e54fadbc1dd06519",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2016/manifest.csv",
+      "bytes": 1938,
+      "mtime_ns": 1773447199271037537,
+      "sha256": "bf31d9c20833f6f97a52aa3e3e8313889cdc28a640e55fd50b235f2201ca5231",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2017/downloads/Q11718AY.xls",
+      "bytes": 1954304,
+      "mtime_ns": 1773445777587856744,
+      "sha256": "81721e8b1d36b4d6acf3fc1f5237a9e21d64617c77edd180630588776a4abd5e",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2017/downloads/Q21718AY.xls",
+      "bytes": 2041344,
+      "mtime_ns": 1773445779280834604,
+      "sha256": "f23ca1a5f66b719443aa26a3ae5a7fc7fd4c3e213a55f4a3bf1e93bfaf938b72",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2017/downloads/Q31718AY.xls",
+      "bytes": 2066432,
+      "mtime_ns": 1773445781072620913,
+      "sha256": "862c062ccd621673e4a2051dc3499d4dcd2438a5589b8d33ff7388e175c0b6d0",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2017/downloads/Q41718AY.xls",
+      "bytes": 2051584,
+      "mtime_ns": 1773445783105268984,
+      "sha256": "964400019995da062405a90491e593330151c9a1321acea065bc815ee1698b4c",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2017/manifest.csv",
+      "bytes": 1926,
+      "mtime_ns": 1773447199271127913,
+      "sha256": "b4a0c82187116f07a78990ed5b4208a3682934e8eab0bdfe1eb91b8a73499b11",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2018/downloads/grants-ay18-19-q1.xls",
+      "bytes": 1956864,
+      "mtime_ns": 1773445785510767166,
+      "sha256": "c75136957b18df564ee3af92e6d0c3364e514531fe1f1f477bc7ed7efdf9c760",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2018/downloads/grants-ay18-19-q2.xls",
+      "bytes": 2050048,
+      "mtime_ns": 1773445787188151872,
+      "sha256": "6ab47894e4df2f5f11f831a5a04e4560d617f15dc4598252dac2b576ffa06341",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2018/downloads/grants-ay18-19-q3.xls",
+      "bytes": 2064384,
+      "mtime_ns": 1773445788852032392,
+      "sha256": "6478ac97f73fa5bc7ed98d801b02859552e69dfd1daa77d9ead8fb6cf0369287",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2018/downloads/grants-ay18-19-q4.xls",
+      "bytes": 2053120,
+      "mtime_ns": 1773445790587874323,
+      "sha256": "255e166569d1fa33c2d2a3c72a11e1ebfe681cefefd96dcc2e7341ebce31b995",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2018/manifest.csv",
+      "bytes": 2034,
+      "mtime_ns": 1773447199271223956,
+      "sha256": "2f49b68b63cd45563306b7a48ccc7c1b296f1989a8d7a2e38a9fc4a7dc0c108a",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2019/downloads/grants-ay19-20-q1.xls",
+      "bytes": 1900544,
+      "mtime_ns": 1773445792132645759,
+      "sha256": "92bd66d0ee689ae1829a8f432637aecc555021002f8ecb0d8b73ab808ca4cb92",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2019/downloads/grants-ay19-20-q2.xls",
+      "bytes": 1985536,
+      "mtime_ns": 1773445793756164304,
+      "sha256": "65888efdc93230a72571f73ffcea2941a454f244a3308de7bc0216d0b72f1fd6",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2019/downloads/grants-ay19-20-q3.xls",
+      "bytes": 2013184,
+      "mtime_ns": 1773445795473572151,
+      "sha256": "80add3a33bdcdde2e23e8b6e23a4ae698029787b854d0dd872db44b030d970c3",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2019/downloads/grants-ay19-20-q4.xls",
+      "bytes": 1990656,
+      "mtime_ns": 1773445797331983388,
+      "sha256": "ec541dc44eb6886405f9a4a1db4f1f451d76564ab0882286dbf963cd1a9ef54d",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2019/manifest.csv",
+      "bytes": 2034,
+      "mtime_ns": 1773447199271313206,
+      "sha256": "6e97036202ff60d756528ad8373a66ec51b0b10c30ddea737584869f22f62044",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2020/downloads/grants-ay20-21-q1.xls",
+      "bytes": 1830912,
+      "mtime_ns": 1773445798890259261,
+      "sha256": "cd585f0a4ca26138a68a94b8e4a7a8ec289c02faf9cd61cbad4d0dd0a2bbc4a9",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2020/downloads/grants-ay20-21-q2.xls",
+      "bytes": 1940992,
+      "mtime_ns": 1773445800426860245,
+      "sha256": "e45cb90933b38a7e5037461008d942a0879a7bac4516dfae73225184443025bf",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2020/downloads/grants-ay20-21-q3.xls",
+      "bytes": 1970688,
+      "mtime_ns": 1773445802078210541,
+      "sha256": "f0f898979ec1ff3e9053f9c930e858b49b0b18bc58f20cf90855c8fd43d0e4c0",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2020/downloads/grants-ay20-21-q4.xls",
+      "bytes": 1957888,
+      "mtime_ns": 1773445803682501790,
+      "sha256": "c1a5fcb299f9283922ad3584ac19f9f8020502ee6c1b35662cae4beb1776408d",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2020/manifest.csv",
+      "bytes": 2034,
+      "mtime_ns": 1773447199271401332,
+      "sha256": "cf1563e981f834a274dd98c4946428d747c541ffe5af5debc01daf652687a1c1",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2021/downloads/grants-ay21-22-q1.xls",
+      "bytes": 1823744,
+      "mtime_ns": 1773445805281313306,
+      "sha256": "357540d435205e05c4c65ef373928d6028b5ff900d9d356eaa5c8185061be1a3",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2021/downloads/grants-ay21-22-q2.xls",
+      "bytes": 1916928,
+      "mtime_ns": 1773445806909268246,
+      "sha256": "b014cc60f5ef296a403f02773115ab4d49e6a5b34343b71527902dd7778b3d8f",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2021/downloads/grants-ay21-22-q3.xls",
+      "bytes": 1940480,
+      "mtime_ns": 1773445808925437908,
+      "sha256": "ce130621e7beca04e996f0ddad1070610f4a8a0f8a9cbf65c4454ce7bb3f6224",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2021/downloads/grants-ay21-22-q4.xls",
+      "bytes": 1926144,
+      "mtime_ns": 1773445810137164207,
+      "sha256": "95622801adebe7a46820943873e2555fdd28a3ce4301944149307bb89f13cbcc",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2021/manifest.csv",
+      "bytes": 2034,
+      "mtime_ns": 1773447199271489249,
+      "sha256": "9a1ad445fadd666f19e791aa3b23ed154184be3b98da2982db431cc89811db7f",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2022/downloads/grants-ay22-23-q1.xls",
+      "bytes": 1833984,
+      "mtime_ns": 1773445811728063145,
+      "sha256": "b6913baac5928b706c322ef425d5ed01fd47a1e80fcd288f10dab8870334555c",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2022/downloads/grants-ay22-23-q2.xls",
+      "bytes": 1916416,
+      "mtime_ns": 1773445813336690122,
+      "sha256": "02d18bbbb8c43310ee3c1502535120a7a5c3f04cbd3446cf1ab19165edd1dbca",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2022/downloads/grants-ay22-23-q3.xls",
+      "bytes": 1948672,
+      "mtime_ns": 1773445814811885909,
+      "sha256": "2385b754fb5b628c276e2d7613dfaf680bb30902b092b2dd87b0c8bb1bceaa39",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2022/downloads/grants-ay22-23-q4.xls",
+      "bytes": 1928192,
+      "mtime_ns": 1773445816562517741,
+      "sha256": "b1ccc3d328dd28f7a66132aaf0b4b922b4c7f5d9be3e5bc85c67a03b2b01cd76",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2022/manifest.csv",
+      "bytes": 2034,
+      "mtime_ns": 1773447199271572833,
+      "sha256": "a5407b21d561fae2203ded507a13e5a071335915a97dffecb77242220b8fd70d",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2023/downloads/grants-ay23-24-q1.xls",
+      "bytes": 1810432,
+      "mtime_ns": 1773445818014978591,
+      "sha256": "a0c320a815043871f85846753a7b1b373cfa88b5064a5675f0e7fa05f9fa6fd0",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2023/downloads/grants-ay23-24-q2.xls",
+      "bytes": 1894912,
+      "mtime_ns": 1773445819546426551,
+      "sha256": "60ce82402e20413b1dcb6a23984cf45608a89a88b87f8a06d24cf9684123826b",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2023/downloads/grants-ay23-24-q3.xls",
+      "bytes": 1915392,
+      "mtime_ns": 1773445821322559206,
+      "sha256": "f9a7d279210d9f0439f3fd1a4c209ac68c17173325ff3424226802c363cc26ec",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2023/downloads/grants-ay23-24-q4.xls",
+      "bytes": 1891840,
+      "mtime_ns": 1773445822902856471,
+      "sha256": "1fe860903ad84995d91fb75445cb38251df82152a8082141dd3ac55e6cbb8fd2",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2023/manifest.csv",
+      "bytes": 2034,
+      "mtime_ns": 1773447199271679834,
+      "sha256": "913d74080ec0b57cb33d981245a559fac5f96edc26926138bfcc2e2b92842c15",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2024/downloads/grants-ay24-25-q1.xls",
+      "bytes": 1520640,
+      "mtime_ns": 1773445824021302054,
+      "sha256": "afc940cf5a1d5b268efad1ee13715bbc8832ac58eaabf2a1240caf51286fdbb4",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2024/downloads/grants-ay24-25-q2.xls",
+      "bytes": 1607680,
+      "mtime_ns": 1773445825344680401,
+      "sha256": "d94b206af186c0d90dce93552ffd840e22b07f8fddf23347e702706ec3f0189c",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2024/downloads/grants-ay24-25-q3.xls",
+      "bytes": 1628672,
+      "mtime_ns": 1773445826756248607,
+      "sha256": "aae96428049cebf1d47b6dbdad5978a269e70a726d9aeec788cbff95f84c14fd",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2024/downloads/grants-ay24-25-q4.xls",
+      "bytes": 1618432,
+      "mtime_ns": 1773445828184953142,
+      "sha256": "ad031e1de310008d2e4fdb6ab600032a54e8fc10709ab3dff723c17d5c60605b",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2024/manifest.csv",
+      "bytes": 2034,
+      "mtime_ns": 1773447199271764377,
+      "sha256": "b4d3a2b7dcb7e75af67ef00bd60d0003c4f942b011ef51d46783e69763337cf1",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2025/downloads/grants-ay25-26-q1.xls",
+      "bytes": 1521152,
+      "mtime_ns": 1773445829331702062,
+      "sha256": "95e9c7e2a4131ae64896d94152aedbbc5d597c7827d521b46f118d96898700fc",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2025/downloads/grants-ay25-26-q2.xls",
+      "bytes": 1589760,
+      "mtime_ns": 1773445830570741693,
+      "sha256": "50722043dfb3a00adbd72a4b67f2512522d7014da7d10eb935987423ecaa2d5b",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Grant_Volume/2025/manifest.csv",
+      "bytes": 1122,
+      "mtime_ns": 1773447199271837377,
+      "sha256": "43e4d4c79d599534ed54d5f8c0da388e684d5488fdd4c16d5ae64859d933a776",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/1999/downloads/DL_AwardYr_Summary_AY1999_2000_All.xls",
+      "bytes": 341504,
+      "mtime_ns": 1773445849237502442,
+      "sha256": "42f4e0c4ffa7d54790fc582410e4424cc8bf1f2ec0a9a59d462922df0be5dcc6",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/1999/manifest.csv",
+      "bytes": 702,
+      "mtime_ns": 1773447199273874394,
+      "sha256": "3f5928ccf98e09caf6dd29db98dd77616518fdaabfdb5e9ac4038b82fc2d0b0f",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2000/downloads/DL_AwardYr_Summary_AY2000_2001_All.xls",
+      "bytes": 332288,
+      "mtime_ns": 1773445849636186128,
+      "sha256": "ed9a2448dad7e19e9f00e1545c6a75788fde4781fdaa6ac31d3049e89d65b2e5",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2000/manifest.csv",
+      "bytes": 702,
+      "mtime_ns": 1773447199273953228,
+      "sha256": "09a1c16905aaaf5fb19ad985e366a0d198d95ab3afc156e7696694ed2c678f9c",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2001/downloads/DL_AwardYr_Summary_AY2001_2002_All.xls",
+      "bytes": 319488,
+      "mtime_ns": 1773445849899764118,
+      "sha256": "2cb8c3cca7251e593b87e1eca33a31341fe5535232f90aa718aae57db70b4e06",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2001/manifest.csv",
+      "bytes": 702,
+      "mtime_ns": 1773447199274016687,
+      "sha256": "ffab2fabaf0bd00b156e0ecad91b09cadd7b4e54afb5439898b4ae4dd4bf497d",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2002/downloads/DL_AwardYr_Summary_AY2002_2003_All.xls",
+      "bytes": 309760,
+      "mtime_ns": 1773445850236267689,
+      "sha256": "91ae07065950b1bad6f9ea8a5204228cbff7361fc534adcc43fe6413a78b7b02",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2002/manifest.csv",
+      "bytes": 702,
+      "mtime_ns": 1773447199274099188,
+      "sha256": "f765c8b3950c48190c8f42547e225f3df3aeadd008d6a22b0a46fa3a41c19dd7",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2003/downloads/DL_AwardYr_Summary_AY2003_2004_All.xls",
+      "bytes": 303104,
+      "mtime_ns": 1773445850689575748,
+      "sha256": "0923ae92236d3e21c730e03ed116df39d551bffc12db7c429ce7ceae5d6521e4",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2003/manifest.csv",
+      "bytes": 702,
+      "mtime_ns": 1773447199274181980,
+      "sha256": "9be860179d7693218c643e49d6b0db7603968a772ff1b78d6e11a84d914a633d",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2004/downloads/DL_AwardYr_Summary_AY2004_2005_All.xls",
+      "bytes": 302592,
+      "mtime_ns": 1773445850943079609,
+      "sha256": "a2efcf127f20be15593d7c4d79b944a2e6766c2f2c581c474227f308322f877f",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2004/manifest.csv",
+      "bytes": 702,
+      "mtime_ns": 1773447199274246314,
+      "sha256": "e0073356910362b16436ee229b30b99f21a14c8ae44f56a0d9b830582b654dcc",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2005/downloads/DL_AwardYr_Summary_AY2005_2006_All.xls",
+      "bytes": 334336,
+      "mtime_ns": 1773445851176589171,
+      "sha256": "6f1a48c1baad7b425eb991b0cd4086c2c771d6dfb8198a8be6d77ee56d9a16f0",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2005/manifest.csv",
+      "bytes": 702,
+      "mtime_ns": 1773447199274381607,
+      "sha256": "869cf5d753492ab62bfced2a29f389cc90ecdbf6c4292e80ffdef9d0c8b8d0f9",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2006/downloads/DL_Dashboard_AY2006_2007_Q1.xls",
+      "bytes": 479232,
+      "mtime_ns": 1773445851557442110,
+      "sha256": "cbaca1c733ac1744b80f2984d3a7f71005e5fb7155b86b10593fb17c397339e3",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2006/downloads/DL_Dashboard_AY2006_2007_Q2.xls",
+      "bytes": 531456,
+      "mtime_ns": 1773445851943329155,
+      "sha256": "355f66baa4937b95051d004ae75e3964e0c30b09a25fdadd70811e26b17003a6",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2006/downloads/DL_Dashboard_AY2006_2007_Q3.xls",
+      "bytes": 542208,
+      "mtime_ns": 1773445852196194596,
+      "sha256": "cbd2d61a3d2fe40171e4aa9f76f000e663de071fa2768ff89b1f79948e186e84",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2006/downloads/DL_Dashboard_AY2006_2007_Q4.xls",
+      "bytes": 565760,
+      "mtime_ns": 1773445852445824064,
+      "sha256": "efeb18e1c76363b03b28477cebf34de6acc3e80002b600c1291e789a2f3b3c41",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2006/manifest.csv",
+      "bytes": 2142,
+      "mtime_ns": 1773447199274460691,
+      "sha256": "91bd5dc67fc129c8dd119edbc17886fe96e28cbca864b07e8383d29e7df79e48",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2007/downloads/DL_Dashboard_AY2007_2008_Q1.xls",
+      "bytes": 504832,
+      "mtime_ns": 1773445852710293640,
+      "sha256": "c2aa2225c41c4dfdc2af927b63c9a8eb2033a4bc4dbafc330ceb2a26650ff6b9",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2007/downloads/DL_Dashboard_AY2007_2008_Q2.xls",
+      "bytes": 553472,
+      "mtime_ns": 1773445852931049227,
+      "sha256": "b5a8c9d181c514f6b2b942a393f6f7f0cd4379a5e4430ce82e9ad81cc0c462a9",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2007/downloads/DL_Dashboard_AY2007_2008_Q3.xls",
+      "bytes": 583168,
+      "mtime_ns": 1773445853223835266,
+      "sha256": "69e3e335ff13258db4062d704ea91fcd823ecd105a304e49b1d27e68249cdb22",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2007/downloads/DL_Dashboard_AY2007_2008_Q4.xls",
+      "bytes": 730112,
+      "mtime_ns": 1773445853523355711,
+      "sha256": "ff5d2dc352ecf78e356a9d0cb0c499ce1a31f7d4b1424b037c9a5e6a75e4eeab",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2007/manifest.csv",
+      "bytes": 2142,
+      "mtime_ns": 1773447199274546775,
+      "sha256": "15d6eed2cdb4c9619d66b6083f394f61995793cf3b90b27ada1c5f0dd99168aa",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2008/downloads/DL_Dashboard_AY2008_2009_Q1.xls",
+      "bytes": 862208,
+      "mtime_ns": 1773445854192226250,
+      "sha256": "dc206a07346530491a2803e96b049ed85520176952735f8e03379cd56a429338",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2008/downloads/DL_Dashboard_AY2008_2009_Q2.xls",
+      "bytes": 934912,
+      "mtime_ns": 1773445854873535346,
+      "sha256": "612fe5ab2ca16716412016951e3fe51e86ee55c298210b0792e7bd67747dc98b",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2008/downloads/DL_Dashboard_AY2008_2009_Q3.xls",
+      "bytes": 1046016,
+      "mtime_ns": 1773445855782766561,
+      "sha256": "648893133431b1d1306e5d7d2edceed5ce6f6ca039fae907ba17938b30193709",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2008/downloads/DL_Dashboard_AY2008_2009_Q4.xls",
+      "bytes": 1153024,
+      "mtime_ns": 1773445856816982303,
+      "sha256": "88ae6c6ba4c64c929374d9a35c8dbca976bc816a1bf7e22194c00c1824e77f95",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2008/manifest.csv",
+      "bytes": 2144,
+      "mtime_ns": 1773447199274649234,
+      "sha256": "0bc21ee1684c0262549227c3002344ac046666026923af265bc6ce83fcd88839",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2009/downloads/DL_Dashboard_AY2009_2010_Q1.xls",
+      "bytes": 1018880,
+      "mtime_ns": 1773445857431984015,
+      "sha256": "fffbe1b55b832f95db7497a7c798719941e235e07f34a97e19eaf9f870d18a97",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2009/downloads/DL_Dashboard_AY2009_2010_Q2.xls",
+      "bytes": 1161216,
+      "mtime_ns": 1773445858357806973,
+      "sha256": "0be6a7bcd3fc5b195f3b181aac792151219112f30002b8ea2372f195d179d0af",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2009/downloads/DL_Dashboard_AY2009_2010_Q3.xls",
+      "bytes": 1348096,
+      "mtime_ns": 1773445859587391311,
+      "sha256": "fff175ff3302b235d4c5a529949ea364913d45790d638727eb82195eac3ed11f",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2009/downloads/DL_Dashboard_AY2009_2010_Q4.xls",
+      "bytes": 2168832,
+      "mtime_ns": 1773445861620474509,
+      "sha256": "c3c64bb3dafa88896e7cc3178f0cae81afa8f2cb774b0820441ff377d22696c6",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2009/manifest.csv",
+      "bytes": 2146,
+      "mtime_ns": 1773447199274735110,
+      "sha256": "78f46a4cd6b2c966922bf06a3a738e81cc89a5f24830ef98383957af9e2c8f64",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2010/downloads/DL_Dashboard_AY2010_2011_Q1.xls",
+      "bytes": 3243520,
+      "mtime_ns": 1773445864668438068,
+      "sha256": "6627a19f40f510ccff9a931925161bc8c94968842fd2b6d6e8b7d855977377ca",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2010/downloads/DL_Dashboard_AY2010_2011_Q2.xls",
+      "bytes": 3459584,
+      "mtime_ns": 1773445868396506677,
+      "sha256": "adb5569a473d2134783b0a9c8aee13fb5295ce8f04e83318bcf2711c2d169d18",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2010/downloads/DL_Dashboard_AY2010_2011_Q3.xls",
+      "bytes": 3501056,
+      "mtime_ns": 1773445871776593038,
+      "sha256": "e3a02173b152e7a00a5b48a751fb82c8233c6aa02604297ee11ccbbcd2465e19",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2010/downloads/DL_Dashboard_AY2010_2011_Q4.xls",
+      "bytes": 3526656,
+      "mtime_ns": 1773445877567560856,
+      "sha256": "7f610d7325f1890b17148789b970ea56fa2a8b52d1c4717b6e43ef8f594567b2",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2010/manifest.csv",
+      "bytes": 2146,
+      "mtime_ns": 1773447199274829111,
+      "sha256": "50abfe5a08c7a9fcfd7251c787e557741fc0cde454a6451970661f64ae5e819d",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2011/downloads/DL_Dashboard_AY2011_2012_Q1.xls",
+      "bytes": 3294208,
+      "mtime_ns": 1773445881829349515,
+      "sha256": "3533b7c39a62f7c8f80b1c602abc3b4be6513075f879bad5a512225dda5f489e",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2011/downloads/DL_Dashboard_AY2011_2012_Q2.xls",
+      "bytes": 3480064,
+      "mtime_ns": 1773445885891028682,
+      "sha256": "608e999fc35cdf9a7740eaa0992eeacee0837176dd99ac7dd7be5ca3469a7d75",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2011/downloads/DL_Dashboard_AY2011_2012_Q3.xls",
+      "bytes": 3518976,
+      "mtime_ns": 1773445889321162104,
+      "sha256": "415374f1f39a7501bc35e8353a15b6e4d733176d04e522c6293c894cded2391f",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2011/downloads/DL_Dashboard_AY2011_2012_Q4.xls",
+      "bytes": 3527680,
+      "mtime_ns": 1773445892766887512,
+      "sha256": "cf1f0b9dd2d5da1cf3ed5f16509998c66e2b34cc5151fac166a84ffb24e7b069",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2011/manifest.csv",
+      "bytes": 2146,
+      "mtime_ns": 1773447199274931028,
+      "sha256": "c1b69c60cb8585b28fd155b34d0d7b471caf5e5a5231f0d54569f68fa719455a",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2012/downloads/DL_Dashboard_AY2012_2013_Q1.xls",
+      "bytes": 2964992,
+      "mtime_ns": 1773445896229617374,
+      "sha256": "3b6cceb0c4a53a3c7dd2bbf9831a8e844d24a7690a4d3fcbbcb634d590bb2b6c",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2012/downloads/DL_Dashboard_AY2012_2013_Q2.xls",
+      "bytes": 3132416,
+      "mtime_ns": 1773445899304121763,
+      "sha256": "f6212ca9a306cdc4b804d8742b2ee15fc6ce71c466ee949fa9b3e3583aa960cd",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2012/downloads/DL_Dashboard_AY2012_2013_Q3.xls",
+      "bytes": 3159552,
+      "mtime_ns": 1773445901911225903,
+      "sha256": "46b82fe654dc4bd083f8e19b8f1ad8a4a6bce136bd5fb619b3fd523e448707f8",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2012/downloads/DL_Dashboard_AY2012_2013_Q4.xls",
+      "bytes": 3178496,
+      "mtime_ns": 1773445904692997919,
+      "sha256": "c86b0739d1f5ab3d7041ed74c019143a2b1a2c21d81645bae82b3af89722b7c1",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2012/manifest.csv",
+      "bytes": 2146,
+      "mtime_ns": 1773447199275013195,
+      "sha256": "8461bfe8ec81739fb571048c84594474ab613f34d52a1e1e4498706721e4404d",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2013/downloads/DL_Dashboard_AY2013_2014_Q1.xls",
+      "bytes": 2853376,
+      "mtime_ns": 1773445907141677131,
+      "sha256": "fc4c292f05621497f91553fb406243affb9baa7184297a8d1e3749b08835c04c",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2013/downloads/DL_Dashboard_AY2013_2014_Q2.xls",
+      "bytes": 3101184,
+      "mtime_ns": 1773445909633641373,
+      "sha256": "8b88ff637ebfc94fcb4ff743368fb0473d3db8608df3e6d371b6852c5ef2d210",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2013/downloads/DL_Dashboard_AY2013_2014_Q3.xls",
+      "bytes": 3141120,
+      "mtime_ns": 1773445912335931945,
+      "sha256": "684c9fa8fe1686df8bbfb9a52833f332f7c4ceb3ee59b9c978834d74c9c6acb5",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2013/downloads/DL_Dashboard_AY2013_2014_Q4.xls",
+      "bytes": 3146240,
+      "mtime_ns": 1773445914989426629,
+      "sha256": "8215a9e5a5d630b822881eb169006455fafe0b808253ceb9b29808413cdb6d69",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2013/manifest.csv",
+      "bytes": 2146,
+      "mtime_ns": 1773447199275094363,
+      "sha256": "1a1c0181609cdb7d0e168c63f29e6385d87e2fb6e2ded4d0fb53fa9431b39530",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2014/downloads/DL_Dashboard_AY2014_2015_Q1.xls",
+      "bytes": 2857984,
+      "mtime_ns": 1773445921316703676,
+      "sha256": "d2c0058b39aecfbca5c8e49f05c79cab7dbda7853b09aea915951e28e2dbe69b",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2014/downloads/DL_Dashboard_AY2014_2015_Q2.xls",
+      "bytes": 3131392,
+      "mtime_ns": 1773445924214188926,
+      "sha256": "df7d325ddce6c2a413b15e34e7da92525c122175e5d0edb3f5a7d03404ea4dc1",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2014/downloads/DL_Dashboard_AY2014_2015_Q3.xls",
+      "bytes": 3175936,
+      "mtime_ns": 1773445926906880871,
+      "sha256": "0241014addd17a67d7ae8556c20b58324956618908412e11c5b5277a618d0eb7",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2014/downloads/DL_Dashboard_AY2014_2015_Q4.xls",
+      "bytes": 3166208,
+      "mtime_ns": 1773445929336987749,
+      "sha256": "f03707afdc4a572ede56b2b772fc2f55660eb7dd5d1ef68e89ee71fd16def90e",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2014/manifest.csv",
+      "bytes": 2246,
+      "mtime_ns": 1773447199275172280,
+      "sha256": "3c326d2ae4aaa13d28e617f78ce15b6a6c0ff0ebd66e169ea247f6e2cf7ec8c1",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2015/downloads/DL_Dashboard_AY2015_2016_Q1.xls",
+      "bytes": 2735616,
+      "mtime_ns": 1773445931482037122,
+      "sha256": "bb97c5994b5d593993e54e61d1c4e834ec98fdf7f036ce1f26ef87d8c91fec2f",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2015/downloads/DL_Dashboard_AY2015_2016_Q2.xls",
+      "bytes": 3014656,
+      "mtime_ns": 1773445933991410776,
+      "sha256": "d1c7df625bfd1f4baecf3ef9b297986a64da5bbe1be14198f1344b8f491ebc4a",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2015/downloads/DL_Dashboard_AY2015_2016_Q3.xls",
+      "bytes": 3048960,
+      "mtime_ns": 1773445936502556063,
+      "sha256": "944126885aeccdc84eb88710ef6fafbd839f0ce8154319438d3987158742d373",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2015/downloads/DL_Dashboard_AY2015_2016_Q4.xls",
+      "bytes": 3038208,
+      "mtime_ns": 1773445938946435294,
+      "sha256": "9714726bc16e0d5722768f552b1c7efdc7dc6c9f4684f3a46153e97489fa4d10",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2015/manifest.csv",
+      "bytes": 2246,
+      "mtime_ns": 1773447199275265739,
+      "sha256": "c453b0bf231c836a82945e456d2f4170a1cf6eb8107ad0979b5e9aa80a31f771",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2016/downloads/DL_Dashboard_AY2016_2017_Q1.xls",
+      "bytes": 2722304,
+      "mtime_ns": 1773445941109786167,
+      "sha256": "19ceb0c453035a30283a7dc83529d764223c19a529ab94224c99863fac04b9bd",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2016/downloads/DL_Dashboard_AY2016_2017_Q2.xls",
+      "bytes": 2962944,
+      "mtime_ns": 1773445943858835369,
+      "sha256": "22000c885467253cd2651de4cd0fc90c13139f022c1e662d0056a8e01a41c75c",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2016/downloads/DL_Dashboard_AY2016_2017_Q3.xls",
+      "bytes": 2996224,
+      "mtime_ns": 1773445946249953777,
+      "sha256": "2376f73e3f04999efad2aa7825cbe8844d5b52f8b39e8a1ee94681816ae1085e",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2016/downloads/DL_Dashboard_AY2016_2017_Q4.xls",
+      "bytes": 2981888,
+      "mtime_ns": 1773445948421307270,
+      "sha256": "f40315b5770ed20fd633ce4b4f912dc4d35a2fa4ddf137b0bd53e2d9c9c74746",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2016/manifest.csv",
+      "bytes": 2246,
+      "mtime_ns": 1773447199275373740,
+      "sha256": "fcd9b8ce8d9ad5241ceb877ed559b12ef4d299fd8fc51817298119407e0b935c",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2017/downloads/DL_Dashboard_AY2017_2018_Q1.xls",
+      "bytes": 3334656,
+      "mtime_ns": 1773445951173209568,
+      "sha256": "37481ad09bfad2200a3ee826cb0f055d84fe36c2c525c8091ca56bfd99501005",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2017/downloads/DL_Dashboard_AY2017_2018_Q2.xls",
+      "bytes": 3686400,
+      "mtime_ns": 1773445954398177391,
+      "sha256": "89df334197012abb9b8f4713e54806dceb821777f317a922a63437e93eb57245",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2017/downloads/DL_Dashboard_AY2017_2018_Q3.xls",
+      "bytes": 3693056,
+      "mtime_ns": 1773445957580100310,
+      "sha256": "5f7246a7a9e7d0c4abd9e835213c368082be0a65b1871976d98311eaf7892c67",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2017/downloads/DL_Dashboard_AY2017_2018_Q4.xls",
+      "bytes": 3686912,
+      "mtime_ns": 1773445960401469173,
+      "sha256": "5c2d1067369eccdf43993afed5eba3e61a272988b91c48b6afeecdd8c99c0ea8",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2017/manifest.csv",
+      "bytes": 2240,
+      "mtime_ns": 1773447199275460657,
+      "sha256": "7e21de713480ef8ce0427e4a7fb44c8ceb4f9cf1ebf8f8aee7d72e011abfb5ec",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2018/downloads/dl-dashboard-ay2018-2019-q1.xls",
+      "bytes": 3312128,
+      "mtime_ns": 1773445963081605019,
+      "sha256": "0ce8436f56a6a567f380512b3ede0149cfad95f8bee1acae406c4fffaae24788",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2018/downloads/dl-dashboard-ay2018-2019-q2.xls",
+      "bytes": 3644928,
+      "mtime_ns": 1773445965986612596,
+      "sha256": "c7df17865552955ac2b00bce4db3b056f371f6d7fe9b7239ebad895585289a23",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2018/downloads/dl-dashboard-ay2018-2019-q3.xls",
+      "bytes": 3645952,
+      "mtime_ns": 1773445968954821794,
+      "sha256": "2dd25a31f160de3cc37543008bc79165f7d3efa28bd3876a0d40e4c8e4e33122",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2018/downloads/dl-dashboard-ay2018-2019-q4.xls",
+      "bytes": 3644416,
+      "mtime_ns": 1773445971934435376,
+      "sha256": "2961ac808a7f09127d407144cd11890bbca9db6bd5d0bd302cfab65fee6365d5",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2018/manifest.csv",
+      "bytes": 2234,
+      "mtime_ns": 1773447199275669826,
+      "sha256": "72501c4c881d18b1d0883bc13c7bf0ad900dbe125067afaf78cfae75447ab708",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2019/downloads/dl-dashboard-ay2019-2020-q1.xls",
+      "bytes": 3209728,
+      "mtime_ns": 1773445974561928734,
+      "sha256": "8afd8efc4141acf0d680d0bdbf89cfe029360f65334c9d8b6973d9f1edfb8e2c",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2019/downloads/dl-dashboard-ay2019-2020-q2.xls",
+      "bytes": 3552768,
+      "mtime_ns": 1773445977307432878,
+      "sha256": "311053ee61ea6705e19218be10772799ad34edaef67c1d9defcae3041a7044d8",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2019/downloads/dl-dashboard-ay2019-2020-q3.xls",
+      "bytes": 3580416,
+      "mtime_ns": 1773445980237157900,
+      "sha256": "3f2afe1d657804904dc728bf28256057009cef76470d02def9928d25f59ac3f2",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2019/downloads/dl-dashboard-ay2019-2020-q4.xls",
+      "bytes": 3564032,
+      "mtime_ns": 1773445983366550122,
+      "sha256": "9f0a3ae2495516cf519e7521978ea2782ee9aea373acd6b391347a1c7c4c3d40",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2019/manifest.csv",
+      "bytes": 2234,
+      "mtime_ns": 1773447199275749160,
+      "sha256": "c73dd39b06f9900da6b386fa4034eb1e7ddf0526e683e5cb6dd873306c3c52af",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2020/downloads/dl-dashboard-ay2020-2021-q1.xls",
+      "bytes": 3108864,
+      "mtime_ns": 1773445985745116848,
+      "sha256": "635c9f512a41755e36a716f64b2ac2ab3052ffdf29511c42be03c204aec420e7",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2020/downloads/dl-dashboard-ay2020-2021-q2.xls",
+      "bytes": 3510272,
+      "mtime_ns": 1773445988591300950,
+      "sha256": "c4896b7b71f3681683a43832dc4011916768df8f947023ffd4620aa811b86014",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2020/downloads/dl-dashboard-ay2020-2021-q3.xls",
+      "bytes": 3525632,
+      "mtime_ns": 1773445991466643558,
+      "sha256": "16bf7e3a304209ae9473868c697465d3ef900a9a5831cd1ba6135759ee2ec339",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2020/downloads/dl-dashboard-ay2020-2021-q4.xls",
+      "bytes": 3512832,
+      "mtime_ns": 1773445994269722963,
+      "sha256": "24319939df0f8dcd21b298f4de474a4aef343a6a1585a396ec478474482eee8e",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2020/manifest.csv",
+      "bytes": 2234,
+      "mtime_ns": 1773447199275845911,
+      "sha256": "1393bcab5ebfcf308e3a5a874ddcd8a73417256b45199e43b6da50a36fbaf5b0",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2021/downloads/dl-dashboard-ay2021-2022-q1.xls",
+      "bytes": 3090432,
+      "mtime_ns": 1773445997124445395,
+      "sha256": "2ceb564e97f754e104555b5be5d37aedda6e562b584b05bf3e2bd52d9a89546d",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2021/downloads/dl-dashboard-ay2021-2022-q2.xls",
+      "bytes": 3464192,
+      "mtime_ns": 1773445999757499569,
+      "sha256": "b94c725282f20258fedf0fa8065ea610666d51472a17918719bd440459220520",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2021/downloads/dl-dashboard-ay2021-2022-q3.xls",
+      "bytes": 3470848,
+      "mtime_ns": 1773446002552072228,
+      "sha256": "d3885189603fc4cfc1f9d9f981551d84fab1ead8eea7f726b3b1afc461e22802",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2021/downloads/dl-dashboard-ay2021-2022-q4.xls",
+      "bytes": 3474944,
+      "mtime_ns": 1773446005324632911,
+      "sha256": "d51ec3fdb203aff229dae0630ec4615cee5df96a9e52f898e0c5fef243d56bde",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2021/manifest.csv",
+      "bytes": 2234,
+      "mtime_ns": 1773447199275931245,
+      "sha256": "746e7cc697dfef07e89ae09056ae49e8a0a3697a4babd9445a55b61a34347a2f",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2022/downloads/dl-dashboard-ay2022-2023-q1.xls",
+      "bytes": 3107840,
+      "mtime_ns": 1773446007914700973,
+      "sha256": "08d4a46f97c45a1166f98765d975bba9ff065923447372837c431aaea016a71a",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2022/downloads/dl-dashboard-ay2022-2023-q2.xls",
+      "bytes": 3431424,
+      "mtime_ns": 1773446010785682520,
+      "sha256": "94b78347378bb328292ad70576b285f3e28fc9b852c59b9b6d1228c76f116be0",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2022/downloads/dl-dashboard-ay2022-2023-q3.xls",
+      "bytes": 3448832,
+      "mtime_ns": 1773446013808047172,
+      "sha256": "4386ad5706a13276e65cc2a68d651b19b93f7cd573a02bf2b884ac6f027916e2",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2022/downloads/dl-dashboard-ay2022-2023-q4.xls",
+      "bytes": 3444224,
+      "mtime_ns": 1773446016266080385,
+      "sha256": "ab0f94a4e5494b29246eb77e6a8a7dc0eab179ce37690033560497406186586b",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2022/manifest.csv",
+      "bytes": 2234,
+      "mtime_ns": 1773447199276014454,
+      "sha256": "c026b0a38f30e6bcb2cd13e5b0061df1ffc9285c7778bb4d1e0eca3308febefc",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2023/downloads/dl-dashboard-ay2023-2024-q1.xls",
+      "bytes": 3039744,
+      "mtime_ns": 1773446018801430740,
+      "sha256": "87190f2d04b13c2539b9677eb9e2a892d6086cd8acefb9ffd3723d14182e7779",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2023/downloads/dl-dashboard-ay2023-2024-q2.xls",
+      "bytes": 3371008,
+      "mtime_ns": 1773446021526367249,
+      "sha256": "c1d0155a79387fbd386f2f304409a57292a5f40363b32a384004da499c72ae5f",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2023/downloads/dl-dashboard-ay2023-2024-q3.xls",
+      "bytes": 3375104,
+      "mtime_ns": 1773446024390702891,
+      "sha256": "b82bdb2d9a7c350b8d06d6c64f06ce177cac7168b01bfae35524d88019dc90da",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2023/downloads/dl-dashboard-ay2023-2024-q4.xls",
+      "bytes": 3369984,
+      "mtime_ns": 1773446027533117214,
+      "sha256": "edc45861887d67ba664d349143d936172c495e1d2b3640fa3e172943f1b8385b",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2023/manifest.csv",
+      "bytes": 2234,
+      "mtime_ns": 1773447199276092954,
+      "sha256": "16d8ebff3cffec22a6591c07d3d2acb6dde4419ba173fe0ed884e5f5bca8a223",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2024/downloads/dl-dashboard-ay2024-2025-q1.xls",
+      "bytes": 2963968,
+      "mtime_ns": 1773446030157572849,
+      "sha256": "9b72a9b8718101afa15d1af09803f16f2ce3273350acfdf07a34d5bfb7f7bc36",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2024/downloads/dl-dashboard-ay2024-2025-q2.xls",
+      "bytes": 3289088,
+      "mtime_ns": 1773446033075795194,
+      "sha256": "5211d0cd0be0a00967d2eca62f0a48e5e2b46b5d079602a6cdb8cc2d6e2cc7bc",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2024/downloads/dl-dashboard-ay2024-2025-q3.xls",
+      "bytes": 3304960,
+      "mtime_ns": 1773446035746631623,
+      "sha256": "39d76d6995aaec7922a49f71dafbee32142dfe0a76511904410abe0f88bf28bf",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2024/downloads/dl-dashboard-ay2024-2025-q4.xls",
+      "bytes": 3302400,
+      "mtime_ns": 1773446038672948880,
+      "sha256": "6a8a7790b7647ea1a09d428270561b491bd2afc9b2d36a1a0fcbb4539b177464",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2024/manifest.csv",
+      "bytes": 2234,
+      "mtime_ns": 1773447199276189830,
+      "sha256": "26de93ac871bd9d24d8df63c18ead609fff0a14ebc7d00a9634eedc0575eb03e",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2025/downloads/dl-dashboard-ay2025-2026-q1.xls",
+      "bytes": 2932224,
+      "mtime_ns": 1773446040940019850,
+      "sha256": "bb683c3d3191f7f666867459011c18884e225d1609da99d19a491fbaf6e0660d",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2025/downloads/dl-dashboard-ay2025-2026-q2.xls",
+      "bytes": 3234304,
+      "mtime_ns": 1773446043480170436,
+      "sha256": "3dbcbb617cb808df9be4afb7b55513dc0389efbd85fb93d7175410752a019adf",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/Direct/2025/manifest.csv",
+      "bytes": 1222,
+      "mtime_ns": 1773447199276265498,
+      "sha256": "2cf1571eaa07f6c953ffb1859054cd428542db7602eca11511f271e7b6cbcf12",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/1999/downloads/FFEL_AwardYr_Summary_AY1999_2000_All.xls",
+      "bytes": 1122304,
+      "mtime_ns": 1773446044325866654,
+      "sha256": "4d41deb1a1d2fd4ba3f53728c03a3a848aeb73abab3cf64b644c2ff41d582243",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/1999/manifest.csv",
+      "bytes": 697,
+      "mtime_ns": 1773447199276338206,
+      "sha256": "0a4c8e450e24694fbac6cb2912c0aa8e54c992e848c247f4ea541ee8a6d6c89b",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2000/downloads/FFEL_AwardYr_Summary_AY2000_2001_All.xls",
+      "bytes": 1127936,
+      "mtime_ns": 1773446045270495030,
+      "sha256": "a999c2e527cf384d1026191e7146e0eace81b2374f3a290b9164bbb75c3feada",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2000/manifest.csv",
+      "bytes": 697,
+      "mtime_ns": 1773447199276421332,
+      "sha256": "ae94acf312a3b0e94a3aa2fd000859b2c215356a785f4a78762c96953397539f",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2001/downloads/FFEL_AwardYr_Summary_AY2001_2002_All.xls",
+      "bytes": 1131008,
+      "mtime_ns": 1773446046211416723,
+      "sha256": "50bf90feb2ad42a0a80b7c1d458c3d760856fc4066df7d31deef39d5a2e27764",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2001/manifest.csv",
+      "bytes": 697,
+      "mtime_ns": 1773447199276518541,
+      "sha256": "d533dcca55723c30c98459e59139b0c4ed8475c43f91b7ec37e6e95b51010136",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2002/downloads/FFEL_AwardYr_Summary_AY2002_2003_All.xls",
+      "bytes": 1136128,
+      "mtime_ns": 1773446047116341752,
+      "sha256": "0b9e6534381294f8d89a5f85343cecb50af5d27c1ce2abc2ab596ed2e097ca06",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2002/manifest.csv",
+      "bytes": 697,
+      "mtime_ns": 1773447199276618500,
+      "sha256": "ec35fc8ec28e68d2825bee2cbfd72c264909d045d1f428337590cc3fc43e0feb",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2003/downloads/FFEL_AwardYr_Summary_AY2003_2004_All.xls",
+      "bytes": 1144832,
+      "mtime_ns": 1773446048325443414,
+      "sha256": "9dbc3220cb83fa881818e39fe522f05f8b93dcea3c6ae82cdd8ebe3715c4e88a",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2003/manifest.csv",
+      "bytes": 697,
+      "mtime_ns": 1773447199276687834,
+      "sha256": "8fde84128fd3c9869741efc68b4e943a982bd1af7c728ddb0b14fa65068654df",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2004/downloads/FFEL_AwardYr_Summary_AY2004_2005_All.xls",
+      "bytes": 1148416,
+      "mtime_ns": 1773446049162252550,
+      "sha256": "af011e1a1095a8e8e6766a4c91944004bbca104bef1cc8aa02fccb25d8fa6522",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2004/manifest.csv",
+      "bytes": 697,
+      "mtime_ns": 1773447199276831544,
+      "sha256": "62bd2ab939e10425ac529852fefb4ac1b5614f42f0cbd99ff121f9c6a9734585",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2005/downloads/FFEL_AwardYr_Summary_AY2005_2006_All.xls",
+      "bytes": 1302016,
+      "mtime_ns": 1773446050066135824,
+      "sha256": "ca8e01c881d4859819f38923ed88069e4ecab1bf528d0f4a7b537b9001692d1d",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2005/manifest.csv",
+      "bytes": 697,
+      "mtime_ns": 1773447199276913753,
+      "sha256": "29d3eaf85bef694ad6afe04ffc9a5c2fcfec4c3f0348626f671bb45637b332dc",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2006/downloads/FL_Dashboard_AY2006_2007_Q1.xls",
+      "bytes": 2102784,
+      "mtime_ns": 1773446051960583642,
+      "sha256": "c767ca7c887166ba8fd8357f97baf12a0dfd532300543206a1d1b1976265105d",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2006/downloads/FL_Dashboard_AY2006_2007_Q2.xls",
+      "bytes": 2253824,
+      "mtime_ns": 1773446053795773523,
+      "sha256": "dacadc1003a5161040a962c90acc3a74adba5ceb62ddc7eb4a7ac52d9d4d947a",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2006/downloads/FL_Dashboard_AY2006_2007_Q3.xls",
+      "bytes": 2290176,
+      "mtime_ns": 1773446055648934528,
+      "sha256": "b1c2eb07c05b8b07b6bcb59dc993e55baa12c5afa766ab23ef406a16c342d1c6",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2006/downloads/FL_Dashboard_AY2006_2007_Q4.xls",
+      "bytes": 2291200,
+      "mtime_ns": 1773446057376756964,
+      "sha256": "8662fbffc20f4d5119356f93e67b26361025bc285d0999702eac8bfbdc4af686",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2006/manifest.csv",
+      "bytes": 2098,
+      "mtime_ns": 1773447199277004712,
+      "sha256": "227a816d6bacd69b37c1feab5eab277f294f8b44c758cfa05322e758fdc265e5",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2007/downloads/FL_Dashboard_AY2007_2008_Q1.xls",
+      "bytes": 2149376,
+      "mtime_ns": 1773446059369727147,
+      "sha256": "73c2cd88bc6841fbe88b7d0c614884f9a93ffab16c66537466f877a1e4f46a48",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2007/downloads/FL_Dashboard_AY2007_2008_Q2.xls",
+      "bytes": 2301952,
+      "mtime_ns": 1773446061094500568,
+      "sha256": "1f234dd5ed3bba1592c920a943caedfcec4f0344abd6c15e609e3fd33e77fc72",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2007/downloads/FL_Dashboard_AY2007_2008_Q3.xls",
+      "bytes": 2382336,
+      "mtime_ns": 1773446062837853907,
+      "sha256": "3c85444b81e39ab3579c81bc417e463112097fd5d03938f882072625412ae7dd",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2007/downloads/FL_Dashboard_AY2007_2008_Q4.xls",
+      "bytes": 2426368,
+      "mtime_ns": 1773446064896406637,
+      "sha256": "732d744c9d2327f44d33d6c6377b21a555e8220b8bae5ca5569a8296da4908ee",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2007/manifest.csv",
+      "bytes": 2098,
+      "mtime_ns": 1773447199277106671,
+      "sha256": "bb4ce5203a45e6defda39abe60ec62a7687b828f634681d8b478190632e9d5e0",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2008/downloads/FL_Dashboard_AY2008_2009_Q1.xls",
+      "bytes": 2097152,
+      "mtime_ns": 1773446066589511166,
+      "sha256": "44fcac1dfe364469196fcc5a190bbeca6910cd914776ba0ddc35f3846e58e6ff",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2008/downloads/FL_Dashboard_AY2008_2009_Q2.xls",
+      "bytes": 2230272,
+      "mtime_ns": 1773446068383622486,
+      "sha256": "e5513c47707473210d5f2a52b5167f974f317f7c27ed5ddcca996fc1ca7b9721",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2008/downloads/FL_Dashboard_AY2008_2009_Q3.xls",
+      "bytes": 2281472,
+      "mtime_ns": 1773446070242913477,
+      "sha256": "939aa4f3085aa3c586fefa8439616d45e94543dd6e4f32ca12d480afd4f4c894",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2008/downloads/FL_Dashboard_AY2008_2009_Q4.xls",
+      "bytes": 2252288,
+      "mtime_ns": 1773446072030575476,
+      "sha256": "d9c035b488f444de2f620517ecccbc3e9272c541ce8139a0990fd7b384c9fe54",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2008/manifest.csv",
+      "bytes": 2098,
+      "mtime_ns": 1773447199277191630,
+      "sha256": "7f6df1e7cc5523a02f617d7cca670549ef07c79a2927cef90ef5ae734374db5e",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2009/downloads/FL_Dashboard_AY2009_2010_Q1.xls",
+      "bytes": 1964544,
+      "mtime_ns": 1773446073622091584,
+      "sha256": "11b4a0fda24369eb7907f6b0167d822d0a7bbe8dc2ffc3f64be18116ee108453",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2009/downloads/FL_Dashboard_AY2009_2010_Q2.xls",
+      "bytes": 2078208,
+      "mtime_ns": 1773446075406470610,
+      "sha256": "a48ff77d7a3624f5cab4ff9fefb4d955ef73d22b01b79db09ea82d26f7e137d2",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2009/downloads/FL_Dashboard_AY2009_2010_Q3.xls",
+      "bytes": 2116608,
+      "mtime_ns": 1773446077259839074,
+      "sha256": "95cd16db540d3c1a4923ef92da24fd0ff460afb47f30d9766cb07472096b7bba",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2009/downloads/FL_Dashboard_AY2009_2010_Q4.xls",
+      "bytes": 2062336,
+      "mtime_ns": 1773446078738734669,
+      "sha256": "2921f3d7fc9ac7d6c11b16bc199f6a8cbe5b7cdb7bbfbed3fb07652cb26bf0a4",
+      "action": "retain_in_current_project"
+    },
+    {
+      "path": "Raw_Title_IV_Reports/Loan_Volume/FFEL/2009/manifest.csv",
+      "bytes": 2098,
+      "mtime_ns": 1773447199277287006,
+      "sha256": "70034486fae137b90df231a691a73b2e861b91cde9b63e3a6cb018937f3b1c32",
+      "action": "retain_in_current_project"
+    }
+  ],
+  "source_inventory_count": 456,
+  "raw_destination": "/Users/markjaysonfarol13/Projects/Research/Higher Ed research/Data/FSA/FSAVolumeReports_Panel-main/ResearchBuild/Raw_Title_IV_Reports",
+  "raw_file_count": 307,
+  "removed_bytes": 232566272,
+  "manual_review_check": {
+    "safe_to_remove_generated_outputs": true,
+    "all_manual_review_rows": 13097,
+    "csv_files_checked": 8,
+    "workbooks_checked": 2,
+    "workbook_data_sheets_checked": 8,
+    "workbook_data_rows_compared": 32038,
+    "base_fields_different_from_final_descriptor_manual_review": 0,
+    "csv_subset_field_differences": 0,
+    "nondefault_review_decisions": 0,
+    "review_note_generator_differences": 0,
+    "workbook_substantive_cell_differences": 0,
+    "workbook_score_serialization_rounding_cells": 870,
+    "normalization_note": "Historical ASCII punctuation normalization with leading THE removal reproduces every review_note; current repaired normalizer intentionally differs. No human edits found in data sheets; workbook metadata creator is openpyxl, March 14 creation/modification within one second; no comment or revision XML assets.",
+    "raw_input_condition": "Preserve entire Raw_Title_IV_Reports folder before removing stale generated outputs."
+  },
+  "completed_at_utc": "2026-09-29T23:38:46.771152+00:00",
+  "status": "complete",
+  "remaining_project_directories": [
+    "FSAVolumeReports_Panel-main"
+  ],
+  "raw_files_verified_after_move": 307,
+  "scope": "Only stale sibling outputs removed; CIRAGO datasets unchanged."
+}

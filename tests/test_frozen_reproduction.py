@@ -18,7 +18,6 @@ class FrozenReproductionTests(unittest.TestCase):
         paths = {
             "source/Scripts/00_run_all.py": b"# frozen\n",
             "source/requirements.txt": b"pandas==2.2.3\n",
-            "inputs/ipeds_crosswalks/download_manifest.json": b"{}\n",
             "environment-requirements.txt": b"pandas==2.2.3\n",
             "inputs/fsa/Grant_Volume/2000/downloads/example.xls": b"original workbook bytes",
         }
@@ -32,7 +31,7 @@ class FrozenReproductionTests(unittest.TestCase):
                "filesize_bytes": str(raw.stat().st_size),
                "local_path": "/old/computer/Raw_Title_IV_Reports/Grant_Volume/2000/downloads/example.xls"}
         runner.write_csv(bundle / "selected_panel_files.csv", list(row), [row])
-        original = {"inputs": [row], "environment": {"python": "3.13.0", "pandas": "2.2.3"},
+        original = {"repository_scope": "fsa_reporting_unit_panel", "inputs": [row], "environment": {"python": "3.13.0", "pandas": "2.2.3"},
                     "code_and_metadata": [{"path": "Scripts/00_run_all.py", "sha256": runner.sha256(bundle / "source/Scripts/00_run_all.py")}],
                     "artifacts": []}
         (bundle / "original_release_manifest.json").write_text(json.dumps(original))
@@ -70,7 +69,7 @@ class FrozenReproductionTests(unittest.TestCase):
     def test_unmanifested_selection_input_rejected(self):
         with tempfile.TemporaryDirectory() as temporary:
             bundle, _ = self.fixture(Path(temporary))
-            (bundle / "inputs/ipeds_crosswalks/CW2025.xlsx").write_text("extra")
+            (bundle / "inputs/fsa/unselected.xlsx").write_text("extra")
             with self.assertRaisesRegex(ValueError, "Unmanifested"):
                 runner.verify_bundle(bundle)
 
@@ -134,7 +133,7 @@ class FrozenReproductionTests(unittest.TestCase):
             finally:
                 os.chdir(previous)
 
-    def test_semantic_compare_only_normalizes_provenance_directories(self):
+    def test_fsa_reference_comparison_checks_every_value(self):
         import pandas as pd
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
@@ -142,16 +141,15 @@ class FrozenReproductionTests(unittest.TestCase):
             old, new = root / "original" / relative, root / "rebuilt" / relative
             old.parent.mkdir(parents=True)
             new.parent.mkdir(parents=True)
-            frame = pd.DataFrame({"unitid": [123456], "award_year": ["2000-2001"],
-                                  "ipeds_source_path": ["/old/HD2000.zip"], "amount": [10.25]})
+            frame = pd.DataFrame({"opeid8": ["00123400"], "award_year": ["2000-2001"],
+                                  "amount": [10.25]})
             frame.to_parquet(old, index=False)
-            frame["ipeds_source_path"] = "/new/HD2000.zip"
             frame.to_parquet(new, index=False)
             original = {"artifacts": [{"path": relative, "sha256": runner.sha256(old)}]}
-            with patch.object(runner, "COMPARISONS", {relative: ["unitid", "award_year"]}):
+            with patch.object(runner, "COMPARISONS", {relative: ["opeid8", "award_year"]}):
                 result = runner.compare_reference(root / "rebuilt", root / "original", original)
                 self.assertTrue(result["passed"])
-                self.assertEqual(result["artifacts"][0]["normalized_path_columns"], ["ipeds_source_path"])
+                self.assertEqual(result["artifacts"][0]["normalized_path_columns"], [])
                 frame["amount"] = 10.250000001
                 frame.to_parquet(new, index=False)
                 with self.assertRaises(AssertionError):

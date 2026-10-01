@@ -38,6 +38,12 @@ class RunAllTests(unittest.TestCase):
             self.assertIn("00_source_qaqc.py", stdout)
             self.assertIn("01_panel_qaqc.py", stdout)
             self.assertIn("02_acceptance_audit.py", stdout)
+            self.assertNotIn("13_link_ipeds", stdout)
+
+    def test_linkage_options_are_not_fsa_pipeline_options(self):
+        result = run_script("Scripts/00_run_all.py", "--ipeds-dir", "unused", "--dry-run")
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("unrecognized arguments", result.stdout)
 
 
 if __name__ == "__main__":

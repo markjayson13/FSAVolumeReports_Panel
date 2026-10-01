@@ -13,7 +13,7 @@ import pandas as pd
 
 from fsa_build_utils import data_layout, locate_analysis_ready_final_panel, REPO_ROOT, compute_file_metadata
 from fsa_policy import policy_registry_hash
-from fsa_release_integrity import require_current_qa, require_current_linkage, require_release_scope, acceptance_all_passed
+from fsa_release_integrity import require_current_qa, require_release_scope, acceptance_all_passed
 
 
 def package(root: str) -> Path:
@@ -39,7 +39,7 @@ def package(root: str) -> Path:
         for source in sorted(folder.rglob("*")):
             if source.is_file() and source.suffix in {".py", ".csv", ".json", ".sh", ".md"}:
                 code_inputs.append({"path": str(source.relative_to(REPO_ROOT)), "sha256": compute_file_metadata(source)[1]})
-    for source in (REPO_ROOT / "requirements.txt", REPO_ROOT / "README.md"):
+    for source in (REPO_ROOT / "requirements.txt", REPO_ROOT / "README.md", REPO_ROOT / "Metadata/reproduction_environment.txt"):
         code_inputs.append({"path": str(source.relative_to(REPO_ROOT)), "sha256": compute_file_metadata(source)[1]})
     # This checkout can be a downloaded archive without Git. Preserve the exact
     # executable source, tests and interpretive documentation with the release.
@@ -56,24 +56,23 @@ def package(root: str) -> Path:
     for p in sorted((layout.checks / "observation_qc").glob("*_quarantine.parquet")):
         q = pd.read_parquet(p)
         quarantines.append({"family": p.name.removesuffix("_quarantine.parquet"), "rows": len(q), "path": str(p)})
-    linkage = require_current_linkage(layout.root, path)
     artifacts = []
-    release_artifacts = list(layout.panels.rglob("*.parquet"))
+    release_artifacts = [p for p in layout.panels.rglob("*.parquet") if "ipeds" not in p.relative_to(layout.panels).parts]
     release_artifacts += [p for p in layout.dictionary.glob("*") if p.suffix in {".parquet", ".csv"}]
     for p in sorted(release_artifacts):
         size, sha = compute_file_metadata(p)
         artifacts.append({"path": str(p.relative_to(layout.root)), "bytes": size, "sha256": sha})
-    manifest = {"release_version": "fsa-research-v2", "built_utc": datetime.now(timezone.utc).isoformat(),
+    manifest = {"release_version": "fsa-research-v3-fsa-only", "repository_scope": "fsa_reporting_unit_panel", "built_utc": datetime.now(timezone.utc).isoformat(),
         "master": str(path), "rows": len(frame), "columns": len(frame.columns), "institutions": frame.opeid8.nunique(),
         "fsa_reporting_unit_ids": frame.opeid8.nunique(),
-        "institution_count_note": "The legacy institutions key counts distinct FSA reporting IDs, including unverified/noninstitutional placeholders. Use the UNITID panel and annual reconciliation for institutional counts.",
+        "institution_count_note": "The legacy institutions key counts distinct FSA reporting IDs, including unverified/noninstitutional placeholders. Institution counts require an external, separately reviewed identity linkage.",
         "award_years": sorted(frame.award_year.unique()), "unit_of_observation": "FSA full OPEID8 by award year; not automatically an IPEDS campus",
         "master_geography": "unrestricted; state filtering is an explicit separate view",
         "source_vintage": "frozen selected input bytes; input hashes verified; upstream freshness is not implied",
         "policy_registry_sha256": policy_registry_hash(), "acceptance_passed": passed, "acceptance_checks": len(acceptance),
         "scope_validation_passed": True, "scope_checks": len(scope_validation),
         "descriptor_review_rows": int(frame.descriptor_review_required.sum()), "quarantined_institution_rows": quarantines,
-        "linkage": linkage, "inputs": inputs, "code_and_metadata": code_inputs, "artifacts": artifacts,
+        "inputs": inputs, "code_and_metadata": code_inputs, "artifacts": artifacts,
         "environment": {"python": platform.python_version(), **{p: importlib.metadata.version(p) for p in ["pandas","pyarrow","openpyxl","xlrd","requests","beautifulsoup4"]}}}
     out = layout.build / "research_release_manifest.json"
     out.write_text(json.dumps(manifest, indent=2, default=int) + "\n")
@@ -83,16 +82,9 @@ def package(root: str) -> Path:
                f"Acceptance: {'PASS' if passed else 'NOT PASSED'} ({len(acceptance)} checks)",
                f"Unresolved descriptor-review rows: {int(frame.descriptor_review_required.sum()):,}",
                f"Quarantined source institution rows: {sum(q['rows'] for q in quarantines):,}",
-               "", "Use the unrestricted master with its status fields. Do not treat NA as zero, recipient sums as unique people, or a UNITID tag as proof of campus-level scope.",
+               "", "Use the unrestricted master with its status fields. Do not treat NA as zero, or recipient sums as unique people.",
                "See Documentation/research_use.md and Documentation/policy_and_reporting_changes.md in the repository.",
-               "Source identity failures are retained in quarantine; the strict IPEDS view intentionally excludes ambiguous/reporting-group/temporal cases."]
-    if linkage:
-        summary.extend(["", f"Strict IPEDS sensitivity rows: {linkage['strict_rows']:,}",
-                        f"Annual identity-eligible FSA rows: {linkage.get('annual_identity_eligible_rows', 0):,}",
-                        f"UNITID-year panel rows: {linkage.get('unitid_panel', {}).get('rows', 0):,}",
-                        "Use the annual institution-count reconciliation and source-family eligibility flags; a resolved UNITID is not a certified campus aid allocation."])
-    else:
-        summary.append("IPEDS linkage not built in this invocation.")
+               "Source identity failures remain in quarantine. UNITID linkage and combined panels are owned by IPEDS-FSA_Panel."]
     (layout.build / "RESEARCH_RELEASE.txt").write_text("\n".join(summary)+"\n")
     if not passed:
         raise SystemExit(f"Release is NOT accepted; inspect {acceptance_path}. Manifest recorded at {out}")

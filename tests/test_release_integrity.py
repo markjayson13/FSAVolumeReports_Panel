@@ -79,31 +79,18 @@ class ReleaseIntegrityTests(unittest.TestCase):
             integrity.require_release_scope(pd.DataFrame([{"family": "grants", "filename": "source.xlsx", "sha256": "a" * 64,
                 "award_year_start": 1999, "award_year": "1999-2000", "selected_for_panel": True, "quarter": ""}]))
 
-    def test_stale_linkage_and_changed_directory_rejected(self):
+    @patch.object(integrity, "pipeline_fingerprints", return_value={"code": "v1"})
+    def test_downstream_artifacts_do_not_contaminate_fsa_qa(self, _):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
-            directory = root / "Panels/ipeds"
-            directory.mkdir(parents=True)
-            master = root / "master.parquet"
-            master.write_bytes(b"master")
-            source = root / "hd.zip"
-            source.write_bytes(b"directory")
-            artifact = directory / "linked.parquet"
-            artifact.write_bytes(b"linked")
-            manifest = {"source_panel_sha256": integrity.sha256(master),
-                        "linkage_code_sha256": integrity.sha256(integrity.REPO / "Scripts/fsa_ipeds_linkage.py"),
-                        "all_original_cells_preserved": True,
-                        "artifacts": {"linked": {"path": str(artifact), "sha256": integrity.sha256(artifact)}}}
-            (directory / "ipeds_linkage_manifest.json").write_text(json.dumps(manifest))
-            pd.DataFrame([{"path": str(source), "sha256": integrity.sha256(source)}]).to_csv(directory / "ipeds_source_manifest.csv", index=False)
-            integrity.require_current_linkage(root, master)
-            source.write_bytes(b"revised directory")
-            with self.assertRaisesRegex(ValueError, "directory input changed"):
-                integrity.require_current_linkage(root, master)
-            source.write_bytes(b"directory")
-            master.write_bytes(b"revised master")
-            with self.assertRaisesRegex(ValueError, "different master"):
-                integrity.require_current_linkage(root, master)
+            self.prepare(root)
+            downstream = root / "Panels/ipeds/bridge.parquet"
+            downstream.parent.mkdir()
+            downstream.write_bytes(b"separately owned linkage")
+            integrity.require_current_qa(root)
+            self.assertNotIn("Panels/ipeds/bridge.parquet", integrity.data_fingerprints(root))
+            downstream.write_bytes(b"updated downstream linkage")
+            integrity.require_current_qa(root)
 
 
 if __name__ == "__main__":

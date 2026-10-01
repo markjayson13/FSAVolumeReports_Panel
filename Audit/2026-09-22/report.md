@@ -1,3 +1,5 @@
+> Historical mixed-project audit. IPEDS-specific probe and diagnostic moved to `IPEDS-FSA_Panel/History/Audit/2026-09-22/evidence/`. Current FSA pipeline scope is documented in the repository README.
+
 **FSA Volume Reports panel gap audit — September 22, 2026**
 
 Post-repair clarification: this is the historical, pre-repair audit. The early grant rows described below as “TOTAL” are unlabeled final numeric rows, not literally labeled published totals. Their numeric values are source evidence, but their interpretation requires that qualification. The repaired pipeline retains them as `unlabeled_numeric_summary_candidate`, compares them separately with known institutional values, and does not certify complete reconciliation when source cells are unknown. See [research-use documentation](../../Documentation/research_use.md) for the delivered treatment.

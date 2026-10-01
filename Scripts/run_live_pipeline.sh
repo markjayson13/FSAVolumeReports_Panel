@@ -7,7 +7,7 @@ Usage:
   bash Scripts/run_live_pipeline.sh [options]
 
 Options:
-  --root PATH          External FSA_ROOT. Defaults to /Users/markjaysonfarol13/Projects/FSAVolumeReports_Paneling
+  --root PATH          External FSA_ROOT. Defaults to FSA-data in the current working directory.
   --venv PATH          Virtualenv path. Defaults to .venv in the repo root.
   --python CMD         Python interpreter used to create the venv. Defaults to python3.
   --page-html PATH     Optional local HTML or JSON fixture for stage 01 discovery.
@@ -27,7 +27,7 @@ EOF
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
-DEFAULT_FSA_ROOT="/Users/markjaysonfarol13/Projects/FSAVolumeReports_Paneling"
+DEFAULT_FSA_ROOT="${PWD}/FSA-data"
 FSA_ROOT="${FSA_ROOT:-$DEFAULT_FSA_ROOT}"
 VENV_DIR="${VENV_DIR:-${REPO_ROOT}/.venv}"
 PYTHON_CMD="${PYTHON_CMD:-python3}"

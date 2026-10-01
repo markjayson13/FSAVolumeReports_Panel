@@ -8,10 +8,10 @@ import json
 from pathlib import Path
 
 ARCHIVES = {
-    f"fsa-research-v2-{name}.zip"
-    for name in ("portable-data", "stata", "excel", "canonical", "replication")
+    f"fsa-research-v3-fsa-only-{name}.zip"
+    for name in ("canonical", "replication")
 }
-WHOLE_ARCHIVE = "fsa-research-v2-stata.zip"
+WHOLE_ARCHIVE = None
 
 
 def sha256(path: Path) -> str:

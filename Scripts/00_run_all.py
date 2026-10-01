@@ -26,14 +26,11 @@ def run(cmd: list[str], dry_run: bool) -> None:
 
 
 def main() -> None:
-    default_root = os.environ.get("FSA_ROOT", "/Users/markjaysonfarol13/Projects/FSAVolumeReports_Paneling")
+    default_root = os.environ.get("FSA_ROOT", str(Path.cwd() / "FSA-data"))
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--root", default=default_root, help="External FSA_ROOT")
     ap.add_argument("--page-html", default=None, help="Optional local HTML fixture for stage 01")
     ap.add_argument("--scope-config", default=None, help="Versioned release scope JSON")
-    ap.add_argument("--ipeds-dir", default=None, help="Official annual HD/FLAGS sources; enables audited linkage stage")
-    ap.add_argument("--ipeds-crosswalk-dir", default=None, help="Official annual NCES/FSA CW workbooks")
-    ap.add_argument("--ipeds-anchor", choices=["start", "end"], default="start")
     ap.add_argument("--skip-preflight", action=argparse.BooleanOptionalAction, default=False)
     ap.add_argument("--preflight-only", action=argparse.BooleanOptionalAction, default=False)
     ap.add_argument("--strict-source-checks", action=argparse.BooleanOptionalAction, default=True)
@@ -119,18 +116,6 @@ def main() -> None:
             run([sys.executable, str(SCRIPTS_DIR / "10_filter_clean_panel_to_us_states.py"), "--root", str(layout.root)], args.dry_run)
         if not args.skip_analysis_panel:
             run([sys.executable, str(SCRIPTS_DIR / "11_build_analysis_ready_final_panel.py"), "--root", str(layout.root)], args.dry_run)
-
-    if args.ipeds_dir:
-        from fsa_build_utils import locate_analysis_ready_final_panel
-        panel_path = locate_analysis_ready_final_panel(layout)
-        if panel_path is None and not args.dry_run:
-            raise SystemExit("No analysis master found for IPEDS linkage")
-        command = [sys.executable, str(SCRIPTS_DIR / "13_link_ipeds.py"), "--input-parquet", str(panel_path or "<analysis-master>"),
-             "--ipeds-dir", args.ipeds_dir, "--output-dir", str(layout.panels / "ipeds"), "--anchor", args.ipeds_anchor,
-             "--research-root", str(layout.root)]
-        if args.ipeds_crosswalk_dir:
-            command += ["--crosswalk-dir", args.ipeds_crosswalk_dir]
-        run(command, args.dry_run)
 
     if not args.dry_run:
         from fsa_release_integrity import write_transformation_completion
